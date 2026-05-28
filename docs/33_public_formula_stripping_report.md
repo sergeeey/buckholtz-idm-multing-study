@@ -405,7 +405,39 @@ Requires explicit scale-dependence analysis.
 
 ---
 
+---
+
+## 12. Heuristic Closure Candidate (Cross-Reference)
+
+**Related document:** `docs/35_ai_transcript_closure_candidate.md`
+
+A possible heuristic scaling formula H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)] appears in AI transcript materials, where Phi(z) = A_m(z) - A_d(z) + A_q(z).
+
+**Sign structure:** Matches force-law structure (F_oP = F_m - F_d + F_q).
+
+**Status:** AI_TRANSCRIPT_REPORTED (not source-confirmed), FITTED_PHENOMENOLOGICAL
+
+**Key distinction:**
+- Force-law layer (this document): Pairwise forces F_m, F_d, F_q documented
+- Heuristic closure (docs/35): Possible phenomenological H(z) scaling found
+- Rigorous physical closure (NOT found): Mean-field derivation Phi(z) → H(z) from field equations MISSING
+
+**Critical blocker for heuristic table reproduction:**
+- Requires cluster variable table: m_A(z_i), r_A(z_i), k_A(z_i) for all z_i in Table A1
+- Requires amplitude definitions: A_m(z), A_d(z), A_q(z)
+- Requires anchor point: H_anchor, z_anchor
+
+**Use permission:**
+- ALLOWED_FOR_TABLE_REPRODUCTION_CANDIDATE (if cluster variables provided)
+- NOT_ALLOWED_FOR_PREDICTION (missing cluster table for arbitrary z)
+- NOT_ALLOWED_FOR_MCMC (no rigorous derivation, no forward model)
+
+**See docs/35 for full analysis.**
+
+---
+
 **Last updated:** 2026-05-28  
 **Requires:** Manual verification pass  
 **Blocks:** H(z) modeling, MCMC fitting  
-**Unblocks:** Dimensional analysis, force-law documentation
+**Unblocks:** Dimensional analysis, force-law documentation  
+**Related:** docs/35_ai_transcript_closure_candidate.md (heuristic H(z) scaling)

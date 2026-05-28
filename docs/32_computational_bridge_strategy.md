@@ -161,8 +161,8 @@ Not theoretical authority, but computational support:
 **Option B — Domain of applicability:**
 > "Is MULTING intended as a universal gravitational framework, or more as a late-time, large-scale effective model relevant mainly to galaxy clusters and cosmic-web scales?"
 
-**Option C — Fit reproduction (UPDATED with force-law context):**
-> "I'm trying to reproduce Table A1. I found candidate force-law equations (monopole, dipole, quadrupole) in public materials, but I could not find the force-law → H(z) mapping. Could you share: (1) the H_MULT(z; beta_d, beta_q) functional form, and (2) confirmation that the pairwise force equations F_m, F_d, F_q are correctly extracted?"
+**Option C — Fit reproduction (UPDATED with force-law + heuristic closure context):**
+> "I'm trying to reproduce Table A1. I found candidate force-law equations (monopole, dipole, quadrupole) in public materials, and a possible heuristic scaling H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)] in AI transcript materials. However, I'm missing: (1) cluster variable values m_A(z), r_A(z), k_A(z) for Table A1 redshifts, (2) amplitude definitions A_m(z), A_d(z), A_q(z), and (3) H_anchor, z_anchor reference point. Could you clarify whether the heuristic formula is documented in the manuscript, and provide the missing inputs for table reproduction?"
 
 **What NOT to send:**
 - Full repository
@@ -208,6 +208,14 @@ Not theoretical authority, but computational support:
    - Clean, factual, no H(z) claims
    - Frame as "here's what I documented from your materials, awaiting verification"
    - **Only offer after manual PDF verification confirms formulas are exact match**
+
+5. **Heuristic closure candidate documentation** (2 pages) — NEW, AI transcript status
+   - Phi(z) = A_m(z) - A_d(z) + A_q(z) scaling formula
+   - H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)]
+   - Required inputs list (9 total: beta_d/beta_q known, 7 missing)
+   - Use permission status (table reproduction candidate, NOT prediction, NOT MCMC)
+   - Frame as "I found this in AI materials, is it documented in your manuscript?"
+   - **Only offer after confirming he's open to discussing heuristic vs rigorous derivation**
 
 **How to present:**
 > "I've been working through parts of your framework to understand them better. I created [artifact X] as part of my notes. If this would be useful to you, I'm happy to share it. No obligation."

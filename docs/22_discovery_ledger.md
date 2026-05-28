@@ -505,8 +505,54 @@
 
 ---
 
+### Finding 13: Heuristic H-MULT Closure Candidate (AI Transcript)
+
+| Field | Value |
+|-------|-------|
+| **Finding** | Possible heuristic scaling formula H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)] appears in AI transcript materials, where Phi(z) = A_m(z) - A_d(z) + A_q(z). This is a phenomenological table-reproduction candidate, NOT rigorous physical derivation. |
+| **Type** | `copper_result` (formula documented) + `dead_end` (predictive use blocked by missing cluster table) |
+| **Evidence** | ✅ Documented in docs/35_ai_transcript_closure_candidate.md. Heuristic scaling preserves force-law sign structure (monopole + / dipole - / quadrupole +). Requires cluster variables (m_A(z), r_A(z), k_A(z)) to evaluate Phi(z) → cannot compute H_MULT without this. Status: AI_TRANSCRIPT_REPORTED (not source-confirmed). |
+| **Source status** | `AI_TRANSCRIPT_REPORTED` (from AI materials, awaiting source confirmation) |
+| **Verification status** | ⏸️ PENDING — source confirmation NOT yet performed (need to ask Buckholtz if this formula appears in manuscript or separate publication) |
+| **Next test** | (1) Ask Buckholtz Q1-Q6 (docs/35 questions: formula source, cluster table, amplitude definitions, anchor point, sigma_MULT, rigorous derivation). (2) If cluster variables provided → attempt Table A1 reproduction. (3) If rigorous derivation provided → upgrade status, reassess use permission. (4) If neither provided → mark as phenomenological dead-end. |
+| **Value for project** | MEDIUM — documents possible table-reproduction path (if cluster variables exist), prevents premature predictive modeling claims, enforces MCMC blocker. Distinguishes "may reproduce table" from "predicts H(z)". |
+| **Safe wording** | "A possible heuristic scaling H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)] appears in AI transcript materials. This may reproduce the reported Table A1 H_MULT column IF cluster variables (m_A(z), r_A(z), k_A(z)) are provided for all tabulated redshifts. However, this is a phenomenological formula, not a rigorous derivation from field equations. It cannot predict H(z) on new redshifts without full cluster variable table. MCMC parameter estimation remains blocked pending formal closure." |
+| **Unsafe wording** | ❌ "This predicts cosmic expansion" (requires cluster table for all z). ❌ "This validates MULTING against H(z) observations" (phenomenological fit). ❌ "This is the Buckholtz H(z) equation" (AI transcript, not source-confirmed). ❌ "MCMC shows beta_d=4.5 and beta_q=18.0 are optimal" (fitted, not tested). ❌ "H_MULT outperforms ΛCDM" (no model comparison performed). ❌ "We can now compute H(z) from MULTING" (only for z where cluster variables known). |
+
+**What We Have (heuristic closure candidate):**
+- Formula: Phi(z) = A_m(z) - A_d(z) + A_q(z), H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)]
+- Sign structure: matches force-law (+ monopole - dipole + quadrupole)
+- Known inputs: beta_d = 4.5, beta_q = 18.0 (from Table A1, fitted)
+- Status: AI_TRANSCRIPT_REPORTED (not source-confirmed)
+
+**What We Do NOT Have (CRITICAL BLOCKERS for table reproduction):**
+1. **Cluster variable table:** m_A(z), r_A(z), k_A(z) for all z_i in Table A1 (CRITICAL)
+2. **H_anchor:** Reference Hubble parameter (H(z=0)? H_FLRW? other?)
+3. **z_anchor:** Anchor redshift (z=0? z=0.5? other?)
+4. **Amplitude definitions:** How are A_m(z), A_d(z), A_q(z) defined? (force amplitudes? potential? dimensionless?)
+5. **sigma_MULT definition:** How are uncertainties computed?
+6. **Formal derivation:** Phi(z) → H(z) mapping from field equations
+7. **Parameter count:** How many free parameters total?
+8. **AIC/BIC comparison:** MULTING vs ΛCDM model comparison
+
+**Use permission (enforced by tests):**
+- ✅ ALLOWED: Document formula, attempt table reproduction IF cluster variables provided
+- ❌ NOT ALLOWED: Predictive modeling (requires cluster table for all z)
+- ❌ NOT ALLOWED: MCMC parameter estimation (no forward model, no likelihood)
+
+**MCMC readiness:** BLOCKED — no forward model H_MULT(z; params) computable for arbitrary z
+
+**Table reproduction readiness:** CANDIDATE — possible IF cluster variables provided (not guaranteed to match)
+
+**Files created:**
+- src/hmult_closure_candidates.py (dataclasses + guards, 292 lines)
+- tests/test_hmult_closure_candidate_status.py (27 tests, all passing)
+- docs/35_ai_transcript_closure_candidate.md (comprehensive report, 653 lines)
+
+---
+
 **Document status:** ACTIVE — updated as audit progresses
 
 **Last updated:** 2026-05-28  
-**Next review:** After manual PDF verification of force equations, after H-MULT formula received, after PPN questions sent  
+**Next review:** After AI transcript source confirmation, after cluster variable table received, after H_anchor clarification  
 **Maintainer:** Buckholtz IDM/MULTING audit team
