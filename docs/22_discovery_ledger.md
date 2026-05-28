@@ -431,8 +431,41 @@
 
 ---
 
+---
+
+### Finding 11: PPN Check Status
+
+| Field | Value |
+|-------|-------|
+| **Finding** | PPN (Parametrized Post-Newtonian) check for Solar System compatibility is BLOCKED — MULTING lacks weak-field metric, Solar System limit, k_A definition, and COM frame specification |
+| **Type** | `source_missing_constraint` |
+| **Evidence** | ✅ Analyzed manuscript: no weak-field metric provided, no explicit Solar System limit, no k_A definition for ordinary matter, no COM frame behavior specified. See docs/29_ppn_quick_check_requirements.md for 7 blocked checks. |
+| **Source status** | `source_missing` (6 interpretation branches, all require author clarification) |
+| **Verification status** | ✅ VERIFIED — 7 PPN checks defined (PPN-1 through PPN-7), all BLOCKED or UNKNOWN. 21 tests passing (test_ppn_checklist.py). |
+| **Next test** | (1) Send author questions (docs/26 Priority 2). (2) If weak-field metric provided → extract γ, β parameters. (3) If cluster-scale-only confirmed → mark PPN as NOT_APPLICABLE. (4) If preferred frame confirmed → check α₁, α₂, α₃ constraints. |
+| **Value for project** | MEDIUM — establishes honest blocker status (prevents premature refutation OR validation claims). Demonstrates audit discipline (will NOT claim "MULTING ruled out" without evidence). |
+| **Safe wording** | "PPN check is currently not possible because MULTING lacks a weak-field metric, Solar System limit, and k_A definition. Author clarification required on: metric formulation, local applicability, kinetic energy parameters, COM frame behavior, preferred frame effects." |
+| **Unsafe wording** | ❌ "MULTING is ruled out by PPN constraints" (no checks performed). ❌ "MULTING violates Solar System tests" (no local predictions available). ❌ "PPN parameters show MULTING is inconsistent with GR" (no PPN parameters derived). ❌ "MULTING passes Solar System tests" (no tests performed). |
+
+**Interpretation branches (NOT claims — questions):**
+1. **Branch 1 (local mass dipole):** HIGH PPN risk if dipole = Solar System mass distribution
+2. **Branch 2 (kinetic energy dipole):** Requires k_A + COM frame definition
+3. **Branch 3 (velocity-dependent):** Preferred frame risk (α₁, α₂ constraints very tight)
+4. **Branch 4 (metric modification):** Needs weak-field metric to extract γ, β
+5. **Branch 5 (cluster-scale only):** Solar System PPN may not apply if r << r_d cutoff
+6. **Branch 6 (phenomenological H(z)):** Not enough for PPN (different regime)
+
+**Blockers (cannot proceed without):**
+- Weak-field metric or explicit Solar System limit
+- k_A definition for ordinary matter (Sun, Earth)
+- COM frame / preferred frame clarification
+- Cutoff function f(r/r_d) or scale-dependent coupling
+- Statement: do dipole/quadrupole apply to ordinary matter or dark matter only?
+
+---
+
 **Document status:** ACTIVE — updated as audit progresses
 
-**Last updated:** 2026-05-27  
-**Next review:** After primary source search (BBN/SIDM/Gaia), after H-MULT formula received  
+**Last updated:** 2026-05-28  
+**Next review:** After primary source search (BBN/SIDM/Gaia), after H-MULT formula received, after PPN questions sent  
 **Maintainer:** Buckholtz IDM/MULTING audit team

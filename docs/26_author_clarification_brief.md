@@ -262,7 +262,70 @@ Best regards,
 
 ---
 
-## 8. Next Steps After Receiving Response
+## 8. PPN Questions (Priority 2 — After H-MULT Formula)
+
+**Purpose:** Assess whether MULTING dipole/quadrupole terms are consistent with Solar System tests (Cassini light deflection γ parameter, Mercury perihelion β parameter).
+
+**Current status:** PPN check is BLOCKED — MULTING lacks weak-field metric, Solar System limit, k_A definition, and COM frame specification.
+
+**Questions:**
+
+### Q5: Metric Formulation
+> Does MULTING have a weak-field metric (g_μν = η_μν + h_μν), or is it formulated as a Newtonian-style force correction?
+
+**If metric:** Could you provide the weak-field expansion to O(GM/rc², v²/c²)? This would allow extracting PPN parameters γ and β.
+
+### Q6: Local Applicability
+> Do dipole/quadrupole terms apply to ordinary matter (Sun, planets) or only to dark matter clusters?
+
+**Context:** r_d = beta_d × r_A ~ 4.5-45 Mpc (cosmological scale), Solar System r ~ 10⁻⁸ Mpc. Is there a scale cutoff (e.g., dipole vanishes for r << r_d)?
+
+### Q7: Kinetic Energy Parameter k_A
+> What is k_A for the Sun? For Earth?
+
+**Context:** Manuscript mentions "sub-object kinetic energy" k_A in dipole term description. Is k_A = (1/2) M v² (classical kinetic energy)? Relative to what frame (Solar System COM? Galaxy COM? Cosmic rest frame)?
+
+### Q8: COM Frame Behavior
+> Does the MULTING dipole term vanish when computed in the center-of-mass frame of the system?
+
+**Why this matters:** If dipole vanishes in COM, it may be frame-dependent artifact rather than physical dipole moment.
+
+### Q9: Preferred Frame Effects
+> Is MULTING Lorentz-invariant, or does it introduce a preferred cosmic rest frame?
+
+**Context:** If dipole is velocity-dependent relative to cosmic rest frame, PPN parameters α₁, α₂ would deviate from zero. Constraints are very tight: α₁ < 10⁻⁴ (lunar laser ranging), |α₂| < 4×10⁻⁷ (CMB dipole).
+
+### Q10: Solar System PPN Recovery
+> Does MULTING recover γ = 1 and β = 1 (GR values) in the Solar System?
+
+**Context:** Current constraints are γ - 1 = (2.1 ± 2.3) × 10⁻⁵ (Cassini), β - 1 = (-4.1 ± 7.8) × 10⁻⁵ (Mercury). Is there a section in your work addressing Solar System constraints?
+
+**If cluster-scale only:** If dipole/quadrupole activate only at r ~ r_d ~ Mpc scales, Solar System PPN checks may not apply.
+
+**Interpretation branches (NOT claims — questions for clarification):**
+1. If dipole = local mass distribution → PPN γ, β likely ≠ 1
+2. If dipole = kinetic energy (galaxy frame) → preferred frame risk (α₁ constraints)
+3. If dipole = velocity-dependent → Local Lorentz Invariance violation (α₁, α₂ constraints)
+4. If dipole = metric modification → need weak-field expansion
+5. If dipole = cluster-scale only (r < r_d cutoff) → PPN not applicable
+6. If dipole = phenomenological H(z) only → no local predictions
+
+**Safe vs unsafe wording:**
+
+✅ **Safe:**
+- "PPN check is currently not possible because MULTING lacks a weak-field metric. Author clarification required."
+- "If dipole is cluster-scale only (r ~ Mpc), Solar System PPN checks may not apply."
+
+❌ **Avoiding:**
+- "MULTING is ruled out by PPN constraints" (no checks performed)
+- "MULTING violates Solar System tests" (no local predictions available)
+- "PPN parameters show MULTING is inconsistent with GR" (no PPN parameters derived)
+
+**Detailed analysis:** See docs/29_ppn_quick_check_requirements.md (7 PPN checks, all BLOCKED) and docs/30_multing_solar_system_limit_questions.md (7 open questions).
+
+---
+
+## 9. Next Steps After Receiving Response
 
 **If H-MULT formula received:**
 - Implement H_MULT(z; beta_d, beta_q) solver

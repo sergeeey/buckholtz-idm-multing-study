@@ -243,6 +243,51 @@ def print_data_leakage_status():
     print()
 
 
+def print_ppn_status():
+    """Print PPN check status."""
+    from src.ppn_checklist import get_blockers_summary, get_ppn_checks
+
+    print("🛸 PPN Solar System Compatibility")
+    print("-" * 70)
+
+    checks = get_ppn_checks()
+    blockers = get_blockers_summary()
+
+    blocked_count = sum(1 for c in checks if c.status.value == "blocked")
+    unknown_count = sum(1 for c in checks if c.status.value == "unknown")
+
+    print(f"Total PPN checks: {len(checks)}")
+    print(f"  BLOCKED: {blocked_count}")
+    print(f"  UNKNOWN: {unknown_count}")
+    print("  APPLICABLE: 0 (all blocked by missing information)")
+    print()
+
+    print("Blockers:")
+    for category, check_ids in blockers.items():
+        if check_ids:
+            category_name = category.replace("_", " ").title()
+            print(f"  • {category_name}: {', '.join(check_ids)}")
+    print()
+
+    print("⚠️  CRITICAL:")
+    print("  Cannot assess Solar System compatibility without:")
+    print("    - Weak-field metric OR Solar System limit")
+    print("    - k_A definition for ordinary matter")
+    print("    - COM frame / preferred frame specification")
+    print()
+    print("❌ Do NOT claim:")
+    print("  'MULTING is ruled out by Solar System tests' (no tests performed)")
+    print("  'MULTING passes Solar System tests' (no tests performed)")
+    print()
+    print("✅ Safe wording:")
+    print("  'PPN check blocked — requires weak-field metric and Solar System limit.'")
+    print()
+    print("See: docs/29_ppn_quick_check_requirements.md")
+    print("     docs/30_multing_solar_system_limit_questions.md")
+    print("-" * 70)
+    print()
+
+
 def print_safe_question():
     """Print safe question for Dr. Buckholtz."""
     print("💬 Safe Question for Dr. Buckholtz")
@@ -308,6 +353,7 @@ def main():
     print_equations_status()
     print_dependencies_status()
     print_data_leakage_status()
+    print_ppn_status()
     print_safe_question()
     print_next_steps()
     print_footer()
