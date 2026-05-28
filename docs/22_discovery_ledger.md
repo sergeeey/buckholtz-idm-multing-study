@@ -551,8 +551,73 @@
 
 ---
 
+## Finding 14 — Force-to-Expansion Bridge Triage: Zero Source-Supported Routes (2026-05-28)
+
+| Field | Value |
+|-------|-------|
+| **Finding** | Systematic triage of all possible F_oP → H(z) bridge routes found ZERO source-supported paths. Six routes evaluated (A-F): 2 computational reconstructions, 3 speculative toy models, 1 dead end. Critical blocker: Q0 (force-to-expansion mapping) must be answered before MCMC can proceed. |
+| **Type** | `critical_blocker` (MCMC blocked) + `copper_result` (triage complete, all routes documented) |
+| **Evidence** | ✅ Documented in docs/36_force_to_expansion_bridge_triage.md + src/bridge_candidate_registry.py. Evaluated routes: (A) Newtonian dust + extra forces, (B) Effective stress-energy tensor, (C) Parametrized Friedmann, (D) Scalar field / dark energy, (E) N-body backreaction, (F) PPN extrapolation. Status: 0 SOURCE_SUPPORTED, 2 COMPUTATIONAL_RECONSTRUCTION, 3 SPECULATIVE_TOY_MODEL, 1 DEAD_END. MCMC readiness: BLOCKED (no forward model). |
+| **Source status** | `SOURCE_MISSING` — no manuscript material describes F_oP → H(z) mapping |
+| **Verification status** | ✅ VERIFIED (2026-05-28) — triage complete, all 6 routes evaluated and classified |
+| **Next test** | Priority 0: Ask Buckholtz Q0 (How does F_oP = F_m - F_d + F_q translate into H(z)? Is there a modified Friedmann equation, effective stress-energy tensor, spatial averaging prescription, or phenomenological parametrization?). If Q0 answered → implement source-supported bridge route → unblock MCMC. If Q0 not answered → mark as permanent blocker, archive speculative routes, publish repository as incomplete. |
+| **Value for project** | HIGH — prevents premature MCMC attempts on unsupported routes, documents why MCMC is blocked (not arbitrary), identifies critical path forward (Q0 answer), enforces distinction between "audit reconstruction" and "Buckholtz's model". |
+| **Safe wording** | "The pairwise MULTING force law is documented (SOURCE_CANDIDATE), but the mapping from F_oP to cosmological expansion H(z) is not found in available materials. Six possible bridge routes exist (Newtonian dust, stress-energy, parametrized Friedmann, scalar field, backreaction, PPN). None are source-supported. Implementing any route without author confirmation = testing our interpretation, not Buckholtz's model. MCMC parameter estimation remains blocked pending Q0 clarification." |
+| **Unsafe wording** | ❌ "MULTING is refuted because homogeneous averaging nulls dipole" (assumes standard averaging without confirming approach). ❌ "The model is inconsistent — no bridge from F_oP to H(z) exists" (bridge may exist in unpublished work). ❌ "We proved MULTING cannot work" (documented absence of source material, not physical impossibility). ❌ "PPN rules out MULTING" (PPN checks blocked). ❌ "The force law is wrong" (force law is SOURCE_CANDIDATE, not SOURCE_INCORRECT). |
+
+**Bridge Matrix:**
+
+| Route | Type | Status | Source Support | MCMC Ready | Q0 Needed |
+|-------|------|--------|----------------|------------|-----------|
+| **A. Newtonian dust + extra forces** | Computational reconstruction | CANDIDATE | ❌ NO | ❌ NO | ✅ YES |
+| **B. Effective stress-energy tensor** | Speculative toy model | CANDIDATE | ❌ NO | ❌ NO | ✅ YES |
+| **C. Parametrized Friedmann (MGCAMB)** | Computational reconstruction | CANDIDATE | ❌ NO | ❌ NO | ✅ YES |
+| **D. Scalar field / dark energy map** | Speculative toy model | CANDIDATE | ❌ NO | ❌ NO | ✅ YES |
+| **E. N-body → fluid backreaction** | Speculative toy model | CANDIDATE | ❌ NO | ❌ NO | ✅ YES |
+| **F. PPN extrapolation to cosmology** | Dead end | REJECTED | ❌ NO | ❌ NO | ❌ NO (wrong regime) |
+
+**Critical nuance — Standard Averaging vs Non-Standard:**
+
+Standard homogeneous Newtonian averaging would null dipole/quadrupole background contributions (spatial gradients average to zero in FRW symmetry). **This is NOT a refutation of MULTING.** It means one of the following:
+1. MULTING uses non-standard averaging (backreaction framework, Q-cosmology)
+2. Dipole/quadrupole enter as effective stress-energy components (not geometric averaging)
+3. Dipole/quadrupole are cluster-scale only (not cosmological background)
+4. MULTING is metric modification (not Newtonian + forces)
+
+Without author clarification (Q0), we cannot determine which (if any) applies.
+
+**Priority 0 Question (Q0):**
+> "How does the pairwise MULTING force law F_oP = F_m - F_d + F_q translate into a cosmological background expansion equation H(z)? Is there a modified Friedmann equation, an effective stress-energy tensor, a spatial averaging prescription (e.g., backreaction framework), or is H_MULT(z) a phenomenological parametrization independent of the pairwise force law?"
+
+**MCMC blocker chain:**
+```
+No Q0 answer
+  ↓
+No F_oP → H(z) mapping
+  ↓
+No forward model H_MULT(z; params)
+  ↓
+No MCMC
+```
+
+**Files created:**
+- docs/36_force_to_expansion_bridge_triage.md (comprehensive triage, 15 sections)
+- src/bridge_candidate_registry.py (dataclasses + guards, 6 bridge records)
+- tests/test_bridge_candidate_registry.py (28 tests, all passing)
+
+**Relationship to Finding 13 (heuristic closure candidate):**
+
+Heuristic Phi(z) scaling (docs/35) is **one possible bridge** (phenomenological parametrization), but:
+- Not source-confirmed (AI_TRANSCRIPT_REPORTED)
+- Requires cluster variables (not provided)
+- Phenomenological (fitted, not derived)
+
+Finding 14 shows **5 other possible routes** (A, B, D, E, F), none source-supported. All routes remain **audit reconstructions** or **speculative proposals** until Q0 answered.
+
+---
+
 **Document status:** ACTIVE — updated as audit progresses
 
 **Last updated:** 2026-05-28  
-**Next review:** After AI transcript source confirmation, after cluster variable table received, after H_anchor clarification  
+**Next review:** After Q0 answer received, after bridge route source-confirmed, after forward model implemented  
 **Maintainer:** Buckholtz IDM/MULTING audit team
