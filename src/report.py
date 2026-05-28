@@ -50,9 +50,9 @@ def print_test_status():
     """Print test status."""
     print("📊 Test Status")
     print("-" * 70)
-    print("Total tests: 196 (184 passing, 12 Table A1 validation awaiting data)")
+    print("Total tests: 223 (211 passing, 12 Table A1 validation awaiting data)")
     print(
-        "Status: ✅ 184/184 CORE TESTS PASSED | ⏸️ 12/14 Table A1 tests skipped (awaiting manual transcription)"
+        "Status: ✅ 211/211 CORE TESTS PASSED | ⏸️ 12/14 Table A1 tests skipped (awaiting manual transcription)"
     )
     print()
     print("Test categories:")
@@ -67,6 +67,7 @@ def print_test_status():
     print("  • Internal anchor search: ✅ 12 tests")
     print("  • Beta provenance: ✅ 25 tests (incl. manually verified Table A1 beta values)")
     print("  • MULTING force-law dimensionality: ✅ 18 tests (force law + closure blockers)")
+    print("  • H-MULT closure candidate status: ✅ 27 tests (heuristic formula + use permissions)")
     print(
         "  • Table A1 extraction validation: ⏸️ 2/14 tests (12 awaiting manual data transcription)"
     )
@@ -340,6 +341,84 @@ def print_force_law_status():
     print()
 
 
+def print_hmult_closure_status():
+    """Print H-MULT heuristic closure candidate status."""
+    try:
+        from hmult_closure_candidates import (
+            get_all_closure_candidates,
+            get_closure_status_summary,
+            get_critical_blockers,
+            get_known_inputs,
+            get_missing_inputs,
+        )
+    except ImportError:
+        # Module not in path when called directly
+        import sys
+        from pathlib import Path
+
+        src_path = Path(__file__).parent
+        sys.path.insert(0, str(src_path))
+        from hmult_closure_candidates import (
+            get_all_closure_candidates,
+            get_closure_status_summary,
+            get_critical_blockers,
+            get_known_inputs,
+            get_missing_inputs,
+        )
+
+    print("🔬 H-MULT Heuristic Closure Candidate")
+    print("-" * 70)
+
+    candidates = get_all_closure_candidates()
+    missing = get_missing_inputs()
+    known = get_known_inputs()
+    blockers = get_critical_blockers()
+    summary = get_closure_status_summary()
+
+    print(f"Closure candidates: {len(candidates)} (Phi(z) heuristic scaling)")
+    print(
+        f"Required inputs: {len(missing) + len(known)} total ({len(known)} known, {len(missing)} missing)"
+    )
+    print(f"Critical blockers: {len(blockers)} (prevent table reproduction)")
+    print()
+    print(f"Closure candidate: {summary['closure_candidate']}")
+    print(f"Status: {summary['status']}")
+    print(f"Predictive modeling: {summary['predictive_modeling']}")
+    print(f"MCMC readiness: {summary['mcmc_readiness']}")
+    print(f"Table reproduction: {summary['table_reproduction']}")
+    print()
+    print("⚠️  Heuristic Formula (AI_TRANSCRIPT_REPORTED):")
+    print("  • Phi(z) = A_m(z) - A_d(z) + A_q(z)")
+    print("  • H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)]")
+    print()
+    print("✅ Known Inputs:")
+    for inp in known:
+        print(f"  • {inp.name}: {inp.source}")
+    print()
+    print("❌ Missing Inputs (CRITICAL):")
+    for inp in missing[:3]:  # Show first 3
+        print(f"  • {inp.name}: {inp.blocker}")
+    if len(missing) > 3:
+        print(f"  ... and {len(missing) - 3} more")
+    print()
+    print("❌ Do NOT claim:")
+    print("  'This predicts cosmic expansion' (requires cluster table for all z)")
+    print("  'This validates MULTING against H(z) observations' (phenomenological fit)")
+    print("  'MCMC shows beta_d=4.5 and beta_q=18.0 are optimal' (fitted, not tested)")
+    print()
+    print("✅ Safe conclusion:")
+    print(f"  {summary['safe_conclusion'][:80]}")
+    if len(summary["safe_conclusion"]) > 80:
+        print(f"  {summary['safe_conclusion'][80:160]}")
+    if len(summary["safe_conclusion"]) > 160:
+        print(f"  {summary['safe_conclusion'][160:]}")
+    print()
+    print("See: docs/35_ai_transcript_closure_candidate.md")
+    print("     src/hmult_closure_candidates.py")
+    print("-" * 70)
+    print()
+
+
 def print_safe_question():
     """Print safe question for Dr. Buckholtz."""
     print("💬 Safe Question for Dr. Buckholtz")
@@ -406,6 +485,7 @@ def main():
     print_dependencies_status()
     print_data_leakage_status()
     print_force_law_status()
+    print_hmult_closure_status()
     print_ppn_status()
     print_safe_question()
     print_next_steps()

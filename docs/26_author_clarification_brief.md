@@ -60,6 +60,50 @@ From public-source formula-stripping pass (docs/33_public_formula_stripping_repo
 
 ---
 
+## 2b. Heuristic H-MULT Closure Candidate (AI Transcript)
+
+From AI transcript / supplementary materials analysis (docs/35_ai_transcript_closure_candidate.md):
+
+⚠️ **Possible heuristic scaling formula (AI_TRANSCRIPT_REPORTED status):**
+- Phi(z) = A_m(z) - A_d(z) + A_q(z)  (multipole amplitude scaling factor)
+- H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)]  (scaled Hubble parameter)
+
+**Status:** AI_TRANSCRIPT_REPORTED — appears in AI-generated materials, NOT verified in manuscript equations.
+
+**Sign structure:** Matches force-law structure (F_oP = F_m - F_d + F_q), but physical derivation (Phi(z) → H(z) mapping from field equations) **not found**.
+
+**Required inputs for evaluation (9 total):**
+- ✅ beta_d = 4.5, beta_q = 18.0 (known from Table A1)
+- ❌ m_A(z), r_A(z), k_A(z) — cluster variable evolution (MISSING)
+- ❌ D_C:AB(z) — comoving distance (computable, but which A/B?)
+- ❌ H_anchor, z_anchor — reference point (MISSING)
+- ❌ **Cluster variable table** — m_A(z_i), r_A(z_i), k_A(z_i) for all z_i in Table A1 (**CRITICAL BLOCKER**)
+
+**What this formula MAY enable (if cluster variables provided):**
+- Table A1 reproduction attempt (phenomenological fit verification)
+- Comparison: H_MULT(z_i) from heuristic vs reported values
+
+**What this formula does NOT enable:**
+- H(z) prediction on new redshifts (requires cluster table for all z)
+- MCMC parameter estimation (no forward model for arbitrary z)
+- Out-of-sample validation (fitted to data it would "predict")
+- Uncertainty estimates (sigma_MULT definition missing)
+
+**Use permission status:**
+- ALLOWED_FOR_TABLE_REPRODUCTION_CANDIDATE (if cluster variables provided)
+- NOT_ALLOWED_FOR_PREDICTION (missing cluster table)
+- NOT_ALLOWED_FOR_MCMC (no rigorous derivation, no likelihood)
+
+**Safe wording:** "Heuristic scaling candidate exists but requires cluster variable table for table reproduction. Cannot predict on new redshifts. MCMC remains blocked."
+
+**Questions for clarification (extends Q1-Q4 below):**
+- Q1a: Is the heuristic formula H_MULT²(z) = H_anchor² × [Phi(z) / Phi(z_anchor)] documented in the manuscript or a separate publication?
+- Q1b: How are A_m(z), A_d(z), A_q(z) defined? Are they force amplitudes, potential amplitudes, or dimensionless scaling factors?
+- Q1c: What are the values of H_anchor and z_anchor?
+- Q4a: For Table A1 redshifts, what are the values of m_A(z_i), r_A(z_i), k_A(z_i)? Is there a cluster catalog or evolution model?
+
+---
+
 ## 3. Questions — H-MULT Fit Reproduction
 
 To reproduce the Table A1 H-MULT column and compare with H-FLRW, I need:
