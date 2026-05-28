@@ -270,32 +270,32 @@ Best regards,
 
 **Questions:**
 
-### Q5: Metric Formulation
+### Q8: Metric Formulation
 > Does MULTING have a weak-field metric (g_μν = η_μν + h_μν), or is it formulated as a Newtonian-style force correction?
 
 **If metric:** Could you provide the weak-field expansion to O(GM/rc², v²/c²)? This would allow extracting PPN parameters γ and β.
 
-### Q6: Local Applicability
+### Q9: Local Applicability
 > Do dipole/quadrupole terms apply to ordinary matter (Sun, planets) or only to dark matter clusters?
 
 **Context:** r_d = beta_d × r_A ~ 4.5-45 Mpc (cosmological scale), Solar System r ~ 10⁻⁸ Mpc. Is there a scale cutoff (e.g., dipole vanishes for r << r_d)?
 
-### Q7: Kinetic Energy Parameter k_A
+### Q10: Kinetic Energy Parameter k_A
 > What is k_A for the Sun? For Earth?
 
 **Context:** Manuscript mentions "sub-object kinetic energy" k_A in dipole term description. Is k_A = (1/2) M v² (classical kinetic energy)? Relative to what frame (Solar System COM? Galaxy COM? Cosmic rest frame)?
 
-### Q8: COM Frame Behavior
+### Q11: COM Frame Behavior
 > Does the MULTING dipole term vanish when computed in the center-of-mass frame of the system?
 
 **Why this matters:** If dipole vanishes in COM, it may be frame-dependent artifact rather than physical dipole moment.
 
-### Q9: Preferred Frame Effects
+### Q12: Preferred Frame Effects
 > Is MULTING Lorentz-invariant, or does it introduce a preferred cosmic rest frame?
 
 **Context:** If dipole is velocity-dependent relative to cosmic rest frame, PPN parameters α₁, α₂ would deviate from zero. Constraints are very tight: α₁ < 10⁻⁴ (lunar laser ranging), |α₂| < 4×10⁻⁷ (CMB dipole).
 
-### Q10: Solar System PPN Recovery
+### Q13: Solar System PPN Recovery
 > Does MULTING recover γ = 1 and β = 1 (GR values) in the Solar System?
 
 **Context:** Current constraints are γ - 1 = (2.1 ± 2.3) × 10⁻⁵ (Cassini), β - 1 = (-4.1 ± 7.8) × 10⁻⁵ (Mercury). Is there a section in your work addressing Solar System constraints?
@@ -352,7 +352,7 @@ Best regards,
 
 ---
 
-## 9. Acknowledgment
+## 10. Acknowledgment
 
 I want to emphasize:
 - I am **not** claiming to validate or refute IDM/MULTING
