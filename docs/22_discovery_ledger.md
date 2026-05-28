@@ -464,8 +464,49 @@
 
 ---
 
+### Finding 12: MULTING Force-Law Layer Found, H(z) Closure Missing
+
+| Field | Value |
+|-------|-------|
+| **Finding** | Public formula-stripping found candidate pairwise MULTING force-law equations (F_m, F_d, F_q, F_oP) and beta length-scale definitions (r_dA, r_dP, r_qAB), but NO closed H_MULT(z) formula for cosmological expansion |
+| **Type** | `copper_result` (force-law layer) + `dead_end` (cosmological closure) |
+| **Evidence** | ✅ Documented in docs/33_public_formula_stripping_report.md. Force equations: monopole F_m = G m_A m_P / r², dipole F_d = G c⁻² (k_A m_P |r_dA| + k_P m_A |r_dP|) / r³, quadrupole F_q = G k_A k_P c⁻⁴ |r_qAB|² / r⁴, total F_oP = F_m - F_d + F_q. Dimensional analysis confirms correct units. Beta length scales: r_dA = beta_d × r_A, r_dP = beta_d × r_P, |r_qAB|² = beta_q² × r_A × r_P. |
+| **Source status** | `SOURCE_CANDIDATE` (awaiting manual PDF verification against preprints202511.0598.v6.pdf) |
+| **Verification status** | ⏸️ PENDING — dimensional analysis passed (18/18 tests in test_multing_force_law_dimensionality.py), source verification NOT yet performed (manual PDF check required) |
+| **Next test** | (1) Manual verification: read preprints202511.0598.v6.pdf character-by-character, confirm formulas exact match. (2) If verified → upgrade status SOURCE_CANDIDATE → SOURCE_CONFIRMED. (3) If NOT verified → downgrade to SOURCE_INCORRECT, re-extract manually. (4) Ask Buckholtz: mean-field approximation? Closure relations for m_A(z), r_A(z), k_A(z)? H_MULT(z) formula? |
+| **Value for project** | MEDIUM — distinguishes force-law layer (potentially available) from cosmological closure (missing). Prevents premature H(z) modeling. Documents MCMC blocker explicitly. |
+| **Safe wording** | "MULTING provides candidate pairwise force-law equations with monopole, dipole, and quadrupole terms. Public materials do not provide computational closure for mapping this force law to cosmological expansion H(z) or for MCMC parameter estimation. Force-law layer is documented as SOURCE_CANDIDATE (awaiting manual verification). H(z) modeling is BLOCKED pending closure relations and forward model." |
+| **Unsafe wording** | ❌ "MULTING force law is complete and ready for H(z) modeling" (closure missing). ❌ "We can now compute H(z) from MULTING" (no mapping provided). ❌ "MCMC fitting is ready" (no forward model). ❌ "Force equations are source-confirmed" (still SOURCE_CANDIDATE, manual verification pending). |
+
+**What We Have (force-law layer):**
+- Pairwise force between objects A and P
+- Depends on: masses (m_A, m_P), radii (r_A, r_P), kinetic energies (k_A, k_P), separation (r)
+- Sign structure: monopole (+), dipole (−), quadrupole (+) — why dipole subtractive requires clarification
+- Dimensional analysis: all force components have correct units [kg·m/s²]
+
+**What We Do NOT Have (cosmological closure — CRITICAL BLOCKERS):**
+1. **Mean-field approximation:** Pairwise force → stress-energy tensor T_μν
+2. **Cosmological averaging:** Sum over galaxy clusters, voids, cosmic web
+3. **Closure relations:** How m_A(z), r_A(z), k_A(z), D_C:AB(z) evolve with redshift
+4. **Friedmann-like equations:** Modified H²(z; beta_d, beta_q, ...)
+5. **Likelihood function:** P(H_obs | H_MULT(z; params)) for MCMC
+
+**Code permission (enforced by tests):**
+- Force laws: `allowed_for_dimensional_check` — can verify units, CANNOT compute H(z)
+- Length scales: `allowed_for_record_only` — can document, CANNOT compute forces
+- H(z) modeling: `NOT_ALLOWED` — explicitly blocked until closure provided
+
+**MCMC readiness:** BLOCKED — no H_MULT(z) forward model
+
+**Files created:**
+- src/multing_force_law_records.py (dataclasses + records, 291 lines)
+- tests/test_multing_force_law_dimensionality.py (18 tests, all passing)
+- docs/33_public_formula_stripping_report.md (comprehensive report, 561 lines)
+
+---
+
 **Document status:** ACTIVE — updated as audit progresses
 
 **Last updated:** 2026-05-28  
-**Next review:** After primary source search (BBN/SIDM/Gaia), after H-MULT formula received, after PPN questions sent  
+**Next review:** After manual PDF verification of force equations, after H-MULT formula received, after PPN questions sent  
 **Maintainer:** Buckholtz IDM/MULTING audit team

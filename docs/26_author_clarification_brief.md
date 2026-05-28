@@ -33,6 +33,33 @@ This distinction is important to avoid circular reasoning in my audit.
 
 ---
 
+## 2a. What I Have Documented (Awaiting Verification)
+
+From public-source formula-stripping pass (docs/33_public_formula_stripping_report.md):
+
+⏸️ **MULTING pairwise force-law equations (SOURCE_CANDIDATE, awaiting manual PDF verification):**
+- Monopole: F_m = G m_A m_P / r²
+- Dipole: F_d = G c⁻² (k_A m_P |r_dA| + k_P m_A |r_dP|) / r³
+- Quadrupole: F_q = G k_A k_P c⁻⁴ |r_qAB|² / r⁴
+- Total: F_oP = F_m - F_d + F_q
+
+⏸️ **Beta length-scale definitions (SOURCE_CANDIDATE, awaiting manual PDF verification):**
+- r_dA = beta_d × r_A
+- r_dP = beta_d × r_P
+- |r_qAB|² = beta_q² × r_A × r_P
+
+⏸️ **Dimensional analysis:** Units verified for all force components [kg·m/s²]
+
+**Status:** Documented as SOURCE_CANDIDATE until I manually verify character-by-character against the PDF. Dimensional analysis passed, but force-law-to-H(z) mapping **not found** in public materials (see section 3 questions below).
+
+**What I will NOT do without your clarification:**
+- Implement H_MULT(z) solver (no formula provided in materials I found)
+- Perform MCMC parameter estimation (requires H_MULT forward model)
+- Claim validation or refutation of MULTING (not my goal)
+- Use force law for predictions (closure relations missing)
+
+---
+
 ## 3. Questions — H-MULT Fit Reproduction
 
 To reproduce the Table A1 H-MULT column and compare with H-FLRW, I need:

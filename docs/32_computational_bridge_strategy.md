@@ -161,17 +161,18 @@ Not theoretical authority, but computational support:
 **Option B — Domain of applicability:**
 > "Is MULTING intended as a universal gravitational framework, or more as a late-time, large-scale effective model relevant mainly to galaxy clusters and cosmic-web scales?"
 
-**Option C — Fit reproduction:**
-> "I'm trying to reproduce Table A1. Could you share the H_MULT(z; beta_d, beta_q) functional form?"
+**Option C — Fit reproduction (UPDATED with force-law context):**
+> "I'm trying to reproduce Table A1. I found candidate force-law equations (monopole, dipole, quadrupole) in public materials, but I could not find the force-law → H(z) mapping. Could you share: (1) the H_MULT(z; beta_d, beta_q) functional form, and (2) confirmation that the pairwise force equations F_m, F_d, F_q are correctly extracted?"
 
 **What NOT to send:**
 - Full repository
-- Discovery ledger
-- PPN risk analysis
+- Discovery ledger (especially Finding 3 fool-gold, Finding 8-9 downgraded gold candidates)
+- PPN risk analysis (docs/29-30)
 - Red-team notes
 - Source conflict log
 - Kill conditions
 - Skeptic findings
+- Force-law dataclasses (src/multing_force_law_records.py) — too technical for first contact
 
 **Expected outcome:**
 - Build trust
@@ -200,6 +201,13 @@ Not theoretical authority, but computational support:
    - "I reproduced Eq.15 to ~1% using PDG 2022 constants"
    - Show calculation, cite sources, note what's unclear
    - Frame as "here's what I verified" not "here's what's wrong"
+
+4. **Force-law dimensional analysis** (1 page) — NEW, pending manual PDF verification
+   - Table: Force component | Equation | Units check | Status
+   - F_m, F_d, F_q, F_oP dimensional analysis results
+   - Clean, factual, no H(z) claims
+   - Frame as "here's what I documented from your materials, awaiting verification"
+   - **Only offer after manual PDF verification confirms formulas are exact match**
 
 **How to present:**
 > "I've been working through parts of your framework to understand them better. I created [artifact X] as part of my notes. If this would be useful to you, I'm happy to share it. No obligation."
