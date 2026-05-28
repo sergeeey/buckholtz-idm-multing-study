@@ -30,17 +30,32 @@ This brief summarizes the reproducibility audit performed on selected IDM/MULTIN
 ### ❓ Beta Definitions (beta_d, beta_q)
 
 **Issue:** Multiple candidate values found:
-- `beta_d`: 4.25 and 0.78
-- `beta_q`: 8.10 and 0.19
+- `beta_d`: 4.25, 0.78, and **4.5 (VERIFIED from manuscript Table A1)**
+- `beta_q`: 8.10, 0.19, and **18.0 (VERIFIED from manuscript Table A1)**
+
+**Manual verification complete (2026-05-27):**  
+Manuscript `preprints202511.0598.v6.pdf`, Appendix A.3, Table A1 explicitly states:
+> "Regarding H-MULT, the online service reported choosing beta_d = 4.5 and beta_q = 18.0."
+
+**Context:** These are **fitted phenomenological parameters** (AI-assisted thought experiment), NOT derived theoretical constants.
+
+**Provenance status:**
+- `manuscript_reported_fitted`
+- `fitted_not_derived`
+- `allowed_for_fit_reproduction_only`
 
 **Questions:**
-1. Are these different normalizations of the same parameter?
+1. Are 4.25/0.78 and 8.10/0.19 different normalizations of 4.5/18.0?
 2. Are they different parameters for different contexts?
 3. Are they different versions of the model?
-4. What are the units (dimensionless? length? length²)?
-5. Are they derived from IDM structure or fitted to data?
+4. What are the units? (Table A1 states "dimensionless scaling factors")
+5. **CONFIRMED:** beta_d=4.5 and beta_q=18.0 are fitted to H(z) observations (not derived from IDM structure)
+6. What is the exact H-MULT(z; beta_d, beta_q) functional form?
 
-**Impact:** Cannot implement H(z) solver or make predictions until clarified.
+**Impact:**  
+- ✅ Fit reproduction now ALLOWED (see docs/18_fit_reproduction_requirements.md)
+- ❌ Predictive H(z) modeling remains BLOCKED (circular reasoning: fitted to H(z))
+- ❌ Cannot implement H(z) solver without explicit H-MULT formula
 
 ### ❓ MULTING Functional Forms
 

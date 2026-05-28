@@ -1,6 +1,17 @@
-# Buckholtz IDM/MULTING Verification MVP
+# Buckholtz IDM/MULTING Study
 
-**This repository does NOT validate or refute IDM/MULTING.**
+**Personal study notes and reproducibility scaffolding for understanding Thomas J. Buckholtz's IDM/MULTING framework.**
+
+**⚠️ IMPORTANT DISCLAIMERS:**
+- This project does **NOT** validate, refute, or officially audit the IDM/MULTING theory
+- This is a **personal learning exercise** in epistemic auditing and source verification
+- All interpretations and analyses are my own and may contain errors
+- This work is **not endorsed** by Dr. Buckholtz or any institution
+- The goal is **transparency and learning**, not criticism or validation
+
+---
+
+## What This Repository Does
 
 It provides a small reproducibility and epistemic-audit layer for selected definitions, equations, parameters, and claims from Thomas J. Buckholtz's work on Isomeric Dark Matter (IDM) and MULTING (multipole tiers) cosmology.
 
@@ -74,7 +85,17 @@ buckholtz-idm-multing-mvp/
 │   ├── 07_numerology_audit_eq15.md
 │   ├── 08_supplementary_audit.md
 │   ├── 09_meeting_brief.md
-│   └── 10_time_budget.md
+│   ├── 10_time_budget.md
+│   ├── 11_beta_normalization_math.md
+│   ├── 12_beta_clarification_brief.md
+│   ├── 13_internal_anchor_uniqueness.md
+│   ├── 14_beta_source_trace_audit.md
+│   ├── 15_notebooklm_beta_candidates.md
+│   ├── 16_beta_provenance_reconciliation_summary.md
+│   ├── 17_table_A1_manual_verification_protocol.md
+│   ├── 18_fit_reproduction_requirements.md
+│   ├── 19_sabine_audit.md (from /sabine epistemological review)
+│   └── 22_discovery_ledger.md (10 findings: gold/copper/diamond/fool-gold classification)
 │
 ├── notebooks/                 # Jupyter notebooks for exploration
 │   ├── 01_eq15_reproduction.ipynb

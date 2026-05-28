@@ -128,6 +128,55 @@ L_ref = (beta_q_1 / beta_q_2)^(1/4) = (8.10 / 0.19)^0.25 = 2.55 Mpc
 
 ---
 
+## Beta Provenance Audit Findings
+
+**CRITICAL:** Source trace audit (see `docs/14_beta_source_trace_audit.md`) establishes:
+
+### Provenance Status Summary
+
+| Beta value | Provenance status | Source type | Use permission |
+|------------|------------------|-------------|----------------|
+| beta_d_1 = 4.25 | `audit_reconstruction` | We derived 17/4 from Eq.20 | `do_not_use_for_modeling` |
+| beta_d_2 = 0.78 | `audit_reconstruction` | We derived 7/9 from Eq.20 | `do_not_use_for_modeling` |
+| beta_q_1 = 8.10 | `source_missing` | No known source OR reconstruction | `do_not_use_for_modeling` |
+| beta_q_2 = 0.19 | `audit_reconstruction` | We derived (1×4)/(3×7) from anchors | `do_not_use_for_modeling` |
+
+**Key finding:** **ZERO beta values have confirmed sources from Buckholtz.**
+
+### Circular Reasoning Risk
+
+**Problem:** We cannot use our own reconstructed values (17/4, 7/9, etc.) for H(z) modeling, because:
+1. We inferred these values from internal anchors (Eq.20 mass ratios)
+2. If we then use them in H(z) and validate against data
+3. We are testing **our reconstruction**, not **Buckholtz's model**
+
+This is **circular reasoning** — we would be validating our own inference, not an independent prediction.
+
+### Structured Numerology Risk
+
+**Beta_d_2 = 0.78:**
+- Best match: 7/9 ≈ 0.7778 (error 0.28%)
+- **BUT: 20 alternative formulas within 5% error** (uniqueness score 0.10)
+- **HIGH structured numerology risk** — too many equally valid alternatives
+
+**Beta_q_1 = 8.10:**
+- **Cannot be reconstructed from known internal anchors**
+- Best match: 2×4 = 8.0 (error 1.23%)
+- Requires additional anchors (81?) OR different formula structure OR fitted to data
+- **HIGHEST PRIORITY for clarification** — no provenance at all
+
+### Internal Anchor Uniqueness Test
+
+Full analysis in `docs/13_internal_anchor_uniqueness.md` shows:
+- Beta_d_1: 7 alternative formulas within 1.2% error
+- Beta_d_2: 20 alternative formulas within 5% error (HIGH risk)
+- Beta_q_1: 12 alternatives but no exact match (requires anchor 81)
+- Beta_q_2: 7 alternative formulas (complexity ≥2.0)
+
+**None of the 4 beta values achieve uniqueness score > 0.7.**
+
+---
+
 ## What This Does NOT Establish
 
 This analysis does **not** determine:
@@ -135,14 +184,50 @@ This analysis does **not** determine:
 - ❌ Which values should be used for H(z) predictions
 - ❌ Whether the numerical patterns are physically meaningful or coincidental
 - ❌ Whether the hidden scale L_ref ≈ 2.4 Mpc has physical significance
+- ❌ Whether Buckholtz actually intended beta values to be derived from Eq.20 anchors
 
 **Status:** All relations marked as **candidate_relation** (hypothesis awaiting confirmation)
+
+**CRITICAL:** All beta values marked as `audit_reconstruction` or `source_missing` — **H(z) modeling BLOCKED** until explicit confirmation from Buckholtz.
 
 ---
 
 ## Questions for Clarification
 
-### Primary Question (Critical for H(z) implementation)
+### Primary Question (Provenance — PARTIALLY RESOLVED)
+
+**UPDATE (2026-05-27):** Manual verification confirms beta_d=4.5 and beta_q=18.0 as manuscript-reported fitted values, NOT derived quantities.
+
+**Verified quote from preprints202511.0598.v6.pdf, Appendix A.3, Table A1:**
+> "Regarding H-MULT, the online service reported choosing beta_d = 4.5 and beta_q = 18.0."
+
+**Confirmed:**
+- ✅ Beta_d = 4.5 and beta_q = 18.0 appear in manuscript Table A1
+- ✅ They are **fitted** (AI-assisted thought experiment to minimize H(z) deviations)
+- ✅ They are **NOT derived** from Eq.20 mass ratios or N' formalism
+- ✅ Dimensionless scaling factors (e.g., r_dA = beta_d × r_A)
+
+**Remaining questions for Dr. Buckholtz:**
+
+> "Dr. Buckholtz,
+> 
+> We have manually verified beta_d=4.5 and beta_q=18.0 from manuscript Table A1 (Appendix A.3). We understand these are fitted phenomenological parameters.
+> 
+> Could you clarify:
+> 
+> 1. **Are beta values 4.25/0.78 and 8.10/0.19** (found in earlier communications) different normalizations of 4.5/18.0, or different parameters for different contexts?
+> 2. **Which dataset** was used to fit beta_d=4.5 and beta_q=18.0? (Cosmic chronometers? BAO? Custom compilation?)
+> 3. **What is the exact H-MULT(z; beta_d, beta_q) functional form?** (How do monopole/dipole/quadrupole terms combine?)
+> 4. **What is the definition of sigma_MULT** reported in Table A1?
+> 5. **Which online AI service** was used, and what was the fitting objective function?
+> 
+> We want to reproduce the Table A1 fit accurately without introducing our own assumptions."
+
+### Secondary Question (Use Permission)
+
+> "Before implementing H(z) calculations, we need to confirm which beta values are intended for modeling use. Are all four candidate values (4.25, 0.78, 8.10, 0.19) current and valid, or should we focus on a specific pair?"
+
+### Tertiary Question (Relationship)
 
 > "For beta_d and beta_q, could you clarify:
 > 
@@ -154,14 +239,14 @@ This analysis does **not** determine:
 > 
 > 4. Which values should be used for H(z, beta_d, beta_q) calculations?"
 
-### Secondary Question (Context)
+### Quaternary Question (Context)
 
 > "Are beta_d and beta_q:
 > - (A) Derived from IDM/MULTING internal structure (theoretical prediction)?
 > - (B) Fitted phenomenologically to cosmological data (H(z), Planck, etc.)?
 > - (C) Mixed (some aspects derived, some fitted)?"
 
-### Tertiary Question (Functional Form)
+### Quinary Question (Functional Form)
 
 > "Could you provide the explicit H(z) functional form showing how beta_d and beta_q enter the expansion equations? This would clarify dimensional requirements and normalization."
 

@@ -1,0 +1,24 @@
+row_id,z,time_after_big_bang_gyr,H_obs,H_obs_uncertainty,H_FLRW,H_MULT,sigma_MULT,notes
+# Template CSV for Table A1 extraction from preprints202511.0598.v6.pdf, Appendix A.3
+#
+# INSTRUCTIONS FOR MANUAL TRANSCRIPTION:
+# 1. Open manuscript PDF, navigate to Appendix A.3, Table A1
+# 2. Replace column names in row 1 with EXACT names from manuscript (if different)
+# 3. Delete this comment block (rows starting with #)
+# 4. Transcribe data rows from table:
+#    - row_id: sequential number (1, 2, 3, ...)
+#    - z: redshift (dimensionless)
+#    - time_after_big_bang_gyr: cosmic time (Gyr)
+#    - H_obs: observed Hubble parameter (km/s/Mpc) if listed, else NA
+#    - H_obs_uncertainty: uncertainty in H_obs (km/s/Mpc) if listed, else NA
+#    - H_FLRW: ΛCDM expansion rate (km/s/Mpc)
+#    - H_MULT: IDM/MULTING expansion rate (km/s/Mpc)
+#    - sigma_MULT: fit quality metric (units unclear, transcribe as-is)
+#    - notes: any footnotes, special markers, or clarifications
+# 5. Preserve exact numerical precision from manuscript
+# 6. Use NA for missing values
+# 7. After transcription, update data/table_a1_extraction_log.md
+# 8. Run: pytest tests/test_table_a1_extraction.py (after creating test file)
+#
+# Example row (DELETE after real data added):
+# 1,0.07,12.5,69.0,5.0,67.8,68.2,0.8,

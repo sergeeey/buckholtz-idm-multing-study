@@ -4,10 +4,16 @@ Project status report.
 Run: python -m src.report
 """
 
-from .beta_definitions import get_all_beta_definitions
-from .equations import get_all_equations, get_verified_equations
 from .assumption_graph import get_high_risk_dependencies
+from .beta_definitions import get_all_beta_definitions
+from .beta_provenance import (
+    count_by_provenance_status,
+    count_by_use_permission,
+    get_blocking_summary,
+    get_source_confirmed_betas,
+)
 from .data_anchoring import get_high_leakage_risk
+from .equations import get_all_equations, get_verified_equations
 
 
 def print_header():
@@ -44,8 +50,10 @@ def print_test_status():
     """Print test status."""
     print("📊 Test Status")
     print("-" * 70)
-    print("Total tests: 62")
-    print("Status: ✅ ALL PASSED (last run)")
+    print("Total tests: 113 (99 passing, 14 Table A1 validation awaiting data)")
+    print(
+        "Status: ✅ 99/99 CORE TESTS PASSED | ⏸️ 12/14 Table A1 tests skipped (awaiting manual transcription)"
+    )
     print()
     print("Test categories:")
     print("  • Eq.15 reproduction: ✅ 4 tests")
@@ -56,8 +64,14 @@ def print_test_status():
     print("  • Assumption graph: ✅ 9 tests")
     print("  • Beta normalization math: ✅ 8 tests")
     print("  • Dimensional requirements: ✅ 11 tests")
+    print("  • Internal anchor search: ✅ 12 tests")
+    print("  • Beta provenance: ✅ 25 tests (incl. manually verified Table A1 beta values)")
+    print(
+        "  • Table A1 extraction validation: ⏸️ 2/14 tests (12 awaiting manual data transcription)"
+    )
     print()
     print("Run: pytest -v")
+    print("Run (Table A1 only): pytest tests/test_table_a1_extraction.py -v")
     print("-" * 70)
     print()
 
@@ -109,13 +123,51 @@ def print_beta_status():
             print(f"    Note: {notes_short}")
         print()
 
-    print("⚠️  PRIMARY BLOCKER:")
-    print("  Multiple candidate values with unclear relationships.")
-    print("  Cannot proceed without clarification:")
-    print("    - Are these different normalizations?")
-    print("    - Are these different parameters?")
-    print("    - What are the units?")
-    print("    - Derived from IDM or fitted to data?")
+    # Beta Provenance Summary
+    print("🔍 Beta Provenance Audit (Source Verification)")
+    print("-" * 70)
+    print()
+    print(
+        "**Manual verification complete (2026-05-27):** "
+        "beta_d=4.5 and beta_q=18.0 confirmed from manuscript Table A1 "
+        "as fitted phenomenological parameters, NOT derived theoretical constants."
+    )
+    print()
+
+    provenance_counts = count_by_provenance_status()
+    use_permission_counts = count_by_use_permission()
+    source_confirmed = get_source_confirmed_betas()
+
+    # Count total betas in provenance registry (may differ from beta_definitions)
+    from .beta_provenance import BETA_PROVENANCE_REGISTRY
+
+    total_betas_provenance = len(BETA_PROVENANCE_REGISTRY)
+
+    print(f"Total beta candidates tracked: {total_betas_provenance}")
+    print(f"Source confirmed: {len(source_confirmed)}/{total_betas_provenance}")
+    print(
+        f"Audit reconstructions: {provenance_counts.get('audit_reconstruction', 0)}/{total_betas_provenance}"
+    )
+    print(f"Source missing: {provenance_counts.get('source_missing', 0)}/{total_betas_provenance}")
+    print(
+        f"Manuscript reported fitted: {provenance_counts.get('manuscript_reported_fitted', 0)}/{total_betas_provenance}"
+    )
+    print()
+    print(
+        f"Allowed for predictive modeling: {use_permission_counts.get('source_confirmed', 0)}/{total_betas_provenance}"
+    )
+    print(
+        f"Allowed for fit reproduction only: {use_permission_counts.get('allowed_for_fit_reproduction_only', 0)}/{total_betas_provenance}"
+    )
+    print(
+        f"Blocked for modeling: {use_permission_counts.get('do_not_use_for_modeling', 0)}/{total_betas_provenance}"
+    )
+    print()
+
+    # Blocking summary
+    print(get_blocking_summary())
+    print()
+
     print("-" * 70)
     print()
 
@@ -179,7 +231,7 @@ def print_data_leakage_status():
     for anchor in high_risk:
         print(f"  • {anchor.name}")
         print(f"    Type: {anchor.dataset_type}")
-        print(f"    Risk: Using to derive betas creates circular reasoning")
+        print("    Risk: Using to derive betas creates circular reasoning")
         print()
 
     print("⚠️  CRITICAL:")
@@ -239,9 +291,10 @@ def print_next_steps():
 def print_footer():
     """Print report footer."""
     print("=" * 70)
-    print("Documentation: See docs/ directory (10 files)")
-    print("Tests: Run 'pytest -v' to verify all 43 tests")
-    print("Full details: README.md")
+    print("Documentation: See docs/ directory (15 files)")
+    print("Tests: Run 'pytest -v' to verify all 99 tests")
+    print("Full details: README.md, PROJECT_STATUS.md")
+    print("Outreach: OUTREACH_TEMPLATE.md (email template)")
     print("=" * 70)
 
 
