@@ -50,9 +50,9 @@ def print_test_status():
     """Print test status."""
     print("📊 Test Status")
     print("-" * 70)
-    print("Total tests: 113 (99 passing, 14 Table A1 validation awaiting data)")
+    print("Total tests: 196 (184 passing, 12 Table A1 validation awaiting data)")
     print(
-        "Status: ✅ 99/99 CORE TESTS PASSED | ⏸️ 12/14 Table A1 tests skipped (awaiting manual transcription)"
+        "Status: ✅ 184/184 CORE TESTS PASSED | ⏸️ 12/14 Table A1 tests skipped (awaiting manual transcription)"
     )
     print()
     print("Test categories:")
@@ -66,6 +66,7 @@ def print_test_status():
     print("  • Dimensional requirements: ✅ 11 tests")
     print("  • Internal anchor search: ✅ 12 tests")
     print("  • Beta provenance: ✅ 25 tests (incl. manually verified Table A1 beta values)")
+    print("  • MULTING force-law dimensionality: ✅ 18 tests (force law + closure blockers)")
     print(
         "  • Table A1 extraction validation: ⏸️ 2/14 tests (12 awaiting manual data transcription)"
     )
@@ -288,6 +289,57 @@ def print_ppn_status():
     print()
 
 
+def print_force_law_status():
+    """Print MULTING force-law status."""
+    from src.multing_force_law_records import (
+        get_all_force_laws,
+        get_all_length_scales,
+        get_critical_blockers,
+        get_force_law_status_summary,
+    )
+
+    print("⚛️  MULTING Force-Law Layer")
+    print("-" * 70)
+
+    force_laws = get_all_force_laws()
+    length_scales = get_all_length_scales()
+    critical_blockers = get_critical_blockers()
+    summary = get_force_law_status_summary()
+
+    print(f"Force-law records: {len(force_laws)} (monopole, dipole, quadrupole, total)")
+    print(f"Length-scale records: {len(length_scales)} (r_dA, r_dP, r_qAB)")
+    print(f"Critical blockers: {len(critical_blockers)} (prevent H(z) modeling)")
+    print()
+    print(f"Force-law status: {summary['force_law_layer']}")
+    print(f"Cosmological closure: {summary['cosmological_closure']}")
+    print(f"MCMC readiness: {summary['mcmc_readiness']}")
+    print(f"Code permission: {summary['code_permission']}")
+    print()
+    print("⚠️  What We Have:")
+    print("  • Candidate pairwise force equations (F_m, F_d, F_q, F_oP)")
+    print("  • Beta length-scale definitions (r_dA, r_dP, r_qAB)")
+    print("  • Dimensional analysis passed (all force components have correct units)")
+    print()
+    print("⚠️  What We Do NOT Have (CRITICAL BLOCKERS):")
+    for blocker in critical_blockers:
+        print(f"  • {blocker.requirement_type.replace('_', ' ').title()}")
+    print()
+    print("❌ Do NOT claim:")
+    print("  'MULTING is complete and ready for H(z) modeling' (closure missing)")
+    print("  'We can now compute H(z) from MULTING' (no mapping provided)")
+    print("  'MCMC fitting is ready' (no forward model)")
+    print()
+    print("✅ Safe conclusion:")
+    print(f"  {summary['safe_conclusion'][:80]}")
+    print(f"  {summary['safe_conclusion'][80:160]}")
+    print(f"  {summary['safe_conclusion'][160:]}")
+    print()
+    print("See: docs/33_public_formula_stripping_report.md")
+    print("     src/multing_force_law_records.py")
+    print("-" * 70)
+    print()
+
+
 def print_safe_question():
     """Print safe question for Dr. Buckholtz."""
     print("💬 Safe Question for Dr. Buckholtz")
@@ -353,6 +405,7 @@ def main():
     print_equations_status()
     print_dependencies_status()
     print_data_leakage_status()
+    print_force_law_status()
     print_ppn_status()
     print_safe_question()
     print_next_steps()
