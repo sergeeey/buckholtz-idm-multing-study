@@ -450,25 +450,72 @@ Bridge triage shows **5 other possible routes** (A, B, D, E, F), none source-sup
 
 ---
 
-## 15. Document Status
+## 15. Relationship to Minimum Viable Bridge Candidate (MVB)
 
-**Triage status:** COMPLETE — all bridge routes evaluated
+**Status:** This document (docs/36) evaluates all possible bridge routes. A separate document (docs/37_discrete_lattice_mvb_hypothesis.md) develops the strongest non-source-supported route in detail.
 
-**Source-supported bridges:** 0 found
+**What docs/36 does:**
+- Systematic triage of 6 bridge routes (A-F)
+- Classifies each as SOURCE_SUPPORTED / COMPUTATIONAL_RECONSTRUCTION / SPECULATIVE_TOY_MODEL / DEAD_END
+- Documents Q0 priority question
+- Enforces MCMC blocker
+
+**What docs/37 does:**
+- Develops one route (discrete lattice + virial pressure) from first principles
+- Documents 10 required inputs, 5 risks, architecture, mathematical sketch
+- Proposes Q_MVB author clarification question
+- Status: RESEARCH_HYPOTHESIS (not source-supported)
+
+**Critical distinction:**
+- docs/36 = comprehensive survey of all routes → **ZERO source-supported**
+- docs/37 = detailed development of strongest candidate → **STILL not source-supported**
+
+**Does MVB change MCMC readiness?**
+- **NO.** MVB is a research hypothesis / computational reconstruction candidate.
+- MCMC remains BLOCKED until Q0 or Q_MVB answered and route source-confirmed.
+- Implementing MVB without author confirmation = testing our interpretation, not Buckholtz's model.
+
+**Relationship to heuristic Phi(z) closure (Finding 13):**
+
+| Aspect | Heuristic Phi(z) (docs/35) | MVB discrete lattice (docs/37) |
+|--------|----------------------------|--------------------------------|
+| **Origin** | AI transcript materials | First-principles virial theorem |
+| **Type** | Phenomenological parametrization | Mechanistic reconstruction |
+| **Status** | AI_TRANSCRIPT_REPORTED | RESEARCH_HYPOTHESIS |
+| **Inputs** | Cluster amplitudes A_m, A_d, A_q | Lattice geometry, neighbor count, virial sum |
+| **Strength** | May reproduce Table A1 if cluster vars exist | Physically motivated, testable mechanism |
+
+Both are **computational reconstruction candidates**. Neither is source-supported. Q0 and Q_MVB together ask author to choose/confirm bridge route.
+
+**Summary:**
+- docs/36: evaluated 6 routes → 0 source-supported → Q0 blocker identified
+- docs/37: developed 1 candidate route → still not source-supported → Q_MVB proposed
+- Source-supported bridges: **ZERO** (unchanged)
+- MCMC readiness: **BLOCKED** (unchanged)
+
+---
+
+## 16. Document Status
+
+**Triage status:** COMPLETE — all bridge routes evaluated (6 total: A-F)
+
+**Source-supported bridges:** 0 found (unchanged after MVB development)
 
 **Priority 0 question:** Q0 drafted (see section 9)
 
-**MCMC readiness:** BLOCKED (no F_oP → H(z) mapping)
+**MVB question:** Q_MVB drafted (see docs/37, docs/26 section 2c)
 
-**Safe to share with Dr. Buckholtz:** YES (respectful framing, no refutation claims)
+**MCMC readiness:** BLOCKED (no source-confirmed F_oP → H(z) mapping)
 
-**High-risk artifacts:** None (this is factual triage, not critique)
+**Safe to share with Dr. Buckholtz:** YES (respectful framing, factual triage, no refutation claims)
 
-**Next action:** Send Q0 to author, wait for response
+**High-risk artifacts:** This doc is medium-risk (factual but "zero source-supported" sounds negative). Only share after trust established. MVB (docs/37) is high-risk (OUR reconstruction, not his model) — do NOT send early.
+
+**Next action:** Send Q0 to author (see docs/26), wait for response. Q_MVB is optional long-horizon question (only ask if Q0-Q4 answered and trust established).
 
 ---
 
 **Last updated:** 2026-05-28  
-**Requires:** Q0 answer from Dr. Buckholtz  
+**Requires:** Q0 answer from Dr. Buckholtz (or Q_MVB if he prefers mechanistic route)  
 **Blocks:** MCMC parameter estimation, predictive modeling, model comparison  
-**Unblocks:** (pending Q0 answer) forward model implementation, likelihood construction
+**Unblocks:** (pending Q0/Q_MVB answer) forward model implementation, likelihood construction

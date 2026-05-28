@@ -217,6 +217,15 @@ Not theoretical authority, but computational support:
    - Frame as "I found this in AI materials, is it documented in your manuscript?"
    - **Only offer after confirming he's open to discussing heuristic vs rigorous derivation**
 
+6. **Minimum Viable Bridge (MVB) hypothesis** — INTERNAL ONLY, do NOT send early
+   - Discrete lattice + virial pressure route (docs/37, src/minimum_viable_bridge_registry.py)
+   - Status: RESEARCH_HYPOTHESIS, NOT_SOURCE_SUPPORTED
+   - **This is OUR computational reconstruction, not Buckholtz's stated approach**
+   - **Do NOT present this as "the solution" or "what you should use"**
+   - **Only mention if:** (a) trust is established, (b) Q0-Q4 answered, (c) framed as optional long-horizon question (Q_MVB in docs/26 section 2c)
+   - **Safe framing:** "After bridge route triage, our team developed a discrete lattice + virial pressure candidate from first principles. Is this close to your approach, or is there another averaging prescription?"
+   - **Unsafe framing:** "Your model should use virial pressure" / "This solves F_oP → H(z)" / "We proved this is the only way"
+
 **How to present:**
 > "I've been working through parts of your framework to understand them better. I created [artifact X] as part of my notes. If this would be useful to you, I'm happy to share it. No obligation."
 
@@ -314,6 +323,10 @@ Not theoretical authority, but computational support:
 - `docs/19_sabine_audit.md` — epistemological review (sounds adversarial)
 - `docs/29_ppn_quick_check_requirements.md` — "PPN risk" framing
 - `docs/30_multing_solar_system_limit_questions.md` — skeptical interpretation branches
+- `docs/36_force_to_expansion_bridge_triage.md` — "zero source-supported routes" (sounds negative)
+- `docs/37_discrete_lattice_mvb_hypothesis.md` — OUR reconstruction, not his model (risk of misrepresentation)
+- `src/bridge_candidate_registry.py` — hard guards, "DEAD_END" labels
+- `src/minimum_viable_bridge_registry.py` — research hypothesis, not source-confirmed
 - `src/numerology_penalty.py` — "numerology" scoring (sounds dismissive)
 - `tests/test_eq15_numerology.py` — alternative formulas (sounds like "your equation is not unique")
 - `docs/27_source_conflict_log.md` — "conflict" and "blocker" language

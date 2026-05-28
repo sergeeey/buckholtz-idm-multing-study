@@ -12,8 +12,10 @@ from .beta_provenance import (
     get_blocking_summary,
     get_source_confirmed_betas,
 )
+from .bridge_candidate_registry import get_bridge_status_summary
 from .data_anchoring import get_high_leakage_risk
 from .equations import get_all_equations, get_verified_equations
+from .minimum_viable_bridge_registry import get_mvb_status_summary
 
 
 def print_header():
@@ -419,6 +421,75 @@ def print_hmult_closure_status():
     print()
 
 
+def print_bridge_triage_status():
+    """Print F_oP → H(z) bridge triage status."""
+    print("🌉 Force-to-Expansion Bridge Triage")
+    print("-" * 70)
+
+    summary = get_bridge_status_summary()
+
+    print(f"Total routes evaluated: {summary['total_routes']}")
+    print(f"Source-supported: {summary['source_supported']}")
+    print(f"Computational reconstructions: {summary['computational_reconstructions']}")
+    print(f"Speculative toy models: {summary['speculative_toy_models']}")
+    print(f"Dead ends: {summary['dead_ends']}")
+    print(f"MCMC-ready: {summary['mcmc_ready']}")
+    print()
+    print(f"Priority 0 question: {summary['priority_zero_question']}")
+    print()
+    print("⚠️  Critical Blocker:")
+    print(f"  {summary['critical_blocker'][:80]}")
+    print(f"  {summary['critical_blocker'][80:160]}")
+    print(f"  {summary['critical_blocker'][160:]}")
+    print()
+    print("✅ Safe Conclusion:")
+    print(f"  {summary['safe_conclusion'][:80]}")
+    print(f"  {summary['safe_conclusion'][80:160]}")
+    if len(summary["safe_conclusion"]) > 160:
+        print(f"  {summary['safe_conclusion'][160:]}")
+    print()
+    print("See: docs/36_force_to_expansion_bridge_triage.md")
+    print("     src/bridge_candidate_registry.py")
+    print("-" * 70)
+    print()
+
+
+def print_mvb_status():
+    """Print Minimum Viable Bridge candidate status."""
+    print("🧊 Minimum Viable Bridge Candidate")
+    print("-" * 70)
+
+    summary = get_mvb_status_summary()
+
+    print(f"Route name: {summary['route_name']}")
+    print(f"Status: {summary['status']}")
+    print(f"Source-supported: {summary['source_supported']}")
+    print(f"MCMC-ready: {summary['mcmc_ready']}")
+    print(f"Prediction allowed: {summary['prediction_allowed']}")
+    print(f"Required inputs: {summary['required_inputs_count']}")
+    print(f"Risks documented: {summary['risks_count']}")
+    print(f"Author question: {summary['author_question']}")
+    print()
+    print("⚠️  Critical Blocker:")
+    print(f"  {summary['critical_blocker'][:80]}")
+    print(f"  {summary['critical_blocker'][80:160]}")
+    if len(summary["critical_blocker"]) > 160:
+        print(f"  {summary['critical_blocker'][160:]}")
+    print()
+    print("✅ Safe Conclusion:")
+    print(f"  {summary['safe_conclusion'][:80]}")
+    print(f"  {summary['safe_conclusion'][80:160]}")
+    if len(summary["safe_conclusion"]) > 160:
+        print(f"  {summary['safe_conclusion'][160:240]}")
+    if len(summary["safe_conclusion"]) > 240:
+        print(f"  {summary['safe_conclusion'][240:]}")
+    print()
+    print("See: docs/37_discrete_lattice_mvb_hypothesis.md")
+    print("     src/minimum_viable_bridge_registry.py")
+    print("-" * 70)
+    print()
+
+
 def print_safe_question():
     """Print safe question for Dr. Buckholtz."""
     print("💬 Safe Question for Dr. Buckholtz")
@@ -486,6 +557,8 @@ def main():
     print_data_leakage_status()
     print_force_law_status()
     print_hmult_closure_status()
+    print_bridge_triage_status()
+    print_mvb_status()
     print_ppn_status()
     print_safe_question()
     print_next_steps()
