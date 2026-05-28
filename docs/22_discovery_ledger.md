@@ -616,8 +616,63 @@ Finding 14 shows **5 other possible routes** (A, B, D, E, F), none source-suppor
 
 ---
 
+## Finding 15 — Minimum Viable Bridge Candidate: Discrete Lattice + Virial Effective-Fluid Route (2026-05-28)
+
+| Field | Value |
+|-------|-------|
+| **Finding** | After evaluating 6 bridge routes (Finding 14), the strongest non-source-supported candidate is: pairwise forces → discrete cluster lattice (Wigner-Seitz cells) → nearest-neighbor dynamics → virial pressure P = -⟨r · F⟩/(3V) → effective fluid (ρ_eff, P_eff) → Friedmann acceleration ä/a = -(4πG/3)(ρ + 3P) → H(z). This is a RESEARCH_HYPOTHESIS, NOT source-supported. |
+| **Type** | `copper_result` (strongest candidate documented) + `research_hypothesis` (computational reconstruction candidate, not source-confirmed) |
+| **Evidence** | ✅ Documented in docs/37_discrete_lattice_mvb_hypothesis.md + src/minimum_viable_bridge_registry.py. Route uses: (1) discrete topology (cosmic web as nearest-neighbor lattice), (2) virial theorem (pairwise forces → thermodynamic pressure), (3) Friedmann acceleration equation (more fundamental than H² equation). Status: RESEARCH_HYPOTHESIS, NOT_SOURCE_SUPPORTED, NOT_MCMC_READY. 10 required inputs documented (lattice geometry, neighbor count, cell volume, m_A(z), k_A(z), k_B(z), r_A(z), anisotropy tensor, time averaging, boundary conditions). 5 risks documented (may become "our model", backreaction too small, lattice breaks homogeneity, parameter degeneracy, no author confirmation). |
+| **Source status** | `NOT_SOURCE_SUPPORTED` — no manuscript material confirms discrete lattice / virial pressure approach |
+| **Verification status** | ✅ RESEARCH_HYPOTHESIS COMPLETE (2026-05-28) — route documented, tests passing (28/28), MCMC status enforced |
+| **Next test** | (1) Ask Buckholtz Q_MVB (Does MULTING use discrete lattice approximation? Is virial pressure P = -⟨r · F⟩/(3V) the bridge to Friedmann? If not, what is the correct averaging prescription?). (2) If confirmed → implement MVB forward model, unblock MCMC. (3) If rejected → archive route, await alternative. (4) Order-of-magnitude check: estimate P_virial / P_ΛCDM before full implementation — if ratio < 0.01, reject early. |
+| **Value for project** | MEDIUM — provides constructive path forward (if author confirms), prevents ad-hoc route invention, documents what inputs are needed, distinguishes this from heuristic Phi(z) scaling (Finding 13). Does NOT unblock MCMC (remains NOT_MCMC_READY). |
+| **Safe wording** | "After systematic bridge triage (Finding 14), the strongest candidate route is: discrete cluster lattice → virial pressure → Friedmann acceleration → H(z). This route is physically motivated (virial theorem), mathematically tractable (well-defined operators), and testable (requires 10 inputs). However, it is a research hypothesis / computational reconstruction candidate. It is NOT source-supported. Implementing it without author confirmation = testing our interpretation, not Buckholtz's model. MCMC remains blocked pending Q_MVB answer." |
+| **Unsafe wording** | ❌ "This solves the F_oP → H(z) bridge" (not source-confirmed). ❌ "This proves MULTING uses discrete lattice" (hypothesis, not proof). ❌ "MCMC is now ready" (still blocked). ❌ "This validates MULTING cosmology" (route not confirmed). ❌ "Buckholtz's approach uses virial pressure" (unless explicitly confirmed). ❌ "The only viable path forward" (5 other routes exist, though weaker). |
+
+**Why MVB is useful:**
+
+1. **Physically motivated:** Virial theorem is standard statistical mechanics (P = -⟨r · F⟩/(3V)) — no ad-hoc formulas
+2. **Mathematically tractable:** Well-defined operators (spatial averaging, nearest-neighbor sum, cell volume)
+3. **Testable:** Requires specific inputs (lattice geometry, neighbor count) — can verify or falsify
+4. **Distinct from Phi(z):** Heuristic scaling (Finding 13) is phenomenological fit; MVB is mechanistic reconstruction
+5. **Constructive path:** Identifies exactly what author clarification is needed (Q_MVB)
+
+**Why MVB is NOT source-supported:**
+
+1. No manuscript material mentions discrete lattice, Wigner-Seitz cells, or cluster-neighbor topology
+2. No manuscript material mentions virial pressure or virial theorem
+3. No manuscript material mentions Friedmann acceleration equation (only H² equation referenced)
+4. This route is **our reconstruction** from first principles, not Buckholtz's stated approach
+5. Cannot implement without author confirmation → risk of "testing our model, not Buckholtz's"
+
+**Difference from Finding 13 (heuristic Phi(z) scaling):**
+
+| Aspect | Finding 13 (Phi(z) scaling) | Finding 15 (MVB discrete lattice) |
+|--------|-----------------------------|------------------------------------|
+| **Type** | Phenomenological parametrization | Mechanistic reconstruction |
+| **Origin** | AI transcript materials | First-principles virial theorem |
+| **Inputs** | Cluster amplitudes A_m, A_d, A_q | Lattice geometry, neighbor count, virial sum |
+| **Formula** | H_MULT² ∝ Phi(z) = A_m - A_d + A_q | P_virial = -⟨r · F⟩/(3V) → Friedmann acceleration |
+| **Status** | AI_TRANSCRIPT_REPORTED | RESEARCH_HYPOTHESIS |
+| **Use case** | May reproduce Table A1 if cluster variables exist | May predict H(z) if lattice inputs confirmed |
+
+Both are **computational reconstruction candidates**. Neither is source-supported. Q0 and Q_MVB together ask author to choose/confirm the bridge route.
+
+**Author clarification question (Q_MVB):**
+> "Does MULTING use a discrete lattice approximation (e.g., Wigner-Seitz cells, cluster-based topology) to map pairwise forces F_oP to cosmological pressure? Specifically: (1) Is the cosmic web modeled as nearest-neighbor interactions between discrete cells? (2) Is virial pressure P = -⟨r · F⟩ / (3V) the bridge to Friedmann acceleration ä/a = -(4πG/3)(ρ + 3P)? (3) If not, what is the correct spatial averaging prescription for F_oP → H(z)?"
+
+**MCMC readiness:** STILL BLOCKED — MVB is research hypothesis, not source-confirmed bridge
+
+**Files created:**
+- docs/37_discrete_lattice_mvb_hypothesis.md (comprehensive route documentation, 12 sections)
+- src/minimum_viable_bridge_registry.py (dataclasses + guards, MVB candidate record)
+- tests/test_minimum_viable_bridge_registry.py (28 tests, all passing)
+
+---
+
 **Document status:** ACTIVE — updated as audit progresses
 
 **Last updated:** 2026-05-28  
-**Next review:** After Q0 answer received, after bridge route source-confirmed, after forward model implemented  
+**Next review:** After Q0 answer received, after Q_MVB answer received, after bridge route source-confirmed, after forward model implemented  
 **Maintainer:** Buckholtz IDM/MULTING audit team

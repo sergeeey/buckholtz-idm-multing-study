@@ -104,6 +104,39 @@ From AI transcript / supplementary materials analysis (docs/35_ai_transcript_clo
 
 ---
 
+## 2c. Minimum Viable Bridge (MVB) Question — Discrete Lattice + Virial Pressure (Optional, Long-Horizon)
+
+After reviewing six possible bridge routes from the pairwise force law (F_oP) to cosmological expansion (H(z)), the strongest **computational reconstruction candidate** from a first-principles perspective would be:
+
+**Route:** Pairwise forces → discrete cluster lattice (Wigner-Seitz cells) → nearest-neighbor dynamics → virial pressure P = -⟨r · F⟩/(3V) → effective fluid (ρ_eff, P_eff) → Friedmann acceleration ä/a = -(4πG/3)(ρ + 3P) → H(z)
+
+**Status:** This is NOT found in any manuscript materials I have reviewed. It is a **research hypothesis / computational reconstruction** that our audit team developed as a possible mechanistic bridge. **I am not claiming this is your approach.**
+
+**Question (Q_MVB, optional):**
+> Should the MULTING force law be interpreted through a discrete cluster-neighbor picture, where pairwise forces between neighboring clusters generate an effective pressure or cell-scale expansion? Or is there another averaging prescription that maps F_oP into the H_MULT(z) values in Appendix A/Table A1?
+
+**Context:**
+- Virial theorem (P = -⟨r · F⟩/(3V)) is standard statistical mechanics — provides a well-defined operator to map forces to pressure
+- Discrete lattice (Wigner-Seitz cells) avoids the issue that standard homogeneous averaging would null dipole/quadrupole contributions
+- This is distinct from the heuristic Phi(z) scaling (section 2b) which is phenomenological
+
+**Why I'm asking (optional to answer):**
+- This route is physically motivated but requires author confirmation to distinguish "our reconstruction" from "Buckholtz's model"
+- If this is **not** your intended approach, I will archive it and wait for your clarification (Q1-Q4 above)
+- If this **is** close to your approach, it would help me understand what inputs are needed (lattice geometry, neighbor count, cell volume, etc.)
+
+**Safe wording I will use:**
+- "After bridge route triage, discrete lattice + virial pressure is the strongest candidate from first principles. However, it is NOT source-supported. It is a research hypothesis requiring author confirmation. Implementing it without confirmation = testing our interpretation, not Buckholtz's model."
+
+**What I will NOT say:**
+- ❌ "This solves the F_oP → H(z) bridge" (not source-confirmed)
+- ❌ "Buckholtz's approach uses virial pressure" (unless you explicitly confirm)
+- ❌ "This proves MULTING cosmology" (hypothesis, not proof)
+
+**Note:** This question is lower priority than Q1-Q4 above. If you prefer to focus on the H-MULT formula and dataset questions first, that is completely fine. The MVB route remains an internal research hypothesis until/unless you confirm it aligns with your model.
+
+---
+
 ## 3. Questions — H-MULT Fit Reproduction
 
 To reproduce the Table A1 H-MULT column and compare with H-FLRW, I need:
