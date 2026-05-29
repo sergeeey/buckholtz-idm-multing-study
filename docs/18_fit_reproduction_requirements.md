@@ -5,7 +5,10 @@
 **Status:** Planning phase — fit reproduction is ALLOWED, predictive modeling remains BLOCKED.
 
 **Created:** 2026-05-27  
+**Updated:** 2026-05-29 — Appendix A1 Steps 3–7 forensic extraction complete  
 **Verification status:** Manual verification complete (beta values confirmed from manuscript)
+
+**CRITICAL FINDING (2026-05-29):** Appendix A1 Step 5 provides scaling relations (r_dA = β_d × r_A) but does NOT provide explicit formula H_MULT = f(z, β_d, β_q, ...). Computational bridge F_oP → H_MULT(z) is UNDER_SPECIFIED — procedural instruction only, NOT computational formula. See `docs/39_appendix_a1_steps_3_7_forensic_reading.md`.
 
 ---
 
@@ -39,10 +42,11 @@
 
 ✅ **Allowed actions:**
 
-1. **Reproduce Table A1 fit numerically**
-   - Use beta_d = 4.5 and beta_q = 18.0 as given constants
-   - Compute H_MULT(z) on same dataset used by Buckholtz
-   - Reproduce sigma_MULT if sufficient information available
+1. **Reproduce Table A1 as empirical data table** ✅ CODE-READY
+   - Use beta_d = 4.5 and beta_q = 18.0 as TABLE_REPORTED constants
+   - Store Table A1 data as empirical reference (12 rows, z = 0 to 8.5)
+   - Mark H_MULT values as TABLE_REPORTED (NOT predictive)
+   - **BLOCKED:** Computing H_MULT(z) on NEW redshifts — formula missing (Step 5 under-specified)
 
 2. **Compare fit quality with ΛCDM** on SAME dataset
    - Fair comparison: both models fitted to same data

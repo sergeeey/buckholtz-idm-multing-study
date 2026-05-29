@@ -1,8 +1,9 @@
 # Project Status — Buckholtz IDM/MULTING Verification MVP
 
-**Version:** v0.1-mvp-complete  
-**Date:** 2026-05-27  
-**Status:** ✅ MVP COMPLETE — Ready for author clarification
+**Version:** v0.2-appendix-a1-forensic  
+**Date:** 2026-05-29  
+**Status:** ✅ FORENSIC EXTRACTION COMPLETE — Appendix A1 Steps 3–7 analyzed  
+**Previous:** v0.1-mvp-complete (2026-05-27)
 
 ---
 
