@@ -333,17 +333,95 @@ For each term:
 
 ## Part 8: Literature Claim Check
 
-**Status:** NO LITERATURE CLAIMS IN TASK DESCRIPTION
+**Source:** docs/47_literature_bridge_map.md
 
-**Note:** Task mentioned docs/46, docs/47 with Layzer-Irvine / lattice universe support — **these files do not exist** in current repo.
+### 8.1 Claim 1: "Layzer-Irvine supports arbitrary MULTING pair potentials"
 
-**Action:** Skip this part unless user provides docs/46, docs/47.
+**Literature findings:**
+- ✅ Layzer-Irvine provides energy conservation framework (K + U) for N-body cosmology
+- ✅ Connection between virial theorem and H(t) established
+- ❌ Does NOT authorize arbitrary V(D) forms
+- ❌ Does NOT validate single pair → background generalization
+- ❌ Does NOT treat dipole and quadrupole forces
+
+**Verdict:** ⚠️ **PARTIAL_SUPPORT**
+
+**Correct statement:** "Layzer-Irvine provides the energy conservation framework used in MULTING derivation, but does not directly validate MULTING-specific potentials."
 
 ---
 
-## Part 9: Final Verdict (PROVISIONAL)
+### 8.2 Claim 2: "Lattice universe models support MULTING bridge"
 
-**Status:** PARTIAL VERIFICATION COMPLETE
+**Literature findings:**
+- ✅ Proof-of-concept for discrete → continuum averaging exists
+- ✅ Pair interaction → effective H²(a) framework validated
+- ❌ Real clusters NOT on periodic lattice
+- ❌ Standard lattice models use monopole only (no dipole/quadrupole)
+- ❌ Homogeneity assumption questionable for real universe
+
+**Verdict:** ⚠️ **PARTIAL_SUPPORT**
+
+**Correct statement:** "Lattice universe models provide a framework for pair → background averaging, but MULTING requires non-standard multipole forces and real cluster distribution is not lattice-like."
+
+---
+
+### 8.3 Claim 3: "Wigner-Seitz cell justifies single-pair approach"
+
+**Literature findings:**
+- ✅ Representative cell → background connection conceptually sound
+- ✅ Periodic boundary conditions eliminate edge effects
+- ❌ Real universe NOT periodic
+- ❌ Cell boundaries arbitrary (not Voronoi tessellation)
+- ❌ Homogeneity required (violated by large-scale structure)
+
+**Verdict:** ⚠️ **PARTIAL_SUPPORT**
+
+**Correct statement:** "Wigner-Seitz cell approximation provides a conceptual bridge for pair → background, but requires periodic lattice and homogeneity, both violated in real universe."
+
+---
+
+### 8.4 Claim 4: "Buchert backreaction supports a⁻⁴, a⁻⁵ terms"
+
+**Literature findings:**
+- ✅ Framework for inhomogeneity effects on H² exists
+- ✅ Effective dark energy from structure demonstrated
+- ❌ Specific a⁻⁴, a⁻⁵ terms NOT in Buchert framework
+- ❌ Pairwise potential approach NOT used (Buchert uses metric averaging)
+- ❌ MULTING force law NOT validated
+
+**Verdict:** ❌ **OVERSTATED**
+
+**Correct statement:** "Buchert framework shows that inhomogeneity can modify effective H², but does not specifically support MULTING's a⁻⁴, a⁻⁵ terms."
+
+---
+
+### 8.5 Literature Support Summary Table
+
+| Claim | Verdict | Strength | Caveat |
+|-------|---------|----------|--------|
+| Pairwise forces → H²(a) | PARTIAL_SUPPORT | Framework validated | MULTING-specific NOT proven |
+| Single pair → background | PARTIAL_SUPPORT | Conceptual bridge exists | Requires periodic lattice, homogeneity |
+| Energy conservation E → H² | STRONG_SUPPORT | Uncontroversial | Standard physics |
+| V_MULT → H² derivation | WEAK | Analogy to Layzer-Irvine | Not proven in literature |
+| Dipole force → a⁻⁴ term | WEAK | Our derivation | NOT in literature |
+| Quadrupole force → a⁻⁵ term | WEAK | Our derivation | NOT in literature |
+| Multipole cosmology | BACKGROUND_ONLY | Modified gravity context | Not MULTING-specific |
+
+**Overall literature support:** PARTIAL — framework exists for pair → background mapping, but MULTING-specific potentials NOT directly validated.
+
+**Key references (conceptual support, NOT MULTING-validation):**
+- Layzer (1963) — Energy conservation in Newtonian cosmology
+- Irvine (1961) — Virial theorem in expanding universe
+- Zel'dovich (1970) — Lattice universe approximation
+- Buchert (2000) — Backreaction framework
+
+**Note:** None of these papers discuss MULTING or validate MULTING-specific dipole/quadrupole terms.
+
+---
+
+## Part 9: Final Verdict
+
+**Status:** VERIFICATION COMPLETE (except diagnostic fit)
 
 | Component | Verdict | Notes |
 |-----------|---------|-------|
@@ -351,6 +429,7 @@ For each term:
 | **Potential integration** | ✅ PASS | V_m ∝ a⁻¹, V_d ∝ a⁻², V_q ∝ a⁻³ algebraically correct |
 | **H² scaling** | ✅ PASS | a⁻², a⁻³, a⁻⁴, a⁻⁵ derivation algebraically valid |
 | **Monopole limit** | ✅ PASS | Reduces to matter + curvature (Friedmann-like) |
+| **Literature support** | ⚠️ PARTIAL | Framework supported, MULTING-specific NOT validated |
 | **Diagnostic fit** | ⏳ PENDING | Not yet implemented |
 | **Overfitting audit** | ⏳ PENDING | Awaiting fit results |
 | **Source confirmation** | ❌ NO | Derivation is OUR_COMPUTATIONAL_RECONSTRUCTION |
