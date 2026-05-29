@@ -494,6 +494,65 @@ Best regards,
 
 **Detailed analysis:** See docs/29_ppn_quick_check_requirements.md (7 PPN checks, all BLOCKED) and docs/30_multing_solar_system_limit_questions.md (7 open questions).
 
+### Q14: Row 1 Table A1 Sigma Standardization
+
+> While checking Table A1, I found that the sigma columns appear internally consistent for Rows 2–12, but Row 1 at z=0 seems to use a different convention or contains an ambiguity. Could you clarify whether the z=0 row was treated as an anchor point, whether the sigma value is signed or absolute, and which H-data uncertainty should be used?
+
+**Context:** Row-level sigma consistency audit (with adaptive tolerance by decimal precision) found:
+
+**Row 1 (z=0):**
+- sigma_MULT reported: 1.30 (positive)
+- sigma_MULT calculated: (71.1 - 73.0) / 1.1 = -1.727 (negative)
+- Difference: 3.027 >> tolerance 0.11 (**27× exceeded**)
+
+**Rows 2–12 (z=0.06 to 8.5):**
+- sigma_MULT: max diff = 0.001 ✅ (all within tolerance)
+- sigma_FLRW: max diff = 0.039 ✅ (all within tolerance)
+
+**Additional observation:** PDF Table A1 shows "H-data: 73.0 ± 1.6" for Row 1, but sigma_FLRW back-calculation is more consistent with sigma_H = 1.1 than 1.6. This suggests that H-data observational uncertainty (±1.6) may differ from the sigma_H value used for standardization (1.1).
+
+**Possible interpretations:**
+1. Row 1 sigma_MULT is reported as absolute value |1.727| ≈ 1.30 (rounded)
+2. z=0 anchor point uses different standardization formula
+3. Transcription or rounding convention specific to z=0
+
+**Impact:** This is a **localized** issue — Rows 2–12 remain internally consistent. I am currently excluding Row 1 from any internal diagnostic fits until this is clarified.
+
+**Safe wording:** I may be misunderstanding the standardization procedure at z=0. Could you clarify the computational step for Row 1 sigma values, or confirm whether the printed Table A1 values are correct as-is?
+
+### Q15: Force-to-Expansion Bridge Method
+
+> I may be misunderstanding the intended computational bridge from MULTING pairwise forces to the Hubble parameter H(z). I am exploring a possible interpretation where the pairwise MULTING acceleration F_oP/μ is converted into a scale-factor acceleration by dividing by the intercluster distance D_AB:
+>
+> ä/a = N_eff × F_oP / (μ × D_AB)
+>
+> where N_eff is an effective neighbor count or averaging factor. Is this close to the intended calculation route for Table A1, or does the AI service use a different averaging or phenomenological rule?
+
+**Context:** After conducting a mathematical stress test of possible F_oP → H_MULT(z) bridge candidates (docs/43_bridge_candidate_math_stress_test.md), I found:
+
+**Candidate B (Discrete Lattice ODE):**
+- Formula: ä/a = N_eff × F_oP(D_AB, z) / (μ × D_AB)
+- Dimensional check: ✅ PASS — [F/(μ×D)] = [acceleration/length] = [1/time²] = [ä/a]
+- Sign convention: ✅ VERIFIED — consistent with late-time acceleration if dipole (repulsive) dominates
+- Status: **BEST internal reconstruction candidate** (not source-confirmed)
+
+**Missing inputs for this route:**
+- m_A(z), k_A(z), r_A(z) — cluster variable evolution
+- D_AB(z) — intercluster distance (cosmological or peculiar?)
+- N_eff — averaging factor / neighbor geometry
+
+**Alternative: Phi(z) heuristic (from AI transcript):**
+- Formula: H_MULT²(z) = H_anchor² × [Phi(z) / Phi_anchor]
+- Status: Useful for Table A1 reproduction, but dimensionally under-specified (force **ratios** → H² without explicit length scale D_AB)
+- Classification: TABLE_REPRODUCTION_HEURISTIC_ONLY (not a forward predictive model)
+
+**Why this matters:**
+- If the bridge is discrete lattice averaging → cluster variables required for MCMC
+- If the bridge is phenomenological scaling → Table A1 reproduction only, no prediction on new z
+- If the bridge is something else → please clarify so I can represent it accurately
+
+**Safe wording:** I am exploring a possible computational interpretation. Is this close to the intended Table A1 calculation route, or does the service use a different method?
+
 ---
 
 ## 9. Next Steps After Receiving Response

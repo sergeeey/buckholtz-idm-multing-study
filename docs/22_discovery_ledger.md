@@ -770,3 +770,38 @@ assert not hasattr(registry, "compute_Hz")  # No H_MULT function exists
 **Last updated:** 2026-05-29  
 **Next review:** After author clarification received, after H_MULT formula provided, after Table A1 reproduction attempted  
 **Maintainer:** Buckholtz IDM/MULTING audit team
+
+## Finding 18: Row 1 Table A1 Sigma Anomaly (2026-05-29)
+
+**Status:** SOURCE_TABLE_OUTLIER  
+**Classification:** Localized inconsistency (1/12 rows)  
+**Impact:** Does not invalidate Rows 2-12
+
+**Finding:** Row 1 (z=0) sigma values have larger-than-expected differences:
+- sigma_MULT: reported 1.30, calculated -1.727 → diff 3.027 (27× tolerance)
+- Rows 2-12: max diff 0.039 (all within tolerance)
+
+**Recommendation:** Exclude Row 1 from internal fits until author clarifies (Q14).
+
+**Reference:** docs/43 Part 7, data/table_a1_reported.csv Row 1 note
+
+---
+
+## Finding 19: Candidate B Dimensional Bridge Audit (2026-05-29)
+
+**Status:** BEST_INTERNAL_RECONSTRUCTION_CANDIDATE (not source-confirmed)  
+**Classification:** Mathematical stress test complete  
+**MCMC:** BLOCKED (missing m_A(z), k_A(z), r_A(z), D_AB(z), N_eff)
+
+**Finding:** Discrete Lattice ODE passes dimensional/sign checks:
+- Formula: ä/a = N_eff × F_oP / (μ × D_AB)
+- Units: [F/(μ×D)] = [T⁻²] = [ä/a] ✅
+- Sign: Consistent with late-time acceleration ✅
+
+**Risk:** May become our model, not Buckholtz's (requires author confirmation Q15).
+
+**Alternatives:**
+- Phi(z) heuristic: TABLE_ONLY (dimensionally under-specified)
+- Candidate G (Potential): NEEDS_VERIFICATION (a⁻⁵ unverified)
+
+**Reference:** docs/43, src/bridge_candidate_math_audit.py
