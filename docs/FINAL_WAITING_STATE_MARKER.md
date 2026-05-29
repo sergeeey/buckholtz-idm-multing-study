@@ -37,8 +37,8 @@ This repository is in **WAITING_FOR_AUTHOR_RESPONSE** state.
 2. ✅ Table A1 manually transcribed from PDF (12 rows, 7 columns)
 3. ✅ Table A1 reverse engineering completed (docs/42)
    - Row 1 z=0 sigma outlier identified (3.027 deviation)
-   - Rows 2-12: H_MULT 6× closer to H_obs than H_FLRW
-   - Residuals: 1.27 vs 8.13 km/s/Mpc (mean absolute)
+   - Rows 2-12: H_MULT residuals ~6× smaller than H_FLRW on Table A1 only (retrodiction, no out-of-sample test)
+   - Residuals: 1.27 vs 8.13 km/s/Mpc (mean absolute, β fitted to same data)
 4. ✅ Beta parameters source-confirmed: β_d=4.5, β_q=18.0
 5. ✅ Force law equations documented (SOURCE_CANDIDATE, awaiting verification)
 
@@ -50,9 +50,9 @@ This repository is in **WAITING_FOR_AUTHOR_RESPONSE** state.
    - Classification: Phenomenological
 2. ✅ Hamiltonian energy bridge (docs/48, docs/53 Path 2)
    - Formula: H²(a) = H₀²[Ω_k a⁻² + Ω_m a⁻³ + Ω_d a⁻⁴ + Ω_q a⁻⁵]
-   - Status: BEST_INTERNAL_RECONSTRUCTION_CANDIDATE
+   - Status: OUR_COMPUTATIONAL_RECONSTRUCTION (algebraically valid internal candidate)
    - Verification: ✅ Dimensional analysis, ✅ monopole limit, ✅ sign analysis, ✅ acceleration interpretation
-   - Classification: NOT_SOURCE_CONFIRMED
+   - Classification: NOT_SOURCE_CONFIRMED (author confirmation required)
 3. ✅ Discrete lattice / N-body (docs/47, docs/53 Path 3)
    - Status: RESEARCH_PATH
    - Classification: DATA_HEAVY, AUTHOR_DEPENDENT
@@ -332,6 +332,54 @@ NOT in:
 - Burning author relationship (adversarial communication)
 
 **You've done good work. Preserve it. Don't rush. Wait for the right signal.**
+
+---
+
+## 🔍 Paranoid Audit Addendum (2026-05-29)
+
+**Post-freeze quality audit was conducted using paranoid mode 7-skill chain (~90 min).**
+
+### Audit Result
+
+**No critical code bugs found.**
+
+**Scientific status unchanged:**
+- MCMC BLOCKED (0/5 blockers resolved)
+- PREDICTION BLOCKED (no out-of-sample test)
+- All hypotheses remain NOT_SOURCE_CONFIRMED
+
+### Wording Hardening (3 Issues Identified)
+
+The audit identified subtle wording risks that could lead to implicit overclaiming:
+
+1. **"6× better than FLRW" clarified:**
+   - Updated to: "~6× smaller residuals on Table A1 only (retrodiction, no out-of-sample test)"
+   - Added qualifier: "β fitted to same data"
+   - Status: RETRODICTION_EVIDENCE, NOT_PREDICTION
+
+2. **"Hamiltonian bridge algebraically valid" clarified:**
+   - Updated to: "OUR_COMPUTATIONAL_RECONSTRUCTION (algebraically valid internal candidate)"
+   - Added qualifier: "NOT_SOURCE_CONFIRMED (author confirmation required)"
+   - Emphasis: algebraic validity does NOT imply source confirmation
+
+3. **Freeze discipline wording neutralized:**
+   - Removed self-congratulatory phrases
+   - Replaced with factual: "repo frozen pending author response"
+   - Neutral: "scientific status preserved, no blocked work performed"
+
+### Audit Documents Created
+
+- `docs/CODE_AUDIT_HARDENING.md` — 10-layer code quality audit
+- `docs/SCI_EVIDENCE_AUDIT.md` — 5 worlds falsification check
+- `docs/PARANOID_MODE_FINAL_AUDIT.md` — audit summary and findings
+
+### Final Verdict
+
+**PROVISIONAL_AUTHOR_DEPENDENT**  
+**NO_CRITICAL_CODE_BUGS**  
+**WORDING_HARDENING_COMPLETE**
+
+All claims remain provisional pending author response to Q14-Q19 + Q-operational.
 
 ---
 

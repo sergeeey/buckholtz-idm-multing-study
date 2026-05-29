@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-**Current evidence:** Table A1 shows that H_MULT is about **6× closer to H_obs than H_FLRW** (mean residuals: 1.27 vs. 8.13 km/s/Mpc). This is a **strong retrodictive signal** indicating that a MULTING-inspired parameterization can track the reported H(z) data in Table A1.
+**Current evidence:** Table A1 shows that H_MULT residuals are about **6× smaller than H_FLRW** on Rows 2-12 (mean residuals: 1.27 vs. 8.13 km/s/Mpc, β fitted to same data). This is a **strong retrodictive signal** (NOT out-of-sample prediction) indicating that a MULTING-inspired parameterization can track the reported H(z) data in Table A1.
 
 **Critical limitation:** **Table A1 is useful evidence that the MULTING-inspired fit can track the reported H(z) data, but it is not yet an out-of-sample predictive test.** Beta parameters (β_d=4.5, β_q=18.0) were fitted to or reported alongside this data, making Table A1 part of the reconstruction process, not an independent validation set.
 
@@ -42,7 +42,7 @@
 - Mean absolute deviation from H_obs: **8.13 km/s/Mpc**
 - Root mean squared error: ~9.5 km/s/Mpc
 
-**Performance ratio:** H_MULT is about **6× closer** to H_obs than H_FLRW
+**Performance ratio:** H_MULT residuals about **6× smaller** than H_FLRW on Table A1 only (retrodiction, no OOS test)
 
 **Beta parameters (Table A1 caption):**
 - β_d = 4.5 (dipole strength)

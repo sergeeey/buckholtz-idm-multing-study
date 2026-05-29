@@ -38,9 +38,9 @@ I am trying to understand selected computational parts of IDM/MULTING accurately
 **H_MULT vs. H_obs residuals (Rows 2–12):**
 - H_MULT: 1.27 km/s/Mpc mean deviation
 - H_FLRW: 8.13 km/s/Mpc mean deviation
-- **H_MULT is about 6× closer to H_obs than H_FLRW**
+- **H_MULT residuals ~6× smaller than H_FLRW on Table A1 (β fitted to same data)**
 
-**Interpretation:** Strong retrodiction/table-fit evidence (not prediction).
+**Interpretation:** Strong retrodiction/table-fit evidence (NOT out-of-sample prediction, NOT validation).
 
 ### 2. Sigma Consistency
 
@@ -154,7 +154,7 @@ Are m_A(z), k_A(z), r_A(z), D_AB(z), N_eff:
 |------|--------|
 | Appendix A1 Steps 3–7 extraction | ✅ SOURCE_CONFIRMED |
 | Table A1 transcription | ✅ COMPLETE |
-| H_MULT performance vs. H_FLRW | ✅ 6× better fit |
+| H_MULT performance vs. H_FLRW | ✅ ~6× smaller residuals (retrodiction, Table A1 only) |
 | Sigma audit Rows 2–12 | ✅ PASSES |
 | Row 1 sigma anomaly | ⚠️ OUTLIER, Q14 prepared |
 | Bridge method identification | ❌ NOT_SOURCE_CONFIRMED, Q15 prepared |
