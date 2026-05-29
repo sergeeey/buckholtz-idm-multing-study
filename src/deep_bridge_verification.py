@@ -12,7 +12,6 @@ Safety: All results marked as internal reconstruction, not validated.
 from dataclasses import dataclass
 from typing import Literal
 
-
 # ============================================================================
 # Part 1: Source Force Law Verification
 # ============================================================================
@@ -350,23 +349,23 @@ def analyze_signs() -> list[SignInterpretation]:
             potential_sign="− (attractive)",
             h2_coefficient_sign="Ω_m > 0 (if A_m < 0)",
             expected_effect="Deceleration (standard matter)",
-            notes="Standard Friedmann matter behavior",
+            notes="a⁻³ term: factor (1−n/2) = −0.5 → deceleration if Ω_m > 0",
         ),
         SignInterpretation(
             component="Dipole",
             force_sign="+ (repulsive)",
             potential_sign="+ (repulsive)",
-            h2_coefficient_sign="Ω_d < 0 (if A_d > 0)",
-            expected_effect="⚠️ Neutral in ä/a (NOT strong acceleration)",
-            notes="a⁻⁴ term: d(ln H²)/d(ln a) = −4 → ä/a contribution ≈ 0",
+            h2_coefficient_sign="Ω_d < 0 (if A_d > 0, repulsive)",
+            expected_effect="✅ ACCELERATION (if Ω_d < 0)",
+            notes="a⁻⁴ term: factor (1−n/2) = −1.0 → ä/a = −Ω_d H₀² a⁻⁴ → accelerates if Ω_d < 0",
         ),
         SignInterpretation(
             component="Quadrupole",
             force_sign="− (attractive)",
             potential_sign="− (attractive)",
             h2_coefficient_sign="Ω_q > 0 (if A_q < 0)",
-            expected_effect="Deceleration (early-time dominant)",
-            notes="a⁻⁵ term: d(ln H²)/d(ln a) = −5 → ä/a contribution = −0.5 × H² (decel)",
+            expected_effect="Strong deceleration (early-time dominant)",
+            notes="a⁻⁵ term: factor (1−n/2) = −1.5 → strong deceleration if Ω_q > 0",
         ),
     ]
 
@@ -374,30 +373,44 @@ def analyze_signs() -> list[SignInterpretation]:
 def check_acceleration_logic() -> dict:
     """Check acceleration ä/a from H²(a) terms
 
-    Formula: ä/a = −(1/2) d(H²)/d(ln a) − H²
+    Correct formula: ä/a = Ḣ + H²
+    For H² = C a⁻ⁿ → ä/a = C a⁻ⁿ × (1 - n/2)
 
     Returns:
         Analysis dict
     """
     return {
+        "formula": "ä/a = Ḣ + H² = H² (1 - n/2) for H² = C a⁻ⁿ",
         "a_minus_2": {
-            "d_ln_h2_d_ln_a": -2,
-            "a_over_a_contribution": "+1 × H² (acceleration-like)",
+            "n": 2,
+            "factor": 0.0,
+            "contribution": "0 × C a⁻² (NEUTRAL)",
+            "interpretation": "Curvature term does not accelerate/decelerate",
         },
         "a_minus_3": {
-            "d_ln_h2_d_ln_a": -3,
-            "a_over_a_contribution": "+0.5 × H² (deceleration)",
+            "n": 3,
+            "factor": -0.5,
+            "contribution": "−0.5 × Ω_m H₀² a⁻³",
+            "interpretation": "Deceleration if Ω_m > 0 (standard matter)",
         },
         "a_minus_4": {
-            "d_ln_h2_d_ln_a": -4,
-            "a_over_a_contribution": "0 (neutral)",
+            "n": 4,
+            "factor": -1.0,
+            "contribution": "−1.0 × Ω_d H₀² a⁻⁴",
+            "interpretation": "ACCELERATION if Ω_d < 0, deceleration if Ω_d > 0",
         },
         "a_minus_5": {
-            "d_ln_h2_d_ln_a": -5,
-            "a_over_a_contribution": "−0.5 × H² (deceleration)",
+            "n": 5,
+            "factor": -1.5,
+            "contribution": "−1.5 × Ω_q H₀² a⁻⁵",
+            "interpretation": "Strong deceleration if Ω_q > 0 (early-time dominant)",
         },
-        "warning": "a⁻⁴ term does NOT produce strong acceleration — it is neutral",
-        "notes": "Acceleration requires Ω_k > 0 or negative Ω_d domination (unusual)",
+        "key_insight": "a⁻⁴ (dipole) CAN accelerate if Ω_d < 0 (negative coefficient)",
+        "sign_dependence": {
+            "Ω_d > 0": "dipole decelerates (attractive-like)",
+            "Ω_d < 0": "dipole ACCELERATES (repulsive-like)",
+        },
+        "notes": "Acceleration/deceleration depends on coefficient SIGN, not just power",
     }
 
 
@@ -481,7 +494,8 @@ def generate_final_verdict() -> dict:
             "H²(a) = H₀² [Ω_k a⁻² + Ω_m a⁻³ + Ω_d a⁻⁴ + Ω_q a⁻⁵] derivation algebraically correct",
             "Force-to-potential integration verified",
             "Monopole-only limit reduces to Friedmann (matter + curvature)",
-            "⚠️ a⁻⁴ term is NEUTRAL for ä/a (not strongly accelerating)",
+            "✅ a⁻⁴ term CAN accelerate if Ω_d < 0 (dipole repulsive)",
+            "Acceleration/deceleration depends on coefficient SIGN, not just power",
             "Physical interpretation requires mean-field averaging justification",
             "Diagnostic fit stability not yet tested",
             "This is OUR_COMPUTATIONAL_RECONSTRUCTION, NOT source-confirmed",

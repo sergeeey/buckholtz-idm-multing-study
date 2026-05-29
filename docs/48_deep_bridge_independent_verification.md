@@ -265,25 +265,41 @@ From force law structure (F_oP = F_m − F_d + F_q):
 
 ### 5.2 Acceleration Check
 
-From H²(a):
+**Correct formula for single term H² = C a⁻ⁿ:**
 ```
-ä/a = −(1/2) d(H²)/d(ln a) − H²
+ä/a = Ḣ + H² = H² (1 - n/2)
 ```
 
-For each term:
-- a⁻² → d(ln H²)/d(ln a) = −2 → ä/a contribution = +1 × H² (acceleration-like)
-- a⁻³ → d(ln H²)/d(ln a) = −3 → ä/a contribution = +0.5 × H² (deceleration)
-- a⁻⁴ → d(ln H²)/d(ln a) = −4 → ä/a contribution = 0 (neutral)
-- a⁻⁵ → d(ln H²)/d(ln a) = −5 → ä/a contribution = −0.5 × H² (deceleration)
+**Derivation:**
+```
+H² = C a⁻ⁿ → H = √C a⁻ⁿ/²
+dH/dt = √C × (−n/2) a⁻ⁿ/²⁻¹ × ȧ = (−n/2) H × H = (−n/2) H²
+ä/a = Ḣ + H² = (−n/2) H² + H² = H² (1 − n/2)
+```
 
-**Interpretation:**
-- a⁻³ (matter-like) → deceleration ✅
-- a⁻⁴ (dipole) → neutral (borderline) ⚠️
-- a⁻⁵ (quadrupole) → deceleration ❌ (conflicts with "quadrupole attractive")
+**For each term:**
 
-**WARNING:** a⁻⁴ term does NOT produce strong acceleration — it's neutral in ä/a balance.
+| Term | n | Factor (1−n/2) | ä/a contribution | Interpretation |
+|------|---|---------------|------------------|----------------|
+| a⁻² | 2 | 0 | 0 × Ω_k H₀² a⁻² | **NEUTRAL** (curvature) |
+| a⁻³ | 3 | −0.5 | −0.5 × Ω_m H₀² a⁻³ | **Deceleration if Ω_m > 0** (standard matter) |
+| a⁻⁴ | 4 | −1.0 | −1.0 × Ω_d H₀² a⁻⁴ | **ACCELERATION if Ω_d < 0**, deceleration if Ω_d > 0 ✅ |
+| a⁻⁵ | 5 | −1.5 | −1.5 × Ω_q H₀² a⁻⁵ | **Strong deceleration if Ω_q > 0** (early-time) |
 
-**Result:** ⚠️ **PARTIAL** — Sign logic requires careful ä/a analysis, not just H² inspection.
+**Key insight:** Acceleration/deceleration depends on **coefficient SIGN**, not just power.
+
+**For dipole (a⁻⁴ term):**
+- If Ω_d > 0 → ä/a < 0 → deceleration (attractive-like)
+- If Ω_d < 0 → ä/a > 0 → **ACCELERATION** (repulsive-like) ✅
+
+**From potential derivation:**
+- V_d = +C_d / (2r²) (repulsive potential)
+- Ω_d = −2A_d / (H₀² μ D₀²) where A_d = +C_d / (2D₀²)
+- If C_d > 0 (dipole repulsive) → A_d > 0 → **Ω_d < 0** → ä/a > 0 ✅
+
+**Result:** ✅ **PASS** — Dipole CAN produce acceleration if Ω_d < 0 (repulsive potential).
+
+**Correction:** Previous statement "a⁻⁴ term is neutral" was **WRONG**. Correct: "a⁻⁴ term accelerates if Ω_d < 0."
 
 ---
 

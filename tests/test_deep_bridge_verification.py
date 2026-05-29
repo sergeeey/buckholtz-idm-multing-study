@@ -5,13 +5,12 @@ Purpose: Verify algebraic consistency of Hamiltonian bridge H²(a) reconstructio
 Safety: All tests verify internal reconstruction, NOT source-confirmed model
 """
 
-import pytest
 
 from src.deep_bridge_verification import (
-    H2ScalingDerivation,
     ForceComponent,
+    H2ScalingDerivation,
     PotentialDerivation,
-    SignInterpretation,
+    analyze_signs,
     check_acceleration_logic,
     check_force_scaling_pass,
     check_h2_derivation_pass,
@@ -29,7 +28,6 @@ from src.deep_bridge_verification import (
     verify_quadrupole_potential,
     verify_source_force_scalings,
 )
-
 
 # ============================================================================
 # Part 1: Force Scaling Verification Tests
@@ -194,7 +192,7 @@ def test_monopole_limit_no_lambda():
 
 
 def test_acceleration_logic():
-    """Test: Acceleration ä/a logic computed from H² terms"""
+    """Test: Acceleration ä/a logic computed from H² terms (CORRECTED)"""
     accel = check_acceleration_logic()
 
     assert "a_minus_2" in accel
@@ -202,21 +200,21 @@ def test_acceleration_logic():
     assert "a_minus_4" in accel
     assert "a_minus_5" in accel
 
-    # Check a⁻⁴ term is neutral
-    assert "neutral" in accel["a_minus_4"]["a_over_a_contribution"].lower()
-
-    # Check warning present
-    assert "warning" in accel
-    assert "a⁻⁴" in accel["warning"] or "a_minus_4" in str(accel["warning"])
+    # Check formula documented
+    assert "formula" in accel
+    assert "1 - n/2" in accel["formula"]
 
 
-def test_a_minus_4_not_strongly_accelerating():
-    """Test: a⁻⁴ term is neutral (NOT strongly accelerating)"""
+def test_a_minus_4_CAN_accelerate():
+    """Test: a⁻⁴ term CAN accelerate if Ω_d < 0 (corrected interpretation)"""
     accel = check_acceleration_logic()
 
-    # a⁻⁴ contribution to ä/a should be approximately 0
-    a4_contrib = accel["a_minus_4"]["a_over_a_contribution"]
-    assert "0" in a4_contrib or "neutral" in a4_contrib.lower()
+    # a⁻⁴ factor should be −1.0
+    assert accel["a_minus_4"]["factor"] == -1.0
+
+    # Should mention acceleration if Ω_d < 0
+    a4_interp = accel["a_minus_4"]["interpretation"].lower()
+    assert "acceleration if" in a4_interp or "accelerates if" in a4_interp
 
 
 # ============================================================================
@@ -390,3 +388,112 @@ def test_h2_scalings_have_notes():
     for deriv in scalings:
         assert deriv.notes
         assert len(deriv.notes) > 10
+
+
+# ============================================================================
+# Acceleration Correction Tests (Added 2026-05-29)
+# ============================================================================
+
+
+def test_acceleration_factor_a_minus_2_zero():
+    """Test: a⁻² term gives zero acceleration contribution (curvature neutral)"""
+    accel = check_acceleration_logic()
+
+    assert accel["a_minus_2"]["n"] == 2
+    assert accel["a_minus_2"]["factor"] == 0.0
+    # Interpretation should indicate no acceleration/deceleration
+    interp = accel["a_minus_2"]["interpretation"].lower()
+    assert (
+        "neutral" in accel["a_minus_2"]["contribution"].lower() or "does not accelerate" in interp
+    )
+
+
+def test_acceleration_factor_a_minus_3():
+    """Test: a⁻³ term gives −0.5 factor (deceleration if Ω_m > 0)"""
+    accel = check_acceleration_logic()
+
+    assert accel["a_minus_3"]["n"] == 3
+    assert accel["a_minus_3"]["factor"] == -0.5
+    assert "deceleration" in accel["a_minus_3"]["interpretation"].lower()
+
+
+def test_acceleration_factor_a_minus_4():
+    """Test: a⁻⁴ term gives −1.0 factor (acceleration if Ω_d < 0)"""
+    accel = check_acceleration_logic()
+
+    assert accel["a_minus_4"]["n"] == 4
+    assert accel["a_minus_4"]["factor"] == -1.0
+    assert "acceleration if" in accel["a_minus_4"]["interpretation"].lower()
+
+
+def test_acceleration_factor_a_minus_5():
+    """Test: a⁻⁵ term gives −1.5 factor (strong deceleration if Ω_q > 0)"""
+    accel = check_acceleration_logic()
+
+    assert accel["a_minus_5"]["n"] == 5
+    assert accel["a_minus_5"]["factor"] == -1.5
+    assert "deceleration" in accel["a_minus_5"]["interpretation"].lower()
+
+
+def test_negative_coefficient_flips_acceleration():
+    """Test: Negative coefficient flips acceleration sign (documented)"""
+    accel = check_acceleration_logic()
+
+    # Check sign dependence documented for dipole
+    assert "sign_dependence" in accel
+    assert "Ω_d > 0" in accel["sign_dependence"]
+    assert "Ω_d < 0" in accel["sign_dependence"]
+
+
+def test_no_document_says_a_minus_4_neutral():
+    """Test: No document incorrectly says 'a⁻⁴ is neutral'"""
+    # Check acceleration logic
+    accel = check_acceleration_logic()
+
+    # a⁻⁴ should NOT be called neutral
+    a4_text = str(accel["a_minus_4"]).lower()
+    assert "neutral" not in a4_text
+
+    # Check sign interpretations
+    signs = analyze_signs()
+    dipole_sign = [s for s in signs if s.component == "Dipole"][0]
+    assert "neutral" not in dipole_sign.expected_effect.lower()
+
+
+def test_acceleration_formula_documented():
+    """Test: Correct acceleration formula ä/a = H²(1 - n/2) documented"""
+    accel = check_acceleration_logic()
+
+    assert "formula" in accel
+    assert "1 - n/2" in accel["formula"]
+
+
+def test_dipole_can_accelerate_documented():
+    """Test: Key insight about dipole acceleration documented"""
+    accel = check_acceleration_logic()
+
+    assert "key_insight" in accel
+    assert (
+        "can accelerate" in accel["key_insight"].lower()
+        or "accelerate if" in accel["key_insight"].lower()
+    )
+
+
+def test_sign_analysis_includes_dipole_acceleration():
+    """Test: Sign analysis correctly shows dipole can accelerate"""
+    signs = analyze_signs()
+
+    dipole = [s for s in signs if s.component == "Dipole"][0]
+    assert "acceleration" in dipole.expected_effect.lower()
+    assert "if Ω_d < 0" in dipole.notes or "Ω_d < 0" in dipole.expected_effect
+
+
+def test_final_verdict_corrected():
+    """Test: Final verdict no longer says 'a⁻⁴ neutral'"""
+    verdict = generate_final_verdict()
+
+    notes_text = " ".join(verdict["notes"]).lower()
+    assert (
+        "neutral" not in notes_text or "curvature" in notes_text
+    )  # Curvature is neutral, dipole is not
+    assert "can accelerate" in notes_text or "sign" in notes_text
