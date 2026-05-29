@@ -472,4 +472,55 @@ Table A1 H_FLRW column is best fit by non-standard power law (p≈0.87), NOT by 
 
 ---
 
+## 📋 Tuesday Meeting Pack Addendum (2026-05-29)
+
+**A private meeting pack has been prepared for possible Tuesday discussion.**
+
+### What It Contains
+- 60-second respectful opening
+- 3 meeting-safe questions (H_FLRW provenance, F_oP→H_MULT bridge, H_MULT operational meaning)
+- One-page bridge map (text summary)
+- "Do not show first" list (diagnostics only if asked)
+- Safe offer (optional artifacts, not deliverables)
+- Meeting etiquette guidelines
+
+### What It Is NOT
+- ❌ NOT an email (meeting-only document)
+- ❌ NOT public (internal private draft)
+- ❌ NOT a findings dump (orientation + questions only)
+- ❌ NOT adversarial (respectful, assumes we may have misunderstood)
+- ❌ NOT validation/refutation (reproducibility assistance only)
+
+### Status
+```
+MEETING_ONLY_PRIVATE_DRAFT
+NOT_EMAIL
+NOT_PUBLIC
+NOT_SENT
+ONLY_IF_VERBALLY_INVITED
+RESPECTFUL_CONTRIBUTION_FRAMING
+```
+
+### If Meeting Does NOT Happen
+- Document stays private
+- No email sent
+- Project stays frozen
+- Focus shifts to GeoScan Gold (27 days to blind test)
+
+### If Meeting Happens and Author Declines Detail
+- Accept gracefully
+- Archive project as AUTHOR_DECLINED_DETAIL
+- Extract reusable assets
+- Move on to other work
+
+### If Meeting Happens and Author Provides Clarifications
+- Update docs/26_author_clarification_brief.md
+- Rerun Table A1 recomputation with correct parameters
+- Resolve MCMC blockers if bridge clarified
+- Do NOT publish without author permission
+
+**Document:** docs/69_tuesday_meeting_pack_private.md
+
+---
+
 🔒 **END OF WAITING STATE MARKER** 🔒
