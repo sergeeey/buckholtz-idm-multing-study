@@ -664,11 +664,64 @@ respectful-clarification-template/
 
 ---
 
+## Asset 7: Contribution Strategy Pattern
+
+**Document:** `docs/64_from_audit_to_contribution_strategy.md`
+
+**Summary:** Method for converting an audit into respectful, author-useful micro-contributions without overclaiming or public pressure.
+
+**Core principles:**
+1. Goal is to help, not criticize
+2. Everything remains private unless explicitly approved
+3. Respect author's domain expertise
+4. Prepare tools, not verdicts
+
+**Deliverables:**
+- One-page artifacts (not long corrections)
+- Optional resources author can choose to use
+- Neutral computational observations
+- Clear safety labels on every artifact
+
+**Process:**
+1. Identify non-obvious computational structure
+2. Prepare small, respectful artifact
+3. Frame as "could be useful" not "you're wrong"
+4. Wait for explicit approval before sharing
+5. Accept if contribution path is closed
+
+**Buckholtz application:**
+- 5 contribution directions identified (Table A1 recomputation, β sensitivity, bridge map, operational note, reproducer checklist)
+- Priority order: safest baseline first (pure arithmetic)
+- Safety labels mandatory: INTERNAL_CONTRIBUTION_DRAFT, NOT_VALIDATION, NOT_REFUTATION
+- All work frozen until author responds
+
+### Score
+
+| Dimension | Score | Reasoning |
+|-----------|-------|-----------|
+| **Reuse** | 5/5 | Universal for any audit of under-documented work |
+| **Pain** | 4/5 | Solves "how to help without offending" problem |
+| **Proof** | 3/5 | Strategy exists, but no artifact sent/tested yet |
+| **Uniqueness** | 4/5 | Most audits stay adversarial or abandon; contribution framing is rare |
+| **TOTAL** | **16/20** | |
+
+**Status:** STRATEGY_DOCUMENTED, NOT_YET_TESTED
+
+**Reuse cases:**
+- Any reproducibility audit where author is reachable
+- AI paper reproduction where details are missing
+- Open-source projects with incomplete documentation
+- Industry codebases where original developer left
+
+**Key insight:** Move from "auditor finding errors" to "collaborator offering tools" — preserves relationship while still advancing clarity.
+
+---
+
 **Status:** ASSET IDENTIFICATION COMPLETE  
 **Next step:** Extract epistemic registry after author response  
-**Total high-value assets identified:** 6 (3 code-based, 3 process-based)
+**Total high-value assets identified:** 7 (3 code-based, 4 process-based)
 
 ---
 
 **Last updated:** 2026-05-29  
-**Related:** `/harvest` skill, session summary in Obsidian, `docs/meta/60` (Hypothesis Revival), `docs/meta/63` (Multi-Hypothesis Protocol)
+**Related:** `/harvest` skill, session summary in Obsidian, `docs/meta/60` (Hypothesis Revival), `docs/meta/63` (Multi-Hypothesis Protocol), `docs/64` (Contribution Strategy)

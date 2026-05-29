@@ -383,4 +383,42 @@ All claims remain provisional pending author response to Q14-Q19 + Q-operational
 
 ---
 
+## 📝 Contribution Strategy Addendum (2026-05-29)
+
+**A private contribution strategy exists (docs/64), but it does NOT change frozen status.**
+
+### What Changed
+- Strategic reframe: from "auditor" to "private contribution preparer"
+- Goal: help author see useful computational structure (if author responds)
+- First possible artifact: Table A1 independent recomputation with anchor-row diagnostic
+
+### What Did NOT Change
+- ❌ WAITING_FOR_AUTHOR_RESPONSE (unchanged)
+- ❌ MCMC_BLOCKED (unchanged)
+- ❌ PREDICTION_BLOCKED (unchanged)
+- ❌ NO_PUBLIC_CLAIMS (unchanged)
+- ❌ NO_NEW_EMAIL_WITHOUT_APPROVAL (unchanged)
+
+### Implementation Status
+**PLAN_ONLY — NOT_IMPLEMENTED**
+
+Table A1 recomputation plan exists (docs/65) but requires **explicit user approval** before:
+- Implementation
+- Sharing with author
+- Any public mention
+
+### Safety Labels (All Artifacts)
+```
+INTERNAL_CONTRIBUTION_DRAFT
+NOT_SENT
+NOT_VALIDATION
+NOT_REFUTATION
+AUTHOR_CONFIRMATION_REQUIRED
+PROVISIONAL_AUTHOR_DEPENDENT
+```
+
+**Strategy purpose:** Prepare respectful, optional artifacts that could help author if he responds. Not an attempt to validate/refute MULTING, not a workaround for frozen status.
+
+---
+
 🔒 **END OF WAITING STATE MARKER** 🔒
