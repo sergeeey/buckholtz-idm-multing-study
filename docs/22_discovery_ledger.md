@@ -805,3 +805,55 @@ assert not hasattr(registry, "compute_Hz")  # No H_MULT function exists
 - Candidate G (Potential): NEEDS_VERIFICATION (a⁻⁵ unverified)
 
 **Reference:** docs/43, src/bridge_candidate_math_audit.py
+
+---
+
+## Finding 20: MCMC Blocker Chain (2026-05-29)
+
+**Status:** MCMC_BLOCKED, AUTHOR_CONFIRMATION_REQUIRED  
+**Classification:** Project-wide blocker documentation  
+**Impact:** HIGH — prevents MCMC validation until resolved
+
+**Finding:** MCMC comparison (ΛCDM vs. MULTING) blocked by **four sequential requirements**:
+
+1. **Source-Confirmed Bridge Missing** (Blocker 1)
+   - F_oP → H_MULT(z) rule not specified in Appendix A1
+   - Hamiltonian H²(a)=H₀²[Ω_k a⁻² + Ω_m a⁻³ + Ω_d a⁻⁴ + Ω_q a⁻⁵] algebraically valid but NOT confirmed
+   - Status: AUTHOR_CONFIRMATION_REQUIRED (Q15, Q16 prepared)
+
+2. **Cluster Variables Missing** (Blocker 2)
+   - Cannot compute Ω coefficients without m_A(z), r_A(z), D_AB(z), N_eff
+   - Status: MISSING_INPUTS (Q17 prepared)
+
+3. **Independent Data Missing** (Blocker 3)
+   - Table A1 used for beta fit → circular if also validation set
+   - Need: Pantheon+, BAO, or Cosmic Chronometers
+   - Status: OUT_OF_SAMPLE_REQUIRED
+
+4. **Complexity Penalty Not Applied** (Blocker 4)
+   - MULTING (5 params) vs. ΛCDM (3 params) requires AIC/BIC
+   - Status: COMPLEXITY_PENALTY_REQUIRED
+
+**Current unblock status:** 0/4 resolved → MCMC remains BLOCKED
+
+**Safe work allowed:**
+- ✅ Internal diagnostic fit (INTERNAL_DIAGNOSTIC_FIT_ONLY)
+- ✅ Leave-one-out stability
+- ✅ Baseline comparisons
+- ✅ Q15-Q17 preparation
+
+**Unsafe work (blocked):**
+- ❌ MCMC as Buckholtz validation
+- ❌ Prediction on new z
+- ❌ Public validation claim
+- ❌ Using "Buckholtz formula" for Hamiltonian
+
+**Evidence classification:**
+- H_MULT 6× closer to H_obs: ✅ RETRODICTION_EVIDENCE
+- Table A1 validation: ❌ NOT_PREDICTION (beta fitted on this data)
+
+**Next test:** Wait for author response → if Hamiltonian confirmed: implement compute_Hz_MULTING with SOURCE_CONFIRMED status → integrate Cosmic Chronometers → run MCMC with AIC/BIC.
+
+**Value:** CRITICAL — documents exactly why MCMC is blocked and what must happen to unblock.
+
+**Reference:** docs/54_mcmc_blocker_chain.md (full 16 KB documentation)
