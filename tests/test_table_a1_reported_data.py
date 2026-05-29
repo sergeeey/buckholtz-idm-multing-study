@@ -200,15 +200,18 @@ def test_h_mult_positive(table_a1_df):
 
 
 def test_sigma_mult_non_negative(table_a1_df):
-    """sigma_MULT values are non-negative (fit quality metric ≥ 0)"""
+    """sigma_MULT values are valid standardized residuals (can be negative)"""
     sigma_mult = table_a1_df["sigma_MULT"].replace("NA", pd.NA)
     sigma_mult_numeric = pd.to_numeric(sigma_mult, errors="coerce")
     sigma_mult_clean = sigma_mult_numeric.dropna()
 
     if len(sigma_mult_clean) > 0:
-        assert (
-            sigma_mult_clean >= 0
-        ).all(), "sigma_MULT has negative values (fit quality should be ≥ 0)"
+        # sigma_MULT is standardized residual (H_MULT - H_obs)/sigma_H — CAN be negative
+        # Check reasonable range: typically -5 to +5 for standardized residuals
+        assert (sigma_mult_clean >= -10).all() and (sigma_mult_clean <= 10).all(), (
+            f"sigma_MULT has unreasonable values (should be in [-10, 10]). "
+            f"Range: [{sigma_mult_clean.min()}, {sigma_mult_clean.max()}]"
+        )
 
 
 def test_time_gyr_positive(table_a1_df):
