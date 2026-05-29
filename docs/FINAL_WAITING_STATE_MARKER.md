@@ -421,4 +421,55 @@ PROVISIONAL_AUTHOR_DEPENDENT
 
 ---
 
+## 🔍 H_FLRW Provenance Addendum (2026-05-29)
+
+**Table A1 recomputation found H_FLRW provenance mismatch under assumed Planck-like ΛCDM baseline.**
+
+### What Changed
+- Hardened report wording: removed "critical discovery", added H_FLRW_PROVENANCE_MISMATCH label
+- Provenance search: NO explicit H_FLRW parameters found in paper
+- Candidate sweep: NONE of standard ΛCDM baselines reproduce Table A1 well
+- Best fit: Power law H(z) = 55.1 × (1+z)^0.87 (MAE=5.82 km/s/Mpc)
+
+### What Did NOT Change
+- ❌ Scientific status (MCMC_BLOCKED, PREDICTION_BLOCKED unchanged)
+- ❌ Frozen states (all remain frozen)
+- ❌ NO author-error claim made
+- ❌ NO validation/refutation claim made
+- ❌ NO email sent
+- ❌ NO public claims
+
+### New Author-Clarification Question
+**Meeting-safe question added:** "Which H_FLRW convention or parameter set was used for Table A1?"
+
+**Purpose:** Enable independent verification of H_FLRW column (NOT criticism).
+
+### Classification
+```
+H_FLRW_PROVENANCE_MISMATCH
+ASSUMED_BASELINE_ONLY
+NOT_AUTHOR_ERROR
+NOT_VALIDATION
+NOT_REFUTATION
+INTERNAL_DIAGNOSTIC_ONLY
+AUTHOR_CLARIFICATION_REQUIRED
+```
+
+### Documents Created
+- docs/68_hflrw_provenance_recovery.md — full provenance investigation
+- docs/68_hflrw_candidate_sweep.csv — candidate cosmology results
+- scripts/diagnose_hflrw_parameter_candidates.py — diagnostic tool
+- tests/test_hflrw_provenance_safety.py — 14 safety tests (all passing)
+
+### Key Finding
+Table A1 H_FLRW column is best fit by non-standard power law (p≈0.87), NOT by any standard flat ΛCDM with commonly-used parameters. This suggests:
+
+1. Different cosmology was used, OR
+2. Non-standard calculator/service generated H_FLRW, OR
+3. H_FLRW is phenomenological rather than theory-derived
+
+**This finding does NOT invalidate Table A1 or MULTING.** It identifies a reproducibility gap that author can close by clarifying which baseline was used.
+
+---
+
 🔒 **END OF WAITING STATE MARKER** 🔒
