@@ -1,0 +1,42 @@
+# Table A1 Transcription from preprints202511.0598.v6.pdf
+# Appendix A.3, Table A1
+# Date transcribed: AWAITING_USER_INPUT
+# Transcribed by: [User Name]
+#
+# Beta values (AI service fitted, Table A1 caption):
+# beta_d = 4.5 (dimensionless)
+# beta_q = 18.0 (dimensionless)
+# Source: preprints202511.0598.v6.pdf, Appendix A.3, Table A1 caption
+# Provenance: FITTED_PHENOMENOLOGICAL (not derived)
+#
+# Column definitions:
+# time_gyr: Cosmic time since Big Bang (Gyr)
+# z: Redshift (dimensionless)
+# H_obs: Observed Hubble parameter (km/s/Mpc) — NA if not listed
+# sigma_H: Uncertainty in H_obs (km/s/Mpc) — NA if not listed
+# H_FLRW: ΛCDM expansion rate (km/s/Mpc)
+# sigma_FLRW: ΛCDM fit quality — NA if not listed
+# H_MULT: MULTING expansion rate (km/s/Mpc) — AI service output
+# sigma_MULT: MULTING fit quality (units from manuscript)
+# w_eff: Effective equation of state (dimensionless) — NA if not listed
+# H_w_eff: H(z) using w_eff (km/s/Mpc) — NA if not listed
+# sigma_w_eff: w_eff fit quality — NA if not listed
+# notes: Footnotes or special markers
+#
+time_gyr,z,H_obs,sigma_H,H_FLRW,sigma_FLRW,H_MULT,sigma_MULT,w_eff,H_w_eff,sigma_w_eff,notes
+# ========================================================================
+# USER: TRANSCRIBE Table A1 ROWS BELOW
+# ========================================================================
+#
+# Instructions:
+# 1. Open preprints202511.0598.v6.pdf, Appendix A.3, Table A1
+# 2. For each row, copy values EXACTLY as printed
+# 3. Use NA for missing columns
+# 4. Preserve decimal precision
+# 5. Delete these comment lines after transcription
+# 6. Run: pytest tests/test_table_a1_reported_data.py
+#
+# Expected format (example, DELETE after real data added):
+# 12.5,0.07,69.0,5.0,67.8,NA,68.2,0.8,-1.05,68.5,NA,
+#
+# Transcribe below:
