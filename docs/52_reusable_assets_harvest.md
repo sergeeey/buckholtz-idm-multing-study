@@ -592,6 +592,42 @@ respectful-clarification-template/
 
 ---
 
+---
+
+## Hypothesis Revival Engine Relevance
+
+**Document:** `docs/meta/60_hypothesis_revival_engine_relevance.md`
+
+**Summary:** Buckholtz IDM/MULTING project can later serve as a **case study** for computational reactivation of under-tested scientific hypotheses.
+
+**Key concepts preserved:**
+- Testability scoring (generalization of MCMC blocker chain)
+- Human-in-the-loop principle (AI assists, cannot replace scientific judgment)
+- Mapping between Hypothesis Revival labels and Buckholtz statuses
+- 5 reusable assets created during this project
+
+**Status labels:**
+- FUTURE_META_PROJECT (not active)
+- NOT_CURRENT_BUCKHOLTZ_TASK
+- DO_NOT_EXPAND_NOW
+- NO_PUBLIC_CLAIMS
+- WAITING_FOR_AUTHOR_RESPONSE
+
+**Current priority remains:** Repository closure, waiting for author response, GeoScan Gold blind test (27 days).
+
+**Revisit timing:** After Buckholtz closure OR Q4 2026 (whichever later).
+
+**Explicitly excluded from meta document:**
+- Market sizing
+- SaaS plans
+- Product roadmap
+- Autonomous lab roadmap
+- New active research sprint
+
+**Why preserved:** Useful for future generalization, but **not expanding current scope**.
+
+---
+
 **Status:** ASSET IDENTIFICATION COMPLETE  
 **Next step:** Extract epistemic registry after author response  
 **Total high-value assets identified:** 5 (3 extraction-ready, 2 context-sensitive)
@@ -599,4 +635,4 @@ respectful-clarification-template/
 ---
 
 **Last updated:** 2026-05-29  
-**Related:** `/harvest` skill, session summary in Obsidian
+**Related:** `/harvest` skill, session summary in Obsidian, `docs/meta/60` (Hypothesis Revival)
