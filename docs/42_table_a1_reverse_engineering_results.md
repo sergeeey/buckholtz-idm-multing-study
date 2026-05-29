@@ -42,7 +42,7 @@ Status: post_hoc_diagnostic_only
 
 ---
 
-## Test B — Sigma Consistency
+## Test B — Sigma Consistency (Row-Level Audit)
 
 ### MULT
 ```
@@ -51,9 +51,27 @@ H_MULT:
   Calculated mean sigma: -0.099
   Mean absolute diff: 0.260
   Max absolute diff: 3.027
-  Tolerance: 3.5
-  Result: ✅ PASS
+  Tolerance: 0.11
+  Rows failed: 1/12
+  Result: ❌ FAIL
 ```
+
+**Row-Level Audit:**
+
+| Row | z | Column | Reported σ | Computed σ | Diff | Status | Note |
+|-----|---:|--------|----------:|----------:|-----:|--------|------|
+| 1 | 0.00 | sigma_MULT | 1.300 | -1.727 | 3.0273 | ❌ FAIL | Exceeds tolerance by 2.9173 |
+| 2 | 0.06 | sigma_MULT | 0.400 | 0.400 | 0.0000 | ✅ PASS |  |
+| 3 | 0.14 | sigma_MULT | -0.100 | -0.125 | 0.0250 | ✅ PASS |  |
+| 4 | 0.25 | sigma_MULT | -0.040 | -0.044 | 0.0044 | ✅ PASS |  |
+| 5 | 0.40 | sigma_MULT | 0.200 | 0.220 | 0.0200 | ✅ PASS |  |
+| 6 | 0.65 | sigma_MULT | -0.100 | -0.086 | 0.0143 | ✅ PASS |  |
+| 7 | 1.00 | sigma_MULT | -0.100 | -0.100 | 0.0000 | ✅ PASS |  |
+| 8 | 1.50 | sigma_MULT | 0.100 | 0.100 | 0.0000 | ✅ PASS |  |
+| 9 | 2.10 | sigma_MULT | 0.100 | 0.090 | 0.0100 | ✅ PASS |  |
+| 10 | 3.20 | sigma_MULT | 0.100 | 0.077 | 0.0233 | ✅ PASS |  |
+| 11 | 5.00 | sigma_MULT | 0.030 | 0.030 | 0.0000 | ✅ PASS |  |
+| 12 | 8.50 | sigma_MULT | -0.020 | -0.021 | 0.0011 | ✅ PASS |  |
 
 ### FLRW
 ```
@@ -62,9 +80,56 @@ H_FLRW:
   Calculated mean sigma: -1.152
   Mean absolute diff: 0.062
   Max absolute diff: 0.509
-  Tolerance: 3.5
+  Tolerance: 0.11
+  Rows failed: 1/12
+  Result: ❌ FAIL
+```
+
+**Row-Level Audit:**
+
+| Row | z | Column | Reported σ | Computed σ | Diff | Status | Note |
+|-----|---:|--------|----------:|----------:|-----:|--------|------|
+| 1 | 0.00 | sigma_FLRW | -5.600 | -5.091 | 0.5091 | ❌ FAIL | Exceeds tolerance by 0.3991 |
+| 2 | 0.06 | sigma_FLRW | -0.300 | -0.300 | 0.0000 | ✅ PASS |  |
+| 3 | 0.14 | sigma_FLRW | -1.200 | -1.175 | 0.0250 | ✅ PASS |  |
+| 4 | 0.25 | sigma_FLRW | -1.700 | -1.667 | 0.0333 | ✅ PASS |  |
+| 5 | 0.40 | sigma_FLRW | -1.400 | -1.400 | 0.0000 | ✅ PASS |  |
+| 6 | 0.65 | sigma_FLRW | -1.300 | -1.286 | 0.0143 | ✅ PASS |  |
+| 7 | 1.00 | sigma_FLRW | -1.200 | -1.162 | 0.0375 | ✅ PASS |  |
+| 8 | 1.50 | sigma_FLRW | -0.700 | -0.680 | 0.0200 | ✅ PASS |  |
+| 9 | 2.10 | sigma_FLRW | -0.500 | -0.485 | 0.0150 | ✅ PASS |  |
+| 10 | 3.20 | sigma_FLRW | -0.200 | -0.247 | 0.0467 | ✅ PASS |  |
+| 11 | 5.00 | sigma_FLRW | -0.100 | -0.096 | 0.0040 | ✅ PASS |  |
+| 12 | 8.50 | sigma_FLRW | -0.200 | -0.239 | 0.0389 | ✅ PASS |  |
+
+### W_EFF
+```
+H_w_eff:
+  Reported mean sigma: 0.041
+  Calculated mean sigma: 0.033
+  Mean absolute diff: 0.009
+  Max absolute diff: 0.043
+  Tolerance: 0.11
+  Rows failed: 0/12
   Result: ✅ PASS
 ```
+
+**Row-Level Audit:**
+
+| Row | z | Column | Reported σ | Computed σ | Diff | Status | Note |
+|-----|---:|--------|----------:|----------:|-----:|--------|------|
+| 1 | 0.00 | sigma_w_eff | 0.000 | 0.000 | 0.0000 | ✅ PASS |  |
+| 2 | 0.06 | sigma_w_eff | 0.100 | 0.100 | 0.0000 | ✅ PASS |  |
+| 3 | 0.14 | sigma_w_eff | 0.030 | 0.025 | 0.0050 | ✅ PASS |  |
+| 4 | 0.25 | sigma_w_eff | 0.040 | 0.044 | 0.0044 | ✅ PASS |  |
+| 5 | 0.40 | sigma_w_eff | 0.100 | 0.060 | 0.0400 | ✅ PASS |  |
+| 6 | 0.65 | sigma_w_eff | 0.100 | 0.057 | 0.0429 | ✅ PASS |  |
+| 7 | 1.00 | sigma_w_eff | 0.040 | 0.037 | 0.0025 | ✅ PASS |  |
+| 8 | 1.50 | sigma_w_eff | 0.040 | 0.040 | 0.0000 | ✅ PASS |  |
+| 9 | 2.10 | sigma_w_eff | 0.030 | 0.025 | 0.0050 | ✅ PASS |  |
+| 10 | 3.20 | sigma_w_eff | 0.010 | 0.007 | 0.0033 | ✅ PASS |  |
+| 11 | 5.00 | sigma_w_eff | 0.004 | 0.004 | 0.0000 | ✅ PASS |  |
+| 12 | 8.50 | sigma_w_eff | 0.001 | 0.001 | 0.0001 | ✅ PASS |  |
 
 ---
 

@@ -168,13 +168,37 @@ def diagnostic_a_closeness_to_observed(df: pd.DataFrame) -> dict:
 
 
 # ============================================================================
-# Test B — Sigma Consistency
+# Test B — Sigma Consistency (Row-Level Audit)
 # ============================================================================
 
 
 @dataclass
+class SigmaRowAudit:
+    """Row-level sigma consistency audit result"""
+
+    row: int
+    z: float
+    column: str
+    reported: float
+    calculated: float
+    diff: float
+    tolerance: float
+    passes: bool
+    note: str = ""
+
+    def to_markdown_row(self) -> str:
+        """Format as markdown table row"""
+        status = "✅ PASS" if self.passes else "❌ FAIL"
+        return (
+            f"| {self.row} | {self.z:.2f} | {self.column} | "
+            f"{self.reported:.3f} | {self.calculated:.3f} | "
+            f"{self.diff:.4f} | {status} | {self.note} |"
+        )
+
+
+@dataclass
 class SigmaConsistency:
-    """Sigma consistency check result"""
+    """Sigma consistency check result (aggregated + row-level)"""
 
     model_name: str
     reported_mean: float
@@ -183,10 +207,12 @@ class SigmaConsistency:
     max_absolute_diff: float
     passes: bool
     tolerance: float
+    row_audits: list[SigmaRowAudit]  # NEW: row-level results
 
     def summary(self) -> str:
         """Human-readable summary"""
         status = "✅ PASS" if self.passes else "❌ FAIL"
+        n_failed = sum(1 for r in self.row_audits if not r.passes)
         return (
             f"{self.model_name}:\n"
             f"  Reported mean sigma: {self.reported_mean:.3f}\n"
@@ -194,51 +220,187 @@ class SigmaConsistency:
             f"  Mean absolute diff: {self.absolute_diff_mean:.3f}\n"
             f"  Max absolute diff: {self.max_absolute_diff:.3f}\n"
             f"  Tolerance: {self.tolerance}\n"
+            f"  Rows failed: {n_failed}/{len(self.row_audits)}\n"
             f"  Result: {status}"
         )
 
+    def to_markdown_table(self) -> str:
+        """Generate markdown table of row-level audits"""
+        lines = [
+            "| Row | z | Column | Reported σ | Computed σ | Diff | Status | Note |",
+            "|-----|---:|--------|----------:|----------:|-----:|--------|------|",
+        ]
+        for audit in self.row_audits:
+            lines.append(audit.to_markdown_row())
+        return "\n".join(lines)
 
-def diagnostic_b_sigma_consistency(df: pd.DataFrame, tolerance: float = 3.5) -> dict:
-    """Test B — Is sigma_MULT internally consistent?
+
+def _infer_precision_tolerance(value: float) -> float:
+    """Infer rounding tolerance from reported value
+
+    Rules:
+    - 1 decimal place → tolerance 0.11
+    - 2 decimal places → tolerance 0.011
+    - 3 decimal places → tolerance 0.0015
+    - Conservative fallback → 0.15
+    """
+    if pd.isna(value):
+        return 0.15
+    # Check decimal precision by converting to string
+    value_str = f"{value:.4f}".rstrip("0")
+    if "." not in value_str:
+        return 0.15  # Integer → conservative
+    decimals = len(value_str.split(".")[1])
+    if decimals <= 1:
+        return 0.11
+    elif decimals == 2:
+        return 0.011
+    else:
+        return 0.0015
+
+
+def diagnostic_b_sigma_consistency(df: pd.DataFrame, use_adaptive_tolerance: bool = True) -> dict:
+    """Test B — Row-level sigma consistency audit
 
     Verify: sigma_calc = (H - H_obs) / sigma_H matches reported sigma
 
     Args:
         df: Table A1 DataFrame
-        tolerance: Maximum allowed absolute difference
+        use_adaptive_tolerance: If True, infer tolerance from decimal precision
+                               If False, use conservative 0.15 for all rows
 
     Returns:
-        Dictionary with keys: 'mult', 'flrw' → SigmaConsistency
+        Dictionary with keys: 'mult', 'flrw', 'w_eff' → SigmaConsistency
     """
     results = {}
 
-    # sigma_MULT
+    # ===== sigma_MULT =====
     sigma_mult_calc = (df["H_MULT"] - df["H_obs"]) / df["sigma_H"]
     sigma_mult_reported = df["sigma_MULT"]
     diff_mult = np.abs(sigma_mult_calc - sigma_mult_reported)
+
+    row_audits_mult = []
+    for i, row in df.iterrows():
+        tolerance = (
+            _infer_precision_tolerance(row["sigma_MULT"]) if use_adaptive_tolerance else 0.15
+        )
+        diff = abs(sigma_mult_calc.iloc[i] - row["sigma_MULT"])
+        passes = diff <= tolerance
+
+        note = ""
+        if not passes:
+            note = f"Exceeds tolerance by {diff - tolerance:.4f}"
+
+        row_audits_mult.append(
+            SigmaRowAudit(
+                row=i + 1,
+                z=row["z"],
+                column="sigma_MULT",
+                reported=row["sigma_MULT"],
+                calculated=sigma_mult_calc.iloc[i],
+                diff=diff,
+                tolerance=tolerance,
+                passes=passes,
+                note=note,
+            )
+        )
+
     results["mult"] = SigmaConsistency(
         model_name="H_MULT",
         reported_mean=sigma_mult_reported.mean(),
         calculated_mean=sigma_mult_calc.mean(),
         absolute_diff_mean=diff_mult.mean(),
         max_absolute_diff=diff_mult.max(),
-        passes=(diff_mult.max() <= tolerance),
-        tolerance=tolerance,
+        passes=all(r.passes for r in row_audits_mult),
+        tolerance=max(r.tolerance for r in row_audits_mult),  # Report max used
+        row_audits=row_audits_mult,
     )
 
-    # sigma_FLRW
+    # ===== sigma_FLRW =====
     sigma_flrw_calc = (df["H_FLRW"] - df["H_obs"]) / df["sigma_H"]
     sigma_flrw_reported = df["sigma_FLRW"]
     diff_flrw = np.abs(sigma_flrw_calc - sigma_flrw_reported)
+
+    row_audits_flrw = []
+    for i, row in df.iterrows():
+        tolerance = (
+            _infer_precision_tolerance(row["sigma_FLRW"]) if use_adaptive_tolerance else 0.15
+        )
+        diff = abs(sigma_flrw_calc.iloc[i] - row["sigma_FLRW"])
+        passes = diff <= tolerance
+
+        note = ""
+        if not passes:
+            note = f"Exceeds tolerance by {diff - tolerance:.4f}"
+
+        row_audits_flrw.append(
+            SigmaRowAudit(
+                row=i + 1,
+                z=row["z"],
+                column="sigma_FLRW",
+                reported=row["sigma_FLRW"],
+                calculated=sigma_flrw_calc.iloc[i],
+                diff=diff,
+                tolerance=tolerance,
+                passes=passes,
+                note=note,
+            )
+        )
+
     results["flrw"] = SigmaConsistency(
         model_name="H_FLRW",
         reported_mean=sigma_flrw_reported.mean(),
         calculated_mean=sigma_flrw_calc.mean(),
         absolute_diff_mean=diff_flrw.mean(),
         max_absolute_diff=diff_flrw.max(),
-        passes=(diff_flrw.max() <= tolerance),
-        tolerance=tolerance,
+        passes=all(r.passes for r in row_audits_flrw),
+        tolerance=max(r.tolerance for r in row_audits_flrw),
+        row_audits=row_audits_flrw,
     )
+
+    # ===== sigma_w_eff (optional) =====
+    df_w = df.dropna(subset=["H_w_eff", "sigma_w_eff"])
+    if len(df_w) > 0:
+        sigma_w_calc = (df_w["H_w_eff"] - df_w["H_obs"]) / df_w["sigma_H"]
+        sigma_w_reported = df_w["sigma_w_eff"]
+        diff_w = np.abs(sigma_w_calc - sigma_w_reported)
+
+        row_audits_w = []
+        for i, (idx, row) in enumerate(df_w.iterrows()):
+            tolerance = (
+                _infer_precision_tolerance(row["sigma_w_eff"]) if use_adaptive_tolerance else 0.15
+            )
+            diff = abs(sigma_w_calc.iloc[i] - row["sigma_w_eff"])
+            passes = diff <= tolerance
+
+            note = ""
+            if not passes:
+                note = f"Exceeds tolerance by {diff - tolerance:.4f}"
+
+            row_audits_w.append(
+                SigmaRowAudit(
+                    row=idx + 1,
+                    z=row["z"],
+                    column="sigma_w_eff",
+                    reported=row["sigma_w_eff"],
+                    calculated=sigma_w_calc.iloc[i],
+                    diff=diff,
+                    tolerance=tolerance,
+                    passes=passes,
+                    note=note,
+                )
+            )
+
+        results["w_eff"] = SigmaConsistency(
+            model_name="H_w_eff",
+            reported_mean=sigma_w_reported.mean(),
+            calculated_mean=sigma_w_calc.mean(),
+            absolute_diff_mean=diff_w.mean(),
+            max_absolute_diff=diff_w.max(),
+            passes=all(r.passes for r in row_audits_w),
+            tolerance=max(r.tolerance for r in row_audits_w) if row_audits_w else 0.15,
+            row_audits=row_audits_w,
+        )
 
     return results
 
@@ -596,7 +758,7 @@ def generate_summary_markdown(results: dict) -> str:
         [
             "---",
             "",
-            "## Test B — Sigma Consistency",
+            "## Test B — Sigma Consistency (Row-Level Audit)",
             "",
         ]
     )
@@ -606,6 +768,10 @@ def generate_summary_markdown(results: dict) -> str:
         lines.append("```")
         lines.append(sigma.summary())
         lines.append("```")
+        lines.append("")
+        lines.append("**Row-Level Audit:**")
+        lines.append("")
+        lines.append(sigma.to_markdown_table())
         lines.append("")
 
     lines.extend(
