@@ -72,19 +72,19 @@
 
 ---
 
-### Finding 4: Missing H-MULT Functional Form
+### Finding 4: Missing H-MULT Functional Form (UPDATED 2026-05-29)
 
 | Field | Value |
 |-------|-------|
-| **Finding** | Manuscript does NOT provide explicit functional form H_MULT(z; beta_d, beta_q). Monopole/dipole/quadrupole terms mentioned but exact combination formula missing. |
+| **Finding** | Appendix A1 Step 5 does NOT provide explicit computational formula H_MULT(z; beta_d, beta_q, m_A, r_A, k_A, ...). Force formulas (F_m, F_d, F_q) and scaling relations (r_dA = β_d × r_A) are provided, but bridge F_oP → H_MULT(z) is UNDER_SPECIFIED — only procedural instruction exists: *"How well can you fit (by using my monopole, dipole, and quadrupole components of gravity) the data..."* |
 | **Type** | `dead_end` (until resolved) |
-| **Evidence** | ✅ Documented in docs/18_fit_reproduction_requirements.md, Gap 1 (HIGHEST PRIORITY). Sabine audit: "FORMALIZABLE (with caveats)" — needs formula before testable. Manual verification found beta values but NOT formula. |
-| **Source status** | `formula_missing` (Priority 1 question for Buckholtz) |
-| **Verification status** | ❌ BLOCKED — cannot reproduce Table A1 H_MULT column without formula. Cannot implement H(z) solver. Cannot test against observations. |
-| **Next test** | (1) Send Priority 1 question to Dr. Buckholtz (see docs/18 section 10). (2) After formula received: implement H_MULT(z), reproduce Table A1, compare with manuscript values. (3) Cross-check dimensional consistency. |
-| **Value for project** | BLOCKING — this is the #1 blocker for fit reproduction. Without formula, can only document beta provenance, cannot test physics. |
-| **Safe wording** | "H-MULT functional form is not explicitly stated in available manuscript materials. Request for explicit formula sent to author (Priority 1). Fit reproduction blocked pending response." |
-| **Unsafe wording** | ❌ "H-MULT formula is H_FLRW + beta_d * dipole + beta_q * quadrupole" (guessing, not confirmed). ❌ "Formula is obvious from context" (it's not). ❌ "We can infer the formula" (no — explicit confirmation required). |
+| **Evidence** | ✅ Forensic extraction complete: docs/39_appendix_a1_steps_3_7_forensic_reading.md. Step 5 provides: (1) scaling relations r_dA/r_dP/r_qAB ✅, (2) constraint "minimize σ from H-data" ✅, (3) AI discretion "Feel free to use any or all the information" ✅. Step 5 does NOT provide: (1) functional form H_MULT(z, ...) ❌, (2) objective function beyond "minimize σ" ❌, (3) computational procedure ❌. |
+| **Source status** | `formula_missing` + `procedural_only` (Priority 1 question for Buckholtz) |
+| **Verification status** | ❌ BLOCKED — Appendix A1 forensic extraction confirms: bridge formula missing. Table A1 H_MULT values are AI service output (not author calculation). Cannot reproduce Table A1 computation without explicit formula. |
+| **Next test** | (1) Update clarification brief (docs/26) with Step 5 finding. (2) Send updated question: "Step 5 instructs AI to fit monopole/dipole/quadrupole to H-data but does not provide computational formula H_MULT(z, β_d, β_q, ...). Could you provide explicit formula or confirm if AI interpretation is intended?" (3) After formula received: implement, reproduce Table A1, verify. |
+| **Value for project** | CRITICAL BLOCKING — Appendix A1 analysis upgraded this from "formula unclear" to "formula UNDER_SPECIFIED with forensic evidence". #1 blocker for ANY H(z) computation (table reproduction OR prediction). |
+| **Safe wording** | "Appendix A1 Step 5 provides force formulas and scaling relations but does NOT provide explicit computational formula H_MULT(z; β_d, β_q, ...). Bridge from pairwise forces to cosmological expansion remains under-specified. Table A1 H_MULT values are AI service output following procedural instruction, not author calculation." |
+| **Unsafe wording** | ❌ "Formula is in Appendix A1" (only scaling relations, NOT full formula). ❌ "We can compute H_MULT from Step 5" (procedural only, NOT computational). ❌ "Table A1 proves formula works" (AI output, not verified computation). |
 
 ---
 
@@ -671,8 +671,102 @@ Both are **computational reconstruction candidates**. Neither is source-supporte
 
 ---
 
+## Finding 16 — Appendix A1 Forensic Extraction: H_MULT Formula Missing, AI Discretion Allowed (2026-05-29)
+
+| Field | Value |
+|-------|-------|
+| **Finding** | Word-level forensic extraction of Appendix A1 Steps 3–7 confirms: (1) Force formulas provided ✅, (2) Scaling relations provided ✅, (3) β_d, β_q fitted to minimize σ from H-data ✅, (4) H_MULT computational formula NOT provided ❌. Step 5 gives only procedural instruction: *"How well can you fit (by using my monopole, dipole, and quadrupole components of gravity) the data..."* with AI discretion: *"Feel free to use any or all the information"*. Table A1 H_MULT values = AI service output, not author calculation. |
+| **Type** | `critical_blocker` (H_MULT formula missing) + `copper_result` (forensic extraction complete, all evidence documented) |
+| **Evidence** | ✅ Forensic extraction: docs/39_appendix_a1_steps_3_7_forensic_reading.md (full verbatim quotes from Steps 3–7). Programmatic encoding: src/appendix_a1_procedure_registry.py (16 variables, 5 steps, Table A1 data). Verification: tests/test_appendix_a1_procedure_registry.py (26/26 tests passed). Step 5 provides: scaling relations (r_dA = β_d × r_A, r_dP = β_d × r_P, |r_qAB|² = β_q² × r_A × r_P) ✅, constraint (minimize standard-deviations from H-data) ✅, AI discretion allowed ✅. Step 5 does NOT provide: functional form H_MULT(z, β_d, β_q, m_A, r_A, k_A, ...) ❌, objective function details ❌, computational procedure ❌. |
+| **Source status** | `UNDER_SPECIFIED` — procedural instruction only, NOT computational formula. Table A1 = AI service interpretation, not author-verified calculation. |
+| **Verification status** | ✅ FORENSIC EXTRACTION COMPLETE (2026-05-29) — all Steps 3–7 extracted verbatim, variable provenance table complete, bridge status confirmed: PARTIAL (heuristic only, NO formula) |
+| **Next test** | (1) Update clarification brief (docs/26, docs/38) with Step 5 finding. (2) Add to Priority 1 question: "Appendix A1 Step 5 instructs AI service to fit monopole/dipole/quadrupole to H-data but does not provide explicit computational formula H_MULT(z; β_d, β_q, ...). Table A1 reports H_MULT values as AI service output. Could you provide the explicit formula, or confirm that AI interpretation (heuristic scaling? virial pressure? other?) matches your intended approach?" (3) After formula received: implement, reproduce Table A1, verify against reported values. |
+| **Value for project** | CRITICAL — upgrades Finding 4 from "formula unclear" to "formula UNDER_SPECIFIED with forensic evidence". Provides exact verbatim quotes to cite when asking author. Documents AI discretion scope. Distinguishes source-confirmed (force formulas ✅) from under-specified (H_MULT formula ❌). Confirms Table A1 as empirical reference, NOT predictive model. |
+| **Safe wording** | "Forensic extraction of Appendix A1 Steps 3–7 confirms that force formulas and scaling relations are provided, but H_MULT computational formula is NOT. Step 5 gives procedural instruction ('fit by using monopole, dipole, quadrupole') and allows AI discretion ('Feel free to use any or all the information'). Table A1 H_MULT values are AI service output following this instruction. Without explicit formula, we can store Table A1 as empirical data table but cannot compute H_MULT(z) on new redshifts or perform MCMC parameter estimation." |
+| **Unsafe wording** | ❌ "Formula is in Appendix A1" (only scaling relations, NOT full H_MULT formula). ❌ "We can compute H_MULT from Step 5" (procedural only, NOT computational). ❌ "Table A1 proves the formula works" (AI interpretation, not verified). ❌ "Author calculated H_MULT values" (AI service calculated them). ❌ "Step 5 is complete" (under-specified for reproducible computation). |
+
+**What Appendix A1 Steps 3–7 Provide:**
+
+| Step | Title | Provides | Status |
+|------|-------|----------|--------|
+| **3** | Time Range | t_ROE,min definition, Set of Times | SOURCE_CONFIRMED |
+| **4** | Galaxy Cluster Parameters | Table structure: Time, z, m_A, r_A, D_C:AB, k_A/c², H-data | AUTHOR_PROMPT_INSTRUCTION |
+| **5** | Approximate Matches | Scaling relations (r_dA/r_dP/r_qAB), β_d/β_q fitting constraint, AI discretion | **UNDER_SPECIFIED** |
+| **6** | Future Projections | FLRW comparison request, MULTING crossover time estimate | BLOCKED (requires H_MULT formula) |
+| **7** | w_eff Comparison | w_eff(z) computation via FLRW, comparison table | SOURCE_CONFIRMED |
+
+**What Appendix A1 Steps 3–7 Do NOT Provide (CRITICAL):**
+
+1. **H_MULT functional form:** No equation H_MULT = f(z, β_d, β_q, m_A, r_A, k_A, ...) ❌
+2. **Objective function:** Beyond "minimize standard-deviations" — no specific loss function, no weighting scheme ❌
+3. **Computational procedure:** Step-by-step algorithm for computing H_MULT from cluster parameters ❌
+4. **Cluster variable table:** m_A(z), r_A(z), k_A(z) values for all z_i in Table A1 ❌
+5. **AI service implementation:** What formula/method did AI service actually use? Unknown ❌
+
+**Variable Provenance Matrix (16 variables extracted):**
+
+| Variable | Provenance | Code Permission | Step |
+|----------|------------|-----------------|------|
+| Time, z, H-data | DATA | CODE_READY | 3–4 |
+| m_A, r_A, D_C:AB, k_A/c² | AI_ESTIMATED | NOT_CODE_READY | 4 |
+| β_d, β_q | FITTED_PHENOMENOLOGICAL | ALLOWED_FOR_TABLE_REPRODUCTION_ONLY | 5 |
+| H-MULT | **UNDER_SPECIFIED** | **BLOCKED** | 5 |
+| H-FLRW, σ_FLRW | FORMULA_PROVIDED | CODE_READY | 5 |
+| w_eff, H-w_eff, σ_w_eff | AI_ESTIMATED / DERIVED | CODE_READY | 7 |
+
+**Bridge Finding (F_oP → H_MULT):**
+
+**Question:** Does Appendix A1 explicitly define F_oP → H_MULT(z)?  
+**Answer:** NO, formula missing  
+**Status:** PARTIAL — procedural/heuristic bridge only, NOT computational formula
+
+**Evidence:**
+- Force formulas: F_m, F_d, F_q, F_oP provided (Step 2) ✅
+- Scaling relations: r_dA = β_d × r_A, etc. provided (Step 5) ✅
+- H_MULT(z) formula: NOT provided ❌
+- AI discretion: "Feel free to use any or all the information" ✅ (bridge delegated to AI)
+
+**Implications:**
+
+1. **Table A1 reproduction:** Can store as empirical data ✅, CANNOT compute H_MULT(z) on new redshifts ❌
+2. **β_d, β_q fitting:** Method under-specified (objective function beyond "minimize σ" unclear) ❌
+3. **MCMC parameter estimation:** BLOCKED (no H_MULT likelihood function) ❌
+4. **Future projections (Step 6):** BLOCKED (requires H_MULT(z) formula) ❌
+5. **Validation/falsification:** BLOCKED (cannot test MULTING predictions without formula) ❌
+
+**Code permission enforcement (26 tests):**
+
+```python
+# From test_appendix_a1_procedure_registry.py (all passing)
+assert h_mult.provenance == VariableProvenance.UNDER_SPECIFIED
+assert h_mult.code_permission == CodePermission.BLOCKED
+assert is_operation_blocked("H_MULT(z) computation — formula missing")
+assert is_operation_blocked("MCMC parameter estimation — requires H_MULT(z) likelihood function")
+assert not hasattr(registry, "compute_Hz")  # No H_MULT function exists
+```
+
+**Files created:**
+- docs/39_appendix_a1_steps_3_7_forensic_reading.md (full forensic extraction, 9.5 KB)
+- src/appendix_a1_procedure_registry.py (programmatic encoding, 14 KB)
+- tests/test_appendix_a1_procedure_registry.py (26 tests, 26/26 passed)
+
+**Updated files:**
+- docs/18_fit_reproduction_requirements.md (added Step 5 finding)
+- docs/22_discovery_ledger.md (Finding 4 updated, Finding 16 added)
+- PROJECT_STATUS.md (version v0.2-appendix-a1-forensic)
+
+**Relationship to other findings:**
+
+- **Finding 4 (Missing H-MULT formula):** UPGRADED with forensic evidence from Appendix A1
+- **Finding 12 (Force-law layer found):** Confirms force formulas are SOURCE_CANDIDATE, H_MULT closure still missing
+- **Finding 13 (Heuristic Phi(z) scaling):** One possible AI interpretation, not source-confirmed
+- **Finding 14 (Bridge triage):** Zero source-supported routes — Appendix A1 confirms this (no explicit bridge)
+- **Finding 15 (MVB discrete lattice):** Another possible interpretation, not source-confirmed
+
+---
+
 **Document status:** ACTIVE — updated as audit progresses
 
-**Last updated:** 2026-05-28  
-**Next review:** After Q0 answer received, after Q_MVB answer received, after bridge route source-confirmed, after forward model implemented  
+**Last updated:** 2026-05-29  
+**Next review:** After author clarification received, after H_MULT formula provided, after Table A1 reproduction attempted  
 **Maintainer:** Buckholtz IDM/MULTING audit team
