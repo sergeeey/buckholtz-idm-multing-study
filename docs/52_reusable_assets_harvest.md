@@ -628,11 +628,47 @@ respectful-clarification-template/
 
 ---
 
+## Multi-Hypothesis Kill-Test Protocol (Chamberlin-Platt Method)
+
+**Document:** `docs/meta/63_chamberlin_platt_multi_hypothesis_protocol.md`
+
+**Summary:** Reusable methodology for evaluating competing explanations in research audits through:
+- Multiple working hypotheses generation (≥3 candidates)
+- Kill-test design for each hypothesis
+- Red-team adversarial critique
+- Confidence calibration (0.0–1.0)
+- Crucial next experiment identification
+
+**Buckholtz application:**
+- 6 bridge candidate hypotheses (H1-H6) tracked with kill-tests and confidence
+- Prevents premature commitment to single bridge (e.g., Hamiltonian)
+- Organizes author-dependence explicitly
+- Defines decision tree: wait for author response → test → upgrade/archive
+
+**Status labels:**
+- REUSABLE_METHOD_PROTOCOL
+- META_METHODOLOGY
+- NOT_BUCKHOLTZ_SPECIFIC
+- USEFUL_FOR_FUTURE_AUDITS
+
+**Key insight:** Method for organizing uncertainty, not proving preferred hypothesis.
+
+**Current Buckholtz recommendation:**
+1. Keep multiple hypotheses alive (H1-H6)
+2. Do NOT collapse onto Hamiltonian prematurely
+3. Wait for author clarification (Q14-Q19)
+4. Use diagnostic fits as INTERNAL_DIAGNOSTIC_FIT_ONLY
+5. Assign confidence explicitly (H6: 0.8, H3: 0.7, H1: 0.6, etc.)
+
+**Reuse case:** Any under-specified scientific framework audit where tunnel vision is risky.
+
+---
+
 **Status:** ASSET IDENTIFICATION COMPLETE  
 **Next step:** Extract epistemic registry after author response  
-**Total high-value assets identified:** 5 (3 extraction-ready, 2 context-sensitive)
+**Total high-value assets identified:** 6 (3 code-based, 3 process-based)
 
 ---
 
 **Last updated:** 2026-05-29  
-**Related:** `/harvest` skill, session summary in Obsidian, `docs/meta/60` (Hypothesis Revival)
+**Related:** `/harvest` skill, session summary in Obsidian, `docs/meta/60` (Hypothesis Revival), `docs/meta/63` (Multi-Hypothesis Protocol)
