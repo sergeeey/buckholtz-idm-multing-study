@@ -118,6 +118,43 @@ def hamiltonian_h_squared(
 # =============================================================================
 
 
+def compute_valid_initial_guess(
+    z: NDArray[np.float64], h_mult: NDArray[np.float64]
+) -> NDArray[np.float64]:
+    """Compute safe initial guess that guarantees H² > 0 for all z
+
+    Args:
+        z: redshift array
+        h_mult: target H_MULT values
+
+    Returns:
+        x0: [Ω_k, Ω_m, Ω_d, Ω_q] initial guess
+
+    Strategy:
+    - Start with ΛCDM-like: Ω_m ≈ 0.3, rest ≈ 0
+    - Try candidates with small positive Ω_k, Ω_q to ensure H² > 0
+    - Pick first candidate where H²(z) > 0 for all z
+    """
+    # Candidate initial guesses (order: conservative → aggressive)
+    candidates = [
+        np.array([0.00, 0.30, 0.00, 0.00]),  # Pure Ω_m (ΛCDM-like minus Λ)
+        np.array([0.01, 0.30, 0.00, 0.01]),  # Small Ω_k, Ω_q cushion
+        np.array([0.05, 0.25, -0.01, 0.02]),  # Tiny negative Ω_d
+        np.array([0.10, 0.20, -0.02, 0.05]),  # Moderate exploration
+    ]
+
+    for x0 in candidates:
+        params = HamiltonianBridgeModel(*x0)
+        h2 = hamiltonian_h_squared(z, params)
+
+        # Check: all H² positive and finite
+        if np.all(h2 > 0) and np.all(np.isfinite(h2)):
+            return x0
+
+    # Fallback: pure Ω_m (safest, always positive)
+    return np.array([0.0, 0.3, 0.0, 0.0])
+
+
 def fit_unconstrained(
     z: NDArray[np.float64], h_mult: NDArray[np.float64]
 ) -> tuple[HamiltonianBridgeModel, dict]:
@@ -188,8 +225,8 @@ def fit_sign_constrained(
         h_model = np.sqrt(hamiltonian_h_squared(z, params))
         return h_model - h_mult
 
-    # Initial guess
-    x0 = np.array([0.0, 0.3, -0.1, 0.0])
+    # Initial guess: safe guess that guarantees H² > 0
+    x0 = compute_valid_initial_guess(z, h_mult)
 
     # Bounds: [Ω_k, Ω_m, Ω_d, Ω_q]
     # Ω_k: unbounded
