@@ -24,17 +24,37 @@ I have been working through selected parts of your IDM/MULTING framework to unde
 
 ## What I Am Trying to Understand
 
-The computational step I am unsure about is:
+**NEW FINDING (2026-05-29):** I performed word-level forensic extraction of Appendix A1 Steps 3–7. Full details in `docs/39_appendix_a1_steps_3_7_forensic_reading.md`.
 
-> **How does the pairwise force law F_oP = F_m - F_d + F_q map into the cosmological expansion rate H_MULT(z) reported in Appendix A / Table A1?**
+**What Appendix A1 Step 5 provides:**
+- ✅ Scaling relations: r_dA = β_d × r_A, r_dP = β_d × r_P, |r_qAB|² = β_q² × r_A × r_P
+- ✅ Fitting instruction: *"minimize standard-deviations away from observed H(z)"*
+- ✅ AI service discretion: *"Feel free to use any or all the information"*
+- ✅ Fitted values (Table A1 caption): β_d = 4.5, β_q = 18.0
 
-I see the force expressions, and I see the H_MULT(z) values in the table. What I do not see in the available materials is the **bridge** connecting them.
+**What Appendix A1 Step 5 does NOT provide:**
+- ❌ Explicit functional form H_MULT(z; β_d, β_q, m_A, r_A, k_A, ...)
+- ❌ Computational algorithm (beyond procedural instruction "fit by using")
+- ❌ Cluster variable table m_A(z), r_A(z), k_A(z) for all redshifts
+- ❌ Objective function details (beyond "minimize σ")
+
+**Bridge status:** PARTIAL — Step 5 provides procedural instruction, NOT computational formula.
+
+**Implication:** Table A1 H_MULT column is AI service output following procedural instruction, NOT author-verified calculation.
+
+---
+
+The computational question I may be misunderstanding:
+
+> **How does the pairwise force law F_oP = F_m - F_d + F_q map into the cosmological expansion rate H_MULT(z)?**
+
+I see the force expressions (Steps 1–2), I see the scaling relations (Step 5), and I see H_MULT(z) values in Table A1. What I do not see is the **explicit computational bridge** H_MULT = f(z, β_d, β_q, m_A, r_A, k_A, ...).
 
 ---
 
 ## Two Possible Interpretations
 
-After reviewing the materials, I see two candidate interpretations:
+After systematic review of Appendix A1 and triage of bridge routes, I identified two candidate interpretations:
 
 ### Interpretation A — Heuristic Phenomenological Scaling
 
@@ -82,19 +102,23 @@ H(z)
 
 ## What I Am Asking
 
-**One question:**
+After Appendix A1 forensic extraction, I now understand that Step 5 provides procedural instruction but not explicit computational formula. My question becomes:
 
-> Does the mapping from F_oP to H_MULT(z) use:
+> Could you clarify the computational step from F_oP to H_MULT(z)?
 > 
-> (A) A phenomenological scaling like the heuristic Phi(z) formula (Table A1 reproduction candidate), or
+> Specifically:
 > 
-> (B) A mechanistic averaging prescription — for example, a discrete cluster-neighbor / effective-pressure interpretation (e.g., virial pressure route), or
+> 1. **Explicit formula:** What is H_MULT(z; β_d, β_q, m_A, r_A, k_A, ...)? How do monopole/dipole/quadrupole combine?
 > 
-> (C) A different approach not covered by (A) or (B)?
+> 2. **Cluster variables:** For Table A1 reproduction, do you have tabulated m_A(z), r_A(z), k_A(z) for z = 0 to 8.5? If not, how should these be estimated?
+> 
+> 3. **AI interpretation:** Did the AI service use a specific method (heuristic scaling like interpretation A? virial pressure like interpretation B? other?)? Is there a procedure description I can reference?
 
 **Why I am asking:**
 
-I want to avoid misrepresenting your framework in computational form. Implementing (A) or (B) without confirmation from you would mean I am testing **my interpretation** of MULTING, not **your model**.
+I want to avoid misrepresenting your framework in computational form. Implementing interpretation (A) or (B) without confirmation would mean I am testing **my interpretation** of MULTING, not **your model**.
+
+Table A1 H_MULT values are AI service output. Without explicit formula or cluster variable table, I cannot reproduce Table A1 numerically or compute H_MULT(z) on new redshifts.
 
 ---
 

@@ -317,20 +317,87 @@ I want to ensure I am representing your work accurately and not putting words in
 
 ---
 
-## 6. Summary of What I Am Asking For
+## 6. Appendix A1 Step 5 Forensic Finding (BLOCKER — PRIORITY 1)
 
-**Fit reproduction (needed to proceed):**
-1. H_MULT(z; beta_d, beta_q) functional form
+**Context:**
+
+I performed word-level forensic extraction of Appendix A1 Steps 3–7 from preprints202511.0598.v6.pdf (pages 31–38). Full extraction documented in `docs/39_appendix_a1_steps_3_7_forensic_reading.md`.
+
+**What Step 5 provides:**
+
+1. ✅ Scaling relations (explicit): r_dA = β_d × r_A, r_dP = β_d × r_P, |r_qAB|² = β_q² × r_A × r_P
+2. ✅ Fitting instruction: *"minimize standard-deviations away from observed H(z)"*
+3. ✅ AI discretion: *"Feel free to use any or all the information"*
+4. ✅ Fitted values (Table A1): β_d = 4.5, β_q = 18.0
+
+**What Step 5 does NOT provide:**
+
+❌ Explicit functional form H_MULT(z; β_d, β_q, m_A, r_A, k_A, ...)  
+❌ Computational algorithm (beyond "fit by using monopole, dipole, quadrupole")  
+❌ Cluster variable table m_A(z), r_A(z), k_A(z) for Table A1 redshifts  
+❌ Objective function details (beyond "minimize σ")
+
+**Bridge status:** PARTIAL — procedural instruction only, NOT computational formula.
+
+**Implication:**
+
+Table A1 H_MULT column is AI service output following Step 5 procedural instruction, NOT author-verified calculation. I can store Table A1 as empirical data, but I cannot compute H_MULT(z) on NEW redshifts without explicit formula.
+
+**What I want to understand:**
+
+I may be misunderstanding the computational step between pairwise forces F_oP and cosmological expansion H_MULT(z). Could you clarify:
+
+1. **Explicit H_MULT formula:** What is H_MULT(z; β_d, β_q, m_A, r_A, k_A, ...)? How do monopole/dipole/quadrupole combine?
+2. **Cluster variables:** For Table A1 reproduction, do you have tabulated m_A(z), r_A(z), k_A(z) for z = 0 to 8.5?
+3. **AI interpretation:** Did the AI service use a specific method (heuristic scaling? virial pressure? other?)? Is there a procedure description I can reference?
+
+**Alternative interpretations I considered:**
+
+After systematic triage (`docs/36_force_to_expansion_bridge_triage.md`):
+
+- **(A) Heuristic phenomenological scaling** (`docs/35_ai_transcript_closure_candidate.md`): Phi(z) = A_m - A_d + A_q, H_MULT² = H_anchor² × [Phi/Phi_anchor]. Status: AI_TRANSCRIPT_REPORTED (not manuscript-verified).
+- **(B) Discrete lattice + virial pressure** (`docs/37_discrete_lattice_mvb_hypothesis.md`): Nearest-neighbor cluster lattice, P_virial = -⟨r·F⟩/(3V), Friedmann acceleration. Status: RESEARCH_HYPOTHESIS (audit reconstruction, not manuscript-supported).
+
+**Neither is source-confirmed.** I want to avoid implementing my own interpretation and misrepresenting your framework.
+
+**Blocked capabilities:**
+
+Without explicit H_MULT formula or cluster variable table:
+- ❌ Reproduce Table A1 numerically
+- ❌ Compute H_MULT(z) on new redshifts
+- ❌ Build forward model for MCMC
+- ❌ Compare MULTING vs ΛCDM on independent datasets
+
+**Respectful request:**
+
+Could you provide:
+1. Explicit formula H_MULT(z; β_d, β_q, ...), OR
+2. Confirmation that AI interpretation (A), (B), or another matches your approach, OR
+3. Cluster variable table for Table A1 redshifts?
+
+I want to represent MULTING accurately and avoid testing my interpretation instead of your model.
+
+**If not addressed in published materials:**
+
+I will document this as a computational bridge blocker and note that Table A1 is stored as empirical reference (TABLE_REPORTED) but not predictive (BLOCKED for new z). Repository will be published transparently with this blocker documented.
+
+---
+
+## 7. Summary of What I Am Asking For
+
+**Fit reproduction (PRIORITY 1 — needed to proceed):**
+1. H_MULT(z; beta_d, beta_q) functional form (see Q6 Appendix A1 finding)
 2. H(z) dataset used in Table A1
 3. sigma_MULT definition
 4. Which quantities were AI-estimated vs fixed
+5. Cluster variable table m_A(z), r_A(z), k_A(z) OR confirmation of AI interpretation route
 
-**Microphysics (determines applicability of external constraints):**
-5. Thermal history: thermally populated at BBN? T_dark/T_visible?
-6. Self-interactions: collisionless or SIDM? σ/m? Dipole = DM-DM scattering or modified gravity?
-7. Scale range: dipole operates at Mpc or kpc? Dissipative or halo-like?
+**Microphysics (PRIORITY 2 — determines applicability of external constraints):**
+6. Thermal history: thermally populated at BBN? T_dark/T_visible?
+7. Self-interactions: collisionless or SIDM? σ/m? Dipole = DM-DM scattering or modified gravity?
+8. Scale range: dipole operates at Mpc or kpc? Dissipative or halo-like?
 
-If any of these are still being worked out or are proprietary, I will document that as "not yet specified in published materials" and move on. I am **not** expecting you to derive new results for my audit — I am just trying to avoid misrepresenting what you have already published or communicated.
+If any are still being worked out or are proprietary, I will document that as "not yet specified in published materials" and move on. I am **not** expecting you to derive new results for my audit — I am just trying to avoid misrepresenting what you have already published or communicated.
 
 ---
 
