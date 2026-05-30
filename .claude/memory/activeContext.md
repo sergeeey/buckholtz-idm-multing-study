@@ -155,3 +155,6 @@ PREDICTION_BLOCKED
 ---
 
 **Next session start:** Read this file + docs/FINAL_WAITING_STATE_MARKER.md
+
+## Auto-commit log
+- [2026-05-30 10:44] `4306a7d`: docs: complete epi-registry extraction documentation
