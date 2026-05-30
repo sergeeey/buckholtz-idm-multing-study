@@ -89,11 +89,46 @@ conflicts = registry.find_conflicts()
 |-----------|-------|-----------|
 | **Reuse** | 5/5 | Universal across any domain with parameters |
 | **Pain** | 5/5 | Reproducibility crisis is real, people pay for audit |
-| **Proof** | 4/5 | Working code in this project, but not PyPI package yet |
+| **Proof** | 4/5 | Working code extracted, 23 tests passing, MOND example works |
 | **Uniqueness** | 5/5 | No existing tool tracks provenance + conflicts + dependency graph together |
 | **TOTAL** | **19/20** | |
 
-**Action:** Extract as standalone package
+**Status:** ✅ **EXTRACTED** (2026-05-30)
+
+**Extraction details:**
+- **Package name:** `epi-registry`
+- **Location:** `E:\Проверка Гипотез\работаю над проверкой гипотез\H - 11 Dr. Thomas J. Buckholtz\epi-registry\`
+- **Commit:** `6b835a1` (docs: freeze epi-registry prototype state)
+- **Tests:** 23/23 passing (0.13s)
+- **Ruff:** All checks passed
+- **External validation:** MOND a_0 audit example working
+- **Novelty assessment:** 7/10 (HIGH), prior art search complete (5 queries, 20+ sources)
+- **Status:** RESEARCH_PROTOTYPE, NOT_PUBLIC, FROZEN until GeoScan Gold complete
+
+**What was extracted:**
+- `epi_registry/core.py` — Claim, Parameter, EquationRecord (118 lines)
+- `epi_registry/provenance.py` — ParameterProvenance, ProvenanceRegistry (235 lines)
+- `epi_registry/dependencies.py` — DependencyGraph, circular reasoning detection (194 lines)
+- 23 tests (3 test files, 332 lines)
+- 1 external case study (MOND a_0, 170 lines)
+- Full documentation (README, LICENSE, PROGRESS, NOVELTY_ASSESSMENT, PROJECT_STATUS)
+
+**Key innovation:**
+- **Use permission enforcement:** `ALLOWED_FOR_FIT_REPRODUCTION_ONLY` / `DO_NOT_USE_FOR_MODELING`
+- **Audit-reconstruction blocking:** Parameters derived by auditors auto-blocked from validation
+- **Prevents auditor-introduced circular reasoning** — novel contribution (not found in prior art)
+
+**Separation from Buckholtz science:**
+- epi-registry = **methodological tool** (parameter provenance)
+- Buckholtz audit = **scientific investigation** (IDM/MULTING testing)
+- These are SEPARATE — epi-registry does NOT validate/refute Buckholtz physics
+
+**Next milestones (only after approval):**
+1. Case study 2: f(R) gravity
+2. Case study 3: SUSY parameter space
+3. Formal prior art search (arXiv, ACM, IEEE)
+4. Publication decision (JOSS vs ReScience C vs PLOS ONE)
+5. Public release (PyPI, GitHub)
 
 ---
 
