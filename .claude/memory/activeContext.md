@@ -1,20 +1,49 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
 **Last updated:** 2026-05-30  
-**Status:** WAITING_FOR_AUTHOR_RESPONSE
+**Status:** AUTHOR_RESPONDED → REPRODUCIBILITY_PLAN_REQUESTED
 
 ---
 
 ## Current State
 
-**Repository:** FROZEN  
+**Repository:** ACTIVE (documentation updates)  
 **Tests:** 143 passed, 0 failed, 12 skipped  
 **Commits:** feature/appendix-a1-doc-updates branch  
 **MCMC:** BLOCKED (0/5 blockers resolved)  
-**Email:** NO_NEW_EMAIL_SENT (approval required)
+**Email:** NO_NEW_EMAIL_SENT (approval required)  
+**Author Response:** ✅ RECEIVED (2026-05-30) — positive, collaborative, reproducibility plan requested
 
 ---
 
+## Author Response Update (2026-05-30)
+
+**Response received:** Dr. Buckholtz replied constructively to our careful reproducibility approach.
+
+**Key points:**
+1. ✅ AI-service provenance confirmed uncertain (AI chose baselines without author direction)
+2. ✅ Welcomes methodology development (techniques for comparing data/statistical choices)
+3. ✅ Open to fair testing ("help make a case for or against FLRW, MULTING, w_eff")
+4. ✅ Interested in publication venues (applied math, AI, philosophy — not just physics)
+5. ✅ Confirms beta phenomenological (fitted parameters, may or may not be fundamental)
+6. ✅ **Requests reproducibility plan outline** (main deliverable)
+
+**Documents created (response to author):**
+- ✅ docs/71_author_response_analysis.md (11K words, point-by-point analysis)
+- ✅ docs/72_reproducibility_plan_outline_for_tjb.md (9K words, 4-phase plan)
+- ✅ docs/73_multi_ai_table_comparison_plan.md (5K words, multi-AI comparison)
+
+**Status change:**
+- WAITING_FOR_AUTHOR_RESPONSE → AUTHOR_RESPONDED
+- COLLABORATION_POSSIBLE (positive, non-defensive tone)
+- REPRODUCIBILITY_PLAN_REQUESTED (waiting for user review before sending)
+
+**What did NOT change:**
+- ❌ MCMC still BLOCKED (bridge method not revealed, 0/5 blockers)
+- ❌ Prediction still BLOCKED (no out-of-sample test)
+- ❌ No public claims (NOT_VALIDATION, NOT_REFUTATION)
+
+---
 
 ## What We Accomplished
 [summarized] ### 1. Forensic Extraction (COMPLETE)
@@ -157,6 +186,7 @@ PREDICTION_BLOCKED
 **Next session start:** Read this file + docs/FINAL_WAITING_STATE_MARKER.md
 
 ## Auto-commit log
+- [2026-05-30 20:40] `abbfc1f`: docs: add comprehensive INDEX.md for 63 documentation files
 - [2026-05-30 20:27] `3239e71`: chore: stop hook loop (--no-verify)
 - [2026-05-30 20:27] `4f97007`: chore: final activeContext.md hook log cleanup
 - [2026-05-30 20:27] `fb53950`: chore: break post-commit hook loop — final activeContext update
