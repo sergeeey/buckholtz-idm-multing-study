@@ -255,7 +255,25 @@ PREDICTION_BLOCKED
 
 ---
 
+## Session 2026-06-09 — Language Calibration (2026-06-07 review, 8.5/10)
+
+**Commit 403f9de** — Applied 5 corrections from review document:
+
+1. **Tests**: 143 → **563 passed, 12 skipped** — v0.4 stabilized. [VERIFIED-tool 2026-06-09]
+2. **γ value**: 2.33 was L_ref (sqrt(4.25/0.78)); actual γ_req ≈ **2.27**, sensitivity [2.21, 2.32]. Already correct in docs/99.
+3. **Bridge**: `BRIDGE_NOT_PHYSICAL` → `AUTHOR_BRIDGE_NOT_CONFIRMED / OUR_RECONSTRUCTION_ONLY`. Section B rewritten.
+4. **Gap label**: `SELF_INCONSISTENT` → `TABLE_A1_FORWARD_PATH_NOT_REPRODUCED`. ×4365 = OUR reconstruction fails, not proof TJB's bridge fails.
+5. **β**: "optimized" → "phenomenological-estimation layer" (TJB's own framing).
+
+**WHY**: Adversarial language ("not physical", "self-inconsistent") is wrong in collaboration mode. TJB hasn't disclosed the intended bridge — any strong claim is premature. Correct: "I could not reproduce Table A1 from the currently reconstructed formula."
+
+**Canonical summary (post-calibration):**
+> We did not prove or disprove MULTING. We built a reproducible audit, localized the missing bridge, and need TJB's author-defined `k_A(z)`, `D_C:AB(z)` and forward path to `H_MULT(z)`.
+
+---
+
 ## Auto-commit log
+- [2026-06-09 23:18] `403f9de`: docs: calibrate language per 2026-06-07 review (8.5/10 corrections)
 - [2026-06-09 23:14] `22b4ee1`: audit: red-team fixes — EXPLORATORY label, Option 3 scope, multiverse Part F (2026-06-09)
 - [2026-06-09 23:03] `3ddad78`: audit: self-consistency diagnostic + BRIEF sections M/N (2026-06-09)
 [summarized] [summarized] - [2026-06-01 23:07] `ece48ca`: docs: update coverage 72% -> 91%, test count 533 -> 542 (badges + status)
