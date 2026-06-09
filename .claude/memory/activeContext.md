@@ -8,7 +8,7 @@
 ## Current State
 
 **Repository:** ACTIVE (documentation updates)  
-**Tests:** 143 passed, 0 failed, 12 skipped  
+**Tests:** 563 passed, 12 skipped, 0 failed — v0.4 stabilized [VERIFIED-tool 2026-06-09]  
 **Commits:** feature/appendix-a1-doc-updates branch  
 **MCMC:** BLOCKED (0/5 blockers resolved)  
 **Email:** NO_NEW_EMAIL_SENT (approval required)  
@@ -16,14 +16,16 @@
 
 ---
 
+
+
+
+
+
+
+
+
 ## Author Response Update (2026-05-30)
-
-**Response received:** Dr. Buckholtz replied constructively to our careful reproducibility approach.
-
-**Key points:**
-1. ✅ AI-service provenance confirmed uncertain (AI chose baselines without author direction)
-2. ✅ Welcomes methodology development (techniques for comparing data/statistical choices)
-3. ✅ Open to fair testing ("help make a case for or against FLRW, MULTING, w_eff")
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **Response received:** Dr. Bu...
 4. ✅ Interested in publication venues (applied math, AI, philosophy — not just physics)
 5. ✅ Confirms beta phenomenological (fitted parameters, may or may not be fundamental)
 6. ✅ **Requests reproducibility plan outline** (main deliverable)
@@ -46,7 +48,7 @@
 ---
 
 ## What We Accomplished
-[summarized] ### 1. Forensic Extraction (COMPLETE)
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] ### 1. Forensic ...
 
 ### 3. Meeting Pack Prepared (COMPLETE)
 - ✅ docs/69_tuesday_meeting_pack_private.md (376 lines, meeting-safe questions)
@@ -90,6 +92,14 @@
 ---
 
 
+
+
+
+
+
+
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -103,6 +113,14 @@
 **Until all 5 resolved:** MCMC remains BLOCKED.
 
 ---
+
+
+
+
+
+
+
+
 
 
 ## Safety Boundaries (HARD RULES)
@@ -122,6 +140,14 @@ PREDICTION_BLOCKED
 ---
 
 
+
+
+
+
+
+
+
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -138,6 +164,14 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
+
+
+
+
+
+
+
 
 
 ## Files to Read When Resuming
@@ -162,8 +196,16 @@ PREDICTION_BLOCKED
 ---
 
 
+
+
+
+
+
+
+
+
 ## Extraction Value Summary
-[summarized] **From "failed" audit (author not responding) → 5 reusable assets:**
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **From "failed" ...
    - Location: src/table_a1_reverse_engineering.py
 
 3. ⏳ **bridge-auditor** (ready to extract, score 19/20)
@@ -185,7 +227,48 @@ PREDICTION_BLOCKED
 
 **Next session start:** Read this file + docs/FINAL_WAITING_STATE_MARKER.md
 
+## Session 2026-06-09 — Self-Consistency Audit + Red-Team Hardening
+
+### What was done
+
+**Commit 3ddad78** — Created `audit/self_consistency_diagnostic.py` (Parts A–E):
+- M1: H_MULT = 1.074 × H_FLRW (scatter 2.6%, corr=0.99993) — Option 3 bridge is scalar stretch of ΛCDM
+- M2: Self-inconsistency gap ×4365 at z=8.5 — Phi(z)/Phi(0) DECREASES ×762 while H_MULT INCREASES ×5.7
+- M3: Gemini cross-check (dataset-independent) — both services fail to generate H(z) growth
+- M4: C12 REFUTED (dipole never dominates), C11 corrected (quad at ALL z, not just high z)
+- M5: Skeptic gate — 3 falsification tests ran, none falsified M2 headline
+- Added Sections M and N to TJB_DIAGNOSTIC_BRIEF.md; formulated Q15 for TJB
+
+**WHY:** Core diagnostic to prepare for TJB meeting — locate where AI bridge diverges from formula
+
+**Commit 22b4ee1** — Red-team fixes (AOS audit scored 60/100, 3 vulnerabilities fixed):
+- Fix T7 (HARKing): Added `EXPLORATORY_DIAGNOSTIC, NOT_PREREGISTERED` to Section M safety block — findings were posterior discoveries, not pre-registered predictions
+- Fix T12 (scope creep): M1 conclusion now scoped to "Option 3 bridge" only — other bridge variants (Option 1: D̈∝F/M, Option 2: energy balance) NOT tested
+- Fix T4 (repr.values): Added Part F multiverse to diagnostic — arith_mean params → gap ×3944 (robust vs ×4365 geom, 9.7% change). T4 CLEARED.
+- AOS updated: 60 → estimated 75 (remaining open gap: ChatGPT Option 1 bridge untested)
+
+### Current self-consistency status
+- Bridge: Option 3 (H²∝Phi/Phi₀) — forward path NOT reproduced from our reconstructed cluster params (gap ×4365 at z=8.5, robust under repr.value multiverse). Status: AUTHOR_BRIDGE_NOT_CONFIRMED / OUR_RECONSTRUCTION_ONLY. NOT a claim that bridge is physically impossible.
+- Claim table: C12 REFUTED, C11 corrected, C14 PARTIAL
+- Pending: Option 1 bridge (D̈∝F/M) not yet tested — could be self-consistent with different D(z)
+- Q15 formulated (not sent — NO_EMAIL_WITHOUT_APPROVAL): asks TJB which D(z) schedule was used
+
+---
+
 ## Auto-commit log
+- [2026-06-09 23:14] `22b4ee1`: audit: red-team fixes — EXPLORATORY label, Option 3 scope, multiverse Part F (2026-06-09)
+- [2026-06-09 23:03] `3ddad78`: audit: self-consistency diagnostic + BRIEF sections M/N (2026-06-09)
+[summarized] [summarized] - [2026-06-01 23:07] `ece48ca`: docs: update coverage 72% -> 91%, test count 533 -> 542 (badges + status)
+- [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
+- [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
+- [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
+- [2026-05-30 23:19] `3f68227`: data: fix ChatGPT table extraction — re-extract from correct source
+- [2026-05-30 23:15] `7b39dd2`: docs: add extracted CSV integrity audit
+- [2026-05-30 23:09] `2016f41`: data: extract multi-AI supplementary tables to CSV
+- [2026-05-30 22:58] `82961d9`: docs: complete supplementary material inventory — all 3 AI services
+- [2026-05-30 22:48] `b11a319`: docs: mark email draft 75 as OUTDATED — supplementary material found
+- [2026-05-30 22:43] `c4833f5`: data: preserve Buckholtz supplementary material
+- [2026-05-30 21:54] `8794d7a`: docs: add short email version of reproducibility plan
 - [2026-05-30 21:49] `55dd1a6`: docs: add one-page reproducibility plan for TJB
 - [2026-05-30 21:42] `8784d44`: docs: complete author response status update
 - [2026-05-30 21:41] `9ee7d99`: docs: add author response analysis and reproducibility plan outline
