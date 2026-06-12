@@ -1,20 +1,61 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-05-30  
-**Status:** AUTHOR_RESPONDED → REPRODUCIBILITY_PLAN_REQUESTED
+**Last updated:** 2026-06-12  
+**Status:** WAITING_FOR_TJB (email sent 9513289, follow-up not before 2026-06-18)
 
 ---
 
 ## Current State
 
-**Repository:** ACTIVE (documentation updates)  
-**Tests:** 563 passed, 12 skipped, 0 failed — v0.4 stabilized [VERIFIED-tool 2026-06-09]  
+**Repository:** ACTIVE (independent bridge investigation)  
+**Tests:** ~585 passed, 12 skipped, 0 failed [VERIFIED-tool 2026-06-12]  
 **Commits:** feature/appendix-a1-doc-updates branch  
 **MCMC:** BLOCKED (0/5 blockers resolved)  
-**Email:** NO_NEW_EMAIL_SENT (approval required)  
-**Author Response:** ✅ RECEIVED (2026-05-30) — positive, collaborative, reproducibility plan requested
+**Email:** SENT 2026-06-12 (commit 9513289, Q1+Q2+Q3). Follow-up not before 2026-06-18.
+
+### 2026-06-12 Session — Independent Bridge Investigation
+
+**Mirror DM audit (commit 6c64253):**
+- IF_MIRROR_DM_INTERPRETATION: IDM's "5 isomers each with one SM counterpart" = Mirror DM structure
+- ΔN_eff at x=T_dark/T_SM=1: 22-81 depending on interpretation (130-477σ above Planck)
+- Required: T_dark/T_SM < 0.27-0.37 for Planck compatibility
+- M7-C verdict unchanged: BLOCKED (IDM doesn't specify T_dark/T_SM → AUTHOR_DERIVATION_NEEDED)
+- 19 tests, all pass
+
+**Bridge derivation attempt (commit 30473a2):**
+- ε(z) = (H_MULT/H_FLRW)² − 1 extracted from Table A1 data [VERIFIED-tool]
+- KEY FINDING: ε(z) NON-MONOTONIC — peak 0.228 at z=0.40, min 0.048 at z=5.0
+- Candidate 1 (constant ε): FAILS — max residual 0.103
+- Candidate 2 (power law): FAILS — α varies −2.22 to +9.49 (sign change)
+- Candidate 3 (Friedmann): BLOCKED — requires k_A(z) schedule (Q2)
+- Physical: peak at z=0.40 consistent with Press-Schechter cluster formation peak
+- 22 tests, all pass
+
+**M8-A-R1 adversarial re-audit (commit add7cba) — context-blind:**
+- All 11 ε(z) values independently recomputed — all confirmed
+- 4 corrections applied: VERIFIED→TRANSCRIBED, secondary structure added, Press-Schechter→HYPOTHESIS, threshold 0.05 marked heuristic
+- Verdict: PASS (after corrections). No numerical errors found.
+- docs/107_post_m8a_evidence_lock.md — new session freeze point (replaces docs/106)
+- reports/m8_a_r1_bridge_derivation_reaudit.md — full re-audit record
+
+**Q2 blocker sharpened:** Bridge must reproduce non-monotonic ε(z) with primary peak near z≈0.40 — not any single power law.
+
+**Current blockers (unchanged):** Q1 bridge, Q2 k_A(z) schedule (sharpened), Q3 β phenomenological
+
+**M8-C — Closure Schedule / Cluster Formation Bridge (2026-06-12):**
+- Script: `scripts/m8c_closure_schedule.py`, Tests: 32 passed, Report: `reports/m8c_closure_schedule.json`
+- ΛCDM Press-Schechter tested at 3 mass thresholds (M_min = 1e14, 5e14, 2e15 M_sun)
+- Model A (PS comoving density): MONOTONICALLY DECREASING — Pearson r ≈ −0.05 to −0.41 — cannot explain ε peak at z=0.40
+- Model B (survey dN/dz): peaks at z=0.65 (M_min=1e14) and z=0.40 (M_min=5e14) — best Pearson r = 0.723
+- Verdict: **PARTIAL** — survey count rate overlaps ε primary peak qualitatively; secondary structure at z=1.0–1.5 and uptick at z=8.5 NOT explained
+- Press-Schechter connection remains <HYPOTHESIS>; Q2 confirmed: k_A(z) schedule essential (only TJB can provide)
+
+**NEXT SESSION STARTS WITH: docs/107_post_m8a_evidence_lock.md + M8-C results above**
+**NEXT GATE: M8-B — AI-mediated Φ-normalization bridge reconstruction (forensic)**
 
 ---
+
+
 
 
 
@@ -25,7 +66,7 @@
 
 
 ## Author Response Update (2026-05-30)
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **Response received:** Dr. Bu...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **R...
 4. ✅ Interested in publication venues (applied math, AI, philosophy — not just physics)
 5. ✅ Confirms beta phenomenological (fitted parameters, may or may not be fundamental)
 6. ✅ **Requests reproducibility plan outline** (main deliverable)
@@ -48,7 +89,7 @@
 ---
 
 ## What We Accomplished
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] ### 1. Forensic ...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
 
 ### 3. Meeting Pack Prepared (COMPLETE)
 - ✅ docs/69_tuesday_meeting_pack_private.md (376 lines, meeting-safe questions)
@@ -100,6 +141,8 @@
 
 
 
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -113,6 +156,8 @@
 **Until all 5 resolved:** MCMC remains BLOCKED.
 
 ---
+
+
 
 
 
@@ -148,6 +193,8 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -164,6 +211,8 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
+
 
 
 
@@ -204,8 +253,10 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Extraction Value Summary
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **From "failed" ...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
    - Location: src/table_a1_reverse_engineering.py
 
 3. ⏳ **bridge-auditor** (ready to extract, score 19/20)
@@ -228,12 +279,7 @@ PREDICTION_BLOCKED
 **Next session start:** Read this file + docs/FINAL_WAITING_STATE_MARKER.md
 
 ## Session 2026-06-09 — Self-Consistency Audit + Red-Team Hardening
-
-### What was done
-
-**Commit 3ddad78** — Created `audit/self_consistency_diagnostic.py` (Parts A–E):
-- M1: H_MULT = 1.074 × H_FLRW (scatter 2.6%, corr=0.99993) — Option 3 bridge is scalar stretch of ΛCDM
-- M2: Self-inconsistency gap ×4365 at z=8.5 — Phi(z)/Phi(0) DECREASES ×762 while H_MULT INCREASES ×5.7
+[summarized] [summarized] ### What was done
 - M3: Gemini cross-check (dataset-independent) — both services fail to generate H(z) growth
 - M4: C12 REFUTED (dipole never dominates), C11 corrected (quad at ALL z, not just high z)
 - M5: Skeptic gate — 3 falsification tests ran, none falsified M2 headline
@@ -272,11 +318,12 @@ PREDICTION_BLOCKED
 
 ---
 
+
+
 ## Auto-commit log
-- [2026-06-09 23:18] `403f9de`: docs: calibrate language per 2026-06-07 review (8.5/10 corrections)
-- [2026-06-09 23:14] `22b4ee1`: audit: red-team fixes — EXPLORATORY label, Option 3 scope, multiverse Part F (2026-06-09)
-- [2026-06-09 23:03] `3ddad78`: audit: self-consistency diagnostic + BRIEF sections M/N (2026-06-09)
-[summarized] [summarized] - [2026-06-01 23:07] `ece48ca`: docs: update coverage 72% -> 91%, test count 533 -> 542 (badges + status)
+- [2026-06-12 22:48] `add7cba`: fix: M8-A-R1 adversarial re-audit corrections + EOD-2 evidence lock
+- [2026-06-12 22:35] `30473a2`: feat: bridge derivation attempt — ε(z) non-monotonicity [VERIFIED from Table A1]
+[summarized] - [2026-06-12 22:20] `6c64253`: feat: Mirror DM / N_eff constraint — IDM 5 dark isomers IF-interpretation
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
 - [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
