@@ -1,7 +1,9 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-13  
-**Status:** WAITING_FOR_TJB (email sent 9513289, follow-up not before 2026-06-18)
+**Last updated:** 2026-06-15  
+**Status:** TJB RESPONDED 2026-06-14 (call + authored procedure prompt) — Q1/Q2/Q3 ANSWERED, see docs/117.
+Phase: DATA-ASSEMBLY (author's Step 1, real catalogs in 0<z<z_+). No new email needed; next deliverable = data + fit, not correspondence.
+Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 ---
 
@@ -371,6 +373,7 @@ PREDICTION_BLOCKED
 
 
 ## Auto-commit log
+- [2026-06-15 16:41] `6d9697c`: chore: preserve call-confirmation draft + sync tracked files (parallel sessions)
 - [2026-06-15 16:40] `1e5997b`: chore(bridge): preserve untracked bridge / double-inversion work (parallel sessions)
 - [2026-06-15 16:39] `2796cb4`: chore(audit): preserve untracked audit/ diagnostics from parallel sessions
 - [2026-06-13 11:26] `c317ec2`: docs(EOD-5): Claim Status Matrix v3 — post-LOO-TNG-AIC session lock
