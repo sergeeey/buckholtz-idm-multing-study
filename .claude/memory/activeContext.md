@@ -3,6 +3,7 @@
 **Last updated:** 2026-06-17  
 **2026-06-17:** N-4/N-8 recomputed from scratch WITH PROOF (commit 66195b7). N-4 ΔAIC=+2.48 on real Moresco+2022 CC (report's "+3.0" was arithmetic error). N-8 "+7.2%" was an ARTIFACT → real MULTING effect on intra-cluster σ_v = −0.0016% at physical k_A (NFW+Jeans toy, 9 tests). RU report generators built (scripts/build_report_ru.py → all-36-row report for TJB; build_results_log_ru.py). Rule reaffirmed: every number in TJB report must have an executable source.
 **2026-06-17 LETTER SENT:** follow-up emailed to TJB — single question on β_d scale (docs/121, SENT version). Opens with Eq.32 0.17σ positive. AWAITING REPLY on β. H-11 physics ON PAUSE until β answer; active front = method-project (harvest basket B).
+**2026-06-18 SIGN CORRECTION:** CC fit coefficients are **[+,−,+]** (B<0), NOT [+,+,+] — re-verified inline (both H and H²). This AGREES with the MULTING dipole sign, not against it. The wrong [+,+,+] was the ONE number not re-run through code before the first letter → it shipped, correction emailed to TJB. Fixed in docs/119 (B-3 dropped from FATAL → "in plus"), structured_reading (N-5, Insight-2), build_results_log_ru.py. Caveat: 3 powers degenerate over 27 pts → sign suggestive, not decisive.
 **Status:** TJB RESPONDED 2026-06-14 (call + authored procedure prompt) — Q1/Q2/Q3 ANSWERED, see docs/117.
 Phase: DATA-ASSEMBLY (author's Step 1, real catalogs in 0<z<z_+). No new email needed; next deliverable = data + fit, not correspondence.
 Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
@@ -438,6 +439,7 @@ PREDICTION_BLOCKED
 
 
 ## Auto-commit log
+- [2026-06-17 23:42] `8e82b57`: docs(121): mark TJB letter SENT 2026-06-17 (single beta question)
 - [2026-06-17 21:05] `3a67f50`: feat(cv): 5-fold cross-validation of MULTING dipole stability on Moresco CC
 [summarized] - [2026-06-17 20:07] `4eee1a5`: fix(chi2): correct sigma propagation 6.8σ → 5.8σ
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
