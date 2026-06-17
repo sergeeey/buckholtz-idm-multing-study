@@ -1,6 +1,7 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-15  
+**Last updated:** 2026-06-17  
+**2026-06-17:** N-4/N-8 recomputed from scratch WITH PROOF (commit 66195b7). N-4 ΔAIC=+2.48 on real Moresco+2022 CC (report's "+3.0" was arithmetic error). N-8 "+7.2%" was an ARTIFACT → real MULTING effect on intra-cluster σ_v = −0.0016% at physical k_A (NFW+Jeans toy, 9 tests). RU report generators built (scripts/build_report_ru.py → all-36-row report for TJB; build_results_log_ru.py). Rule reaffirmed: every number in TJB report must have an executable source.
 **Status:** TJB RESPONDED 2026-06-14 (call + authored procedure prompt) — Q1/Q2/Q3 ANSWERED, see docs/117.
 Phase: DATA-ASSEMBLY (author's Step 1, real catalogs in 0<z<z_+). No new email needed; next deliverable = data + fit, not correspondence.
 Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
@@ -8,7 +9,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 ---
 
 ## Current State
-[summarized] [summarized] [summarized] **Repository:** ACTIVE (independent bridge investigation)
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **Repository:** ACTIVE (independent bridge investigatio...
 **M8-C — Closure Schedule / Cluster Formation Bridge (2026-06-12):**
 - Script: `scripts/m8c_closure_schedule.py`, Tests: 32 passed, Report: `reports/m8c_closure_schedule.json`
 - ΛCDM Press-Schechter tested at 3 mass thresholds (M_min = 1e14, 5e14, 2e15 M_sun)
@@ -111,6 +112,9 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -124,6 +128,9 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 **Until all 5 resolved:** MCMC remains BLOCKED.
 
 ---
+
+
+
 
 
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
@@ -151,10 +158,11 @@ Ref: arXiv:2504.09054v2 methodology.
 
 
 
-## LOO + Illustris-TNG k_A Proxy (2026-06-13, commit d1b5025)
 
-Scripts: `scripts/loo_epsilon_analysis.py`, `scripts/illustris_tng_k_a.py`
-Tests: 27 passed. Reports: `reports/loo_epsilon_analysis.json`, `reports/illustris_tng_k_a.json`
+
+
+## LOO + Illustris-TNG k_A Proxy (2026-06-13, commit d1b5025)
+[summarized] [summarized] [summarized] Scripts: `scripts/loo_epsilon_analysis.py`, `scripts/illustris_tng_k_a.py`
 
 **LOO (Leave-One-Out) leverage analysis:**
 - LogNormal best fit: z_peak=0.603, r=0.921, 68% CI=[0.597, 0.681], width=0.084
@@ -177,16 +185,7 @@ does not explain secondary structure at z=1.5 and z=8.5. TJB's actual k_A(z) rem
 ---
 
 ## Report Cross-Check + Untracked Preservation (2026-06-14/15)
-
-Session goal: fact-check a session-summary report (written from another chat's memory)
-against the actual filesystem, then preserve uncommitted parallel-session work.
-
-**Untracked work committed (4 groups, branch feature/appendix-a1-doc-updates):**
-- `2796cb4` audit/ diagnostics (range_underdetermination, sigma_distance_desi, ...)
-- k_A closure (src/k_a_*, docs/98-99, README_nbody) — 21 tests pass
-- `1e5997b` bridge/double-inversion (src/bridge_*, d_required_solver, double_inversion_*)
-- call-confirmation draft + modified tracked files
-NOTE: was untracked from parallel chats; ruff clean, tests pass, NOT reviewed line-by-line here.
+[summarized] [summarized] [summarized] Session goal: fact-check a session-summary report (written from another chat's memory)
 
 **Confabulation caught [VERIFIED-tool]:** report claimed "M_ICM thermal was under-counted
 ~94x (7.8e6 -> 7.3e8 M_sun)". FALSE narrative — the real 94.7x figure is the beta_q
@@ -238,6 +237,9 @@ PREDICTION_BLOCKED
 
 
 
+
+
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -254,6 +256,9 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
+
+
 
 
 
@@ -304,6 +309,9 @@ PREDICTION_BLOCKED
 
 
 
+
+
+
 ## Extraction Value Summary
 [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
    - Location: src/table_a1_reverse_engineering.py
@@ -328,7 +336,7 @@ PREDICTION_BLOCKED
 **Next session start:** Read this file + docs/FINAL_WAITING_STATE_MARKER.md
 
 ## Session 2026-06-09 — Self-Consistency Audit + Red-Team Hardening
-[summarized] [summarized] [summarized] [summarized] [summarized] ### What was done
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] ### What was done
 - M3: Gemini cross-check (dataset-independent) — both services fail to generate H(z) growth
 - M4: C12 REFUTED (dipole never dominates), C11 corrected (quad at ALL z, not just high z)
 - M5: Skeptic gate — 3 falsification tests ran, none falsified M2 headline
@@ -372,13 +380,12 @@ PREDICTION_BLOCKED
 
 
 
+
+
+
 ## Auto-commit log
-- [2026-06-15 16:41] `6d9697c`: chore: preserve call-confirmation draft + sync tracked files (parallel sessions)
-- [2026-06-15 16:40] `1e5997b`: chore(bridge): preserve untracked bridge / double-inversion work (parallel sessions)
-- [2026-06-15 16:39] `2796cb4`: chore(audit): preserve untracked audit/ diagnostics from parallel sessions
-- [2026-06-13 11:26] `c317ec2`: docs(EOD-5): Claim Status Matrix v3 — post-LOO-TNG-AIC session lock
-- [2026-06-13 11:19] `d1b5025`: feat(lab): LOO leverage + Illustris-TNG k_A proxy tests (hypothesis-lab tests 1 & 2)
-[summarized] - [2026-06-13 10:40] `46277b9`: feat(AIC): MULTING vs ΛCDM model comparison on Table A1
+- [2026-06-17 15:59] `66195b7`: feat(recompute): N-4 AIC + N-8 Jeans from scratch with proof
+[summarized] [summarized] [summarized] - [2026-06-15 17:19] `7c32a5f`: docs(117): preserve TJB-authored procedure — Q1/Q2/Q3 ANSWERED...
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
 - [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
