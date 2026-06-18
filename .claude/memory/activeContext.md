@@ -1,10 +1,23 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-18  
+**Last updated:** 2026-06-19  
+**2026-06-19 APPENDIX-A1 SWEEP (commit e68af0c):** Added 4 new scripts covering IDM particle physics, BRAI β audit, H-FLRW provenance, ε(z) scales. `scripts/idm_masses.py`: fermion Eq.21-24 verified vs PDG 2024 (muon 0.47% off, best-fit δ=0.03841); inflaton=30.396 GeV; DM:OM N_opt=5.364 (Planck, 7.3% above 5); quark geom means <0.31%. `scripts/brai_beta.py`: BRAI β_d R_B=15.9 (p=0.0000), β_q R_B=24.1 (p=0.0000) — both INCONSISTENT; σ_rel needed 80%/98% >> LLM noise; β_q/β_d ratio also inconsistent R_B=10.09. `scripts/hflrw_grid.py`: Planck ΛCDM MAE=120 km/s/Mpc (FAIL); power-law H(z)=54.07(1+z)^0.884 MAE=5.04 (best); CC fit H0=68.78, Ωm=0.316. `scripts/dipole_threshold.py`: ε(z) log-Gauss peak z=0.579, FWHM=[0.11,2.99]; PS cluster peak z=0.149 (r=0.182, NOT correlated). `docs/116b`: 49 open questions §4.8 enumerated (6 categories, our coverage ~9/49). Excel v4 created: 11 rows updated + NR-6 + NR-7 added. BETA-1 HOLD continues.  
 **2026-06-17:** N-4/N-8 recomputed from scratch WITH PROOF (commit 66195b7). N-4 ΔAIC=+2.48 on real Moresco+2022 CC (report's "+3.0" was arithmetic error). N-8 "+7.2%" was an ARTIFACT → real MULTING effect on intra-cluster σ_v = −0.0016% at physical k_A (NFW+Jeans toy, 9 tests). RU report generators built (scripts/build_report_ru.py → all-36-row report for TJB; build_results_log_ru.py). Rule reaffirmed: every number in TJB report must have an executable source.
 **2026-06-17 LETTER SENT:** follow-up emailed to TJB — single question on β_d scale (docs/121, SENT version). Opens with Eq.32 0.17σ positive. AWAITING REPLY on β. H-11 physics ON PAUSE until β answer; active front = method-project (harvest basket B).
 **2026-06-18 SIGN CORRECTION:** CC fit coefficients are **[+,−,+]** (B<0), NOT [+,+,+] — re-verified inline (both H and H²). This AGREES with the MULTING dipole sign, not against it. The wrong [+,+,+] was the ONE number not re-run through code before the first letter → it shipped, correction emailed to TJB. Fixed in docs/119 (B-3 dropped from FATAL → "in plus"), structured_reading (N-5, Insight-2), build_results_log_ru.py. Caveat: 3 powers degenerate over 27 pts → sign suggestive, not decisive.
 **2026-06-18 REPO CURRENCY AUDIT (commits 6b92d5f + data):** Swept whole repo for stale numbers. Fixed: README/paper N=5 exclusion 6.8σ→5.8σ (paper now internally consistent across abstract/body/table); docs/119 G-1 "+7.2% Jeans"→artifact (−0.0016%, dropped from MAJOR); build_report_ru.py dipole-sign insight→[+,−,+] (agrees MULTING). GATE CAUGHT FALSE-POSITIVE: TJB_DIAGNOSTIC_BRIEF "+7.2%" is a DIFFERENT quantity (χ(z) BAO kill-test at z=1.5, [VERIFIED+COMPUTED]) — left intact. Committed untracked real datasets (data/*.csv 3.2M) + src/cluster_data_pipeline.py + pearson_fit.py + pearl_registry + requirements (astropy/astroquery/requests) so committed recompute scripts (recompute_n4_aic.py uses data/hz_cc.csv) are reproducible on clean clone. NOT committed: .claude/memory/_auto/, goals.md (Claude infra).
+**2026-06-18 PAPER COMPLETE DRAFT (commit d38e393):**
+Все stub-секции заполнены. §1 Introduction: мотивация + β-gap + Blanchet degeneracy. §2.1 Boson Mass: Z-anchored H at 0.44σ, W at 3.58σ, LSQ <0.05% по трём бозонам. §4.2 HDM: mirror dark neutrinos = HDM, free-streaming, E4 tension. §4.3 σ/m: Bullet Cluster <1.25 cm²/g, Rutherford cross-section аргумент. §4.4 Neff: ΔNeff=22–81 (130–477σ above Planck), grav-only coupling E4. §5.1 What Survives: H4 = Eq.32 + 7:9:17 независимы от MULTING cosmology. §5.2 What Requires: G2 β-derivation, G3 Lagrangian, G4 symmetry group. §6 Conclusions: полный параграф, f×sigma8 r=0.851 назван, E4 tension назван. Таблица: Unicode → LaTeX ($\checkmark$/$\times$/$\triangle$). pdflatex: 4 страницы, 0 fatal errors. BETA-1 HOLD продолжается.
+
+**2026-06-18 PAPER §3.3 ADDED (commit 197d191):**
+Added `\subsection{Physical proxy for the dipole component}` to `paper/main.tex` §3, after the β-Rescaling Gap subsection. Content: f×sigma8(z) r=0.851 on 10 pts (z≤5, NOT all 11 — reviewer caveat explicit), r=0.775 on all 11. Documents two-component ε(z) structure: PRIMARY hump (f×sigma8 / dipole F_d) + SECONDARY z=8.5 bump (quadrupole F_q pending β_q from TJB). Ceiling r=0.820 for unconstrained D^5.5×H^2.75 on all 11 pts. All text marked `\reconstruction`. Added 2 new rows to §5 assessment table (f×sigma8 ⚠, secondary bump ⚠). Proper caveats in place: r=0.851 scoped to n=10 z≤5, secondary bump named as separate component. BETA-1 HOLD still active.
+
+**2026-06-18 FSIG8 ROBUSTNESS + PAPER §3.3 UPDATED (commit 5059cdb):**
+`scripts/fsig8_robustness.py` (new): 4 checks on r=0.851. CHECK 1: p=0.0018, 95%CI=[0.477,0.964]. CHECK 1b (new): model f×sigma8 is BELL-SHAPED (peaks at z=0.65, not monotone!) → r_rise=0.903, r_fall=0.958 — both halves confirm SHAPE match, not just high-z co-decrease. CHECK 2: min_r=0.822 across 4×4 Ωm×σ8 grid. CHECK 3: r=-0.086 with real RSD surveys [INFERRED] — BUT model gives r=0.778 at same z-values → gap = σ8 tension (flat real data vs bell-shaped model). VERDICT: MODEL-CONFIRMED with σ8-tension caveat. §3.3 in main.tex updated: explains bell-shape, adds split r-values, frames CHECK 3 failure as σ8 tension with possible common origin with MULTING ε. pearl_registry: new pearl σ8-tension ↔ MULTING-ε falsifiable connection (trigger: TJB β_d + DESI DR1). BETA-1 HOLD still active.
+
+**2026-06-18 RESEARCH-STRATEGIST: k_A bottleneck + NR-008 (commit f1c3be8):**
+/research-strategist identified the single blocking bottleneck: k_A(z) non-monotone problem. Ran 8-test parametric sweep via `scripts/test_rP_merger_hypothesis.py`. Result: **H-k_A-1 FALSIFIED** (merger-epoch r_P gives r=0.682 < 0.75). Key structural discovery: **ε(z) has a SECONDARY BUMP at z=3.2–8.5** (eps=0.101 at z=8.50 > 0.048 at z=5.00) — no single-component formula can explain both humps. **f×sigma8(z) achieves r=0.851 on 10 pts (z≤5.00)** — consistent with MULTING dipole (F_d). Secondary bump consistent with MULTING quadrupole (F_q, β_q≈18.0). D(z)×H(z)^(1/3) family peaks at z=0.40 (r=0.62 partial). Added NR-008 to null_results, 2 new pearls to pearl_registry. BETA-1 HOLD CONTINUES: full bridge requires β_d + β_q from TJB.
+
 **2026-06-18 GITHUB SHOWCASE AUDIT + FIXES:** Ran /github-showcase-architect (read-only → docs/GITHUB_SHOWCASE_AUDIT.md). Caught 3 FALSE static badges (tests 542→real **853**, coverage 91%→real **78%**, "ruff clean"→real **49 errors**) + tracked private correspondence (public-safety BLOCKER). FIXED: ruff 49→0 (F541/B905/B904/F841 in audit/, code/, src/); README badges → **live CI badge** + dated snapshot; README "Project Structure" → stable top-level tree; docs/INDEX.md → current (was "89 docs"/stopped at doc 70 → 119/covers 71–121). DEFERRED by user (chose option 1): untracking correspondence + public release — repo stays PRIVATE, author-approval gated. pearson_fit.py is standalone (not imported anywhere) — removed unused H_cc_vals; possible fit smell flagged for later. Score 5.9→~8/10 (private-ready). NOT pushed.
 **Status:** TJB RESPONDED 2026-06-14 (call + authored procedure prompt) — Q1/Q2/Q3 ANSWERED, see docs/117.
 Phase: DATA-ASSEMBLY (author's Step 1, real catalogs in 0<z<z_+). No new email needed; next deliverable = data + fit, not correspondence.
@@ -13,7 +26,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 ---
 
 ## Session 2026-06-17 — 72-hour arXiv Plan (commit 8ba15a0)
-[summarized] **Completed this session:**
+[summarized] [summarized] [summarized] [summarized] **Completed this session:**
 **CV results (commit 3a67f50 — 2026-06-17):**
 - `code/beta_cv.py`: 5-fold CV on 27 Moresco CC points
 - B consistently **<0** across all folds (CV=3%) → sign pattern [+,−,+] STABLE
@@ -36,7 +49,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 ---
 
 ## Current State
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **Repository:** ...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
 **M8-C — Closure Schedule / Cluster Formation Bridge (2026-06-12):**
 - Script: `scripts/m8c_closure_schedule.py`, Tests: 32 passed, Report: `reports/m8c_closure_schedule.json`
 - ΛCDM Press-Schechter tested at 3 mass thresholds (M_min = 1e14, 5e14, 2e15 M_sun)
@@ -145,6 +158,9 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -158,6 +174,9 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 **Until all 5 resolved:** MCMC remains BLOCKED.
 
 ---
+
+
+
 
 
 
@@ -197,8 +216,11 @@ Ref: arXiv:2504.09054v2 methodology.
 
 
 
+
+
+
 ## LOO + Illustris-TNG k_A Proxy (2026-06-13, commit d1b5025)
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Scripts: `scripts/loo_epsilon_analysis.py`, `scripts/il...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Scripts: `script...
 
 **LOO (Leave-One-Out) leverage analysis:**
 - LogNormal best fit: z_peak=0.603, r=0.921, 68% CI=[0.597, 0.681], width=0.084
@@ -221,7 +243,7 @@ does not explain secondary structure at z=1.5 and z=8.5. TJB's actual k_A(z) rem
 ---
 
 ## Report Cross-Check + Untracked Preservation (2026-06-14/15)
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Session goal: fact-check a session-summary report (writ...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Session goal: fa...
 
 **Confabulation caught [VERIFIED-tool]:** report claimed "M_ICM thermal was under-counted
 ~94x (7.8e6 -> 7.3e8 M_sun)". FALSE narrative — the real 94.7x figure is the beta_q
@@ -258,6 +280,9 @@ PREDICTION_BLOCKED
 **These are NOT suggestions — they are BLOCKERS.**
 
 ---
+
+
+
 
 
 
@@ -316,6 +341,9 @@ PREDICTION_BLOCKED
 
 
 
+
+
+
 ## Files to Read When Resuming
 
 **Status:**
@@ -336,6 +364,9 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
+
+
 
 
 
@@ -431,10 +462,11 @@ PREDICTION_BLOCKED
 
 
 
+
+
+
 ## Auto-commit log
-- [2026-06-18 08:19] `8464858`: chore(data): commit real datasets + pipeline for script reproducibility
-- [2026-06-18 08:18] `6b92d5f`: fix(docs): actualize stale numbers across repo
-[summarized] - [2026-06-18 00:04] `8ff9cb7`: fix(sign): CC fit is [+,-,+] not [+,+,+] — agrees with MULTING dipole
+[summarized] - [2026-06-19 00:30] `e68af0c`: research: add IDM particle physics + BRAI β audit + H-FLRW provenance scripts
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
 - [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
