@@ -1,9 +1,10 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-17  
+**Last updated:** 2026-06-18  
 **2026-06-17:** N-4/N-8 recomputed from scratch WITH PROOF (commit 66195b7). N-4 ΔAIC=+2.48 on real Moresco+2022 CC (report's "+3.0" was arithmetic error). N-8 "+7.2%" was an ARTIFACT → real MULTING effect on intra-cluster σ_v = −0.0016% at physical k_A (NFW+Jeans toy, 9 tests). RU report generators built (scripts/build_report_ru.py → all-36-row report for TJB; build_results_log_ru.py). Rule reaffirmed: every number in TJB report must have an executable source.
 **2026-06-17 LETTER SENT:** follow-up emailed to TJB — single question on β_d scale (docs/121, SENT version). Opens with Eq.32 0.17σ positive. AWAITING REPLY on β. H-11 physics ON PAUSE until β answer; active front = method-project (harvest basket B).
 **2026-06-18 SIGN CORRECTION:** CC fit coefficients are **[+,−,+]** (B<0), NOT [+,+,+] — re-verified inline (both H and H²). This AGREES with the MULTING dipole sign, not against it. The wrong [+,+,+] was the ONE number not re-run through code before the first letter → it shipped, correction emailed to TJB. Fixed in docs/119 (B-3 dropped from FATAL → "in plus"), structured_reading (N-5, Insight-2), build_results_log_ru.py. Caveat: 3 powers degenerate over 27 pts → sign suggestive, not decisive.
+**2026-06-18 REPO CURRENCY AUDIT (commits 6b92d5f + data):** Swept whole repo for stale numbers. Fixed: README/paper N=5 exclusion 6.8σ→5.8σ (paper now internally consistent across abstract/body/table); docs/119 G-1 "+7.2% Jeans"→artifact (−0.0016%, dropped from MAJOR); build_report_ru.py dipole-sign insight→[+,−,+] (agrees MULTING). GATE CAUGHT FALSE-POSITIVE: TJB_DIAGNOSTIC_BRIEF "+7.2%" is a DIFFERENT quantity (χ(z) BAO kill-test at z=1.5, [VERIFIED+COMPUTED]) — left intact. Committed untracked real datasets (data/*.csv 3.2M) + src/cluster_data_pipeline.py + pearson_fit.py + pearl_registry + requirements (astropy/astroquery/requests) so committed recompute scripts (recompute_n4_aic.py uses data/hz_cc.csv) are reproducible on clean clone. NOT committed: .claude/memory/_auto/, goals.md (Claude infra).
 **Status:** TJB RESPONDED 2026-06-14 (call + authored procedure prompt) — Q1/Q2/Q3 ANSWERED, see docs/117.
 Phase: DATA-ASSEMBLY (author's Step 1, real catalogs in 0<z<z_+). No new email needed; next deliverable = data + fit, not correspondence.
 Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
@@ -11,22 +12,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 ---
 
 ## Session 2026-06-17 — 72-hour arXiv Plan (commit 8ba15a0)
-
-**Completed this session:**
-- `code/chi2_idm.py`: N=5 IDM excluded at **5.8σ** (corrected from 6.8σ — prior version used σ_DM only; correct formula σ_total = √(σ_DM² + (N·σ_b)²) = 0.00142)
-- `code/eq32_verify.py`: C9 confirmed **0.17σ** with PDG 2024; α_G(proton) off by 6 orders → TJB's electron definition essential
-- `code/beta_rescaling.py`: β gap = **4.2 orders** at cluster scale (D=R500); **6-7 orders** at cosmological H(z) scale (D~100 Mpc); Gemini β_d~2e4 bridges only the cluster-scale gap
-- `paper/main.tex` + `refs.bib`: RevTeX4-2 skeleton with all 9 result rows in Table 1
-- `docs/118-121`: journal draft section, 35-item referee map, strong inference scout (H3 killed, H4 survives), letter to TJB draft
-- `README.md`: quick results table added
-
-**Corrections (commit 4eee1a5 — 2026-06-17):**
-- chi2_idm.py: σ propagation fixed 6.8σ → **5.8σ** (both Planck uncertainties propagated)
-- docs/121: "6.8σ"→"5.8σ" in Supporting Context + D-scale clarification in Q1
-- paper/main.tex: χ² section updated with σ_tot=0.00142
-
-**Letter status:** docs/121 DRAFT · NOT_SENT · corrections applied · awaiting user decision to send
-
+[summarized] **Completed this session:**
 **CV results (commit 3a67f50 — 2026-06-17):**
 - `code/beta_cv.py`: 5-fold CV on 27 Moresco CC points
 - B consistently **<0** across all folds (CV=3%) → sign pattern [+,−,+] STABLE
@@ -48,9 +34,8 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 ---
 
-
 ## Current State
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **Repository:** ACTIVE (indep...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] **Repository:** ...
 **M8-C — Closure Schedule / Cluster Formation Bridge (2026-06-12):**
 - Script: `scripts/m8c_closure_schedule.py`, Tests: 32 passed, Report: `reports/m8c_closure_schedule.json`
 - ΛCDM Press-Schechter tested at 3 mass thresholds (M_min = 1e14, 5e14, 2e15 M_sun)
@@ -158,6 +143,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -171,6 +157,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 **Until all 5 resolved:** MCMC remains BLOCKED.
 
 ---
+
 
 
 
@@ -208,8 +195,9 @@ Ref: arXiv:2504.09054v2 methodology.
 
 
 
+
 ## LOO + Illustris-TNG k_A Proxy (2026-06-13, commit d1b5025)
-[summarized] [summarized] [summarized] [summarized] [summarized] Scripts: `scripts/loo_epsilon_analysis.py`, `scripts/illustris_tng_k...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Scripts: `scripts/loo_epsilon_analysis.py`, `scripts/il...
 
 **LOO (Leave-One-Out) leverage analysis:**
 - LogNormal best fit: z_peak=0.603, r=0.921, 68% CI=[0.597, 0.681], width=0.084
@@ -232,7 +220,7 @@ does not explain secondary structure at z=1.5 and z=8.5. TJB's actual k_A(z) rem
 ---
 
 ## Report Cross-Check + Untracked Preservation (2026-06-14/15)
-[summarized] [summarized] [summarized] [summarized] [summarized] Session goal: fact-check a session-summary report (written from anot...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Session goal: fact-check a session-summary report (writ...
 
 **Confabulation caught [VERIFIED-tool]:** report claimed "M_ICM thermal was under-counted
 ~94x (7.8e6 -> 7.3e8 M_sun)". FALSE narrative — the real 94.7x figure is the beta_q
@@ -289,6 +277,7 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -305,6 +294,7 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
 
 
 
@@ -365,6 +355,7 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Extraction Value Summary
 [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
    - Location: src/table_a1_reverse_engineering.py
@@ -389,7 +380,7 @@ PREDICTION_BLOCKED
 **Next session start:** Read this file + docs/FINAL_WAITING_STATE_MARKER.md
 
 ## Session 2026-06-09 — Self-Consistency Audit + Red-Team Hardening
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] ###...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
 - M3: Gemini cross-check (dataset-independent) — both services fail to generate H(z) growth
 - M4: C12 REFUTED (dipole never dominates), C11 corrected (quad at ALL z, not just high z)
 - M5: Skeptic gate — 3 falsification tests ran, none falsified M2 headline
@@ -438,10 +429,10 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Auto-commit log
-- [2026-06-17 23:42] `8e82b57`: docs(121): mark TJB letter SENT 2026-06-17 (single beta question)
-- [2026-06-17 21:05] `3a67f50`: feat(cv): 5-fold cross-validation of MULTING dipole stability on Moresco CC
-[summarized] - [2026-06-17 20:07] `4eee1a5`: fix(chi2): correct sigma propagation 6.8σ → 5.8σ
+- [2026-06-18 08:18] `6b92d5f`: fix(docs): actualize stale numbers across repo
+[summarized] - [2026-06-18 00:04] `8ff9cb7`: fix(sign): CC fit is [+,-,+] not [+,+,+] — agrees with MULTING dipole
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
 - [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
