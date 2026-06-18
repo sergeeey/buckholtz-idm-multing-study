@@ -5,6 +5,7 @@
 **2026-06-17 LETTER SENT:** follow-up emailed to TJB — single question on β_d scale (docs/121, SENT version). Opens with Eq.32 0.17σ positive. AWAITING REPLY on β. H-11 physics ON PAUSE until β answer; active front = method-project (harvest basket B).
 **2026-06-18 SIGN CORRECTION:** CC fit coefficients are **[+,−,+]** (B<0), NOT [+,+,+] — re-verified inline (both H and H²). This AGREES with the MULTING dipole sign, not against it. The wrong [+,+,+] was the ONE number not re-run through code before the first letter → it shipped, correction emailed to TJB. Fixed in docs/119 (B-3 dropped from FATAL → "in plus"), structured_reading (N-5, Insight-2), build_results_log_ru.py. Caveat: 3 powers degenerate over 27 pts → sign suggestive, not decisive.
 **2026-06-18 REPO CURRENCY AUDIT (commits 6b92d5f + data):** Swept whole repo for stale numbers. Fixed: README/paper N=5 exclusion 6.8σ→5.8σ (paper now internally consistent across abstract/body/table); docs/119 G-1 "+7.2% Jeans"→artifact (−0.0016%, dropped from MAJOR); build_report_ru.py dipole-sign insight→[+,−,+] (agrees MULTING). GATE CAUGHT FALSE-POSITIVE: TJB_DIAGNOSTIC_BRIEF "+7.2%" is a DIFFERENT quantity (χ(z) BAO kill-test at z=1.5, [VERIFIED+COMPUTED]) — left intact. Committed untracked real datasets (data/*.csv 3.2M) + src/cluster_data_pipeline.py + pearson_fit.py + pearl_registry + requirements (astropy/astroquery/requests) so committed recompute scripts (recompute_n4_aic.py uses data/hz_cc.csv) are reproducible on clean clone. NOT committed: .claude/memory/_auto/, goals.md (Claude infra).
+**2026-06-18 GITHUB SHOWCASE AUDIT + FIXES:** Ran /github-showcase-architect (read-only → docs/GITHUB_SHOWCASE_AUDIT.md). Caught 3 FALSE static badges (tests 542→real **853**, coverage 91%→real **78%**, "ruff clean"→real **49 errors**) + tracked private correspondence (public-safety BLOCKER). FIXED: ruff 49→0 (F541/B905/B904/F841 in audit/, code/, src/); README badges → **live CI badge** + dated snapshot; README "Project Structure" → stable top-level tree; docs/INDEX.md → current (was "89 docs"/stopped at doc 70 → 119/covers 71–121). DEFERRED by user (chose option 1): untracking correspondence + public release — repo stays PRIVATE, author-approval gated. pearson_fit.py is standalone (not imported anywhere) — removed unused H_cc_vals; possible fit smell flagged for later. Score 5.9→~8/10 (private-ready). NOT pushed.
 **Status:** TJB RESPONDED 2026-06-14 (call + authored procedure prompt) — Q1/Q2/Q3 ANSWERED, see docs/117.
 Phase: DATA-ASSEMBLY (author's Step 1, real catalogs in 0<z<z_+). No new email needed; next deliverable = data + fit, not correspondence.
 Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
@@ -431,6 +432,7 @@ PREDICTION_BLOCKED
 
 
 ## Auto-commit log
+- [2026-06-18 08:19] `8464858`: chore(data): commit real datasets + pipeline for script reproducibility
 - [2026-06-18 08:18] `6b92d5f`: fix(docs): actualize stale numbers across repo
 [summarized] - [2026-06-18 00:04] `8ff9cb7`: fix(sign): CC fit is [+,-,+] not [+,+,+] — agrees with MULTING dipole
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
