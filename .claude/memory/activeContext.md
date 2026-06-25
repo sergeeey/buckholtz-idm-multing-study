@@ -1,6 +1,60 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-25 (session 3)
+**Last updated:** 2026-06-25 (session 6)
+
+**2026-06-25 EXP-P + EXP-Q COMPLETE (session 6, master):**
+- **EXP-P** (`scripts/exp_p_wboson_ratio.py`): W-boson 7:9:17 mass ratio
+  - m_W²:m_Z²:m_H² = 7:9:17 in units of (m_Z/3)² confirmed within 0.15%
+  - cos²θ_W = 7/9 (sin²θ_W = 2/9) within 0.083% of PDG value
+  - Prediction m_W = 80.4199 GeV; CDF-II (80.4335) is 1.45σ away → χ²_W = 2.09
+  - "χ² = 2.0" from email: REPRODUCED (CDF-II W-only) ✓
+  - "χ² = 39.0" from email: NOT REPRODUCED (get 12.78 for PDG) — needs clarification
+  - Status: [PARTIALLY VERIFIED] — ratio real, χ² discriminator partially confirmed
+- **EXP-Q** (`scripts/exp_q_g2_sm_decomp.py`): G₂ → SM 8+3+1 decomposition
+  - Claim FALSIFIED: G₂ adjoint under SU(3) gives 8+3+3̄ (NOT 8+3+1)
+  - dim(G₂)=14, dim(SM gauge)=12 → dimension mismatch prevents embedding
+  - NO natural G₂ ⊃ SU(3)×SU(2)×U(1) embedding exists
+  - INFORMATIVE NULL: G₂⊃SU(3) yes; G₂⊃SM no
+  - Surviving EXP-I results: |roots(G₂)|=12=E, |W(G₂)|=12=E, dim(rep(2,0))=27 [intact]
+- **DESI P1 task: BLOCKED** — cannot extract per-tracer fσ8 from arXiv:2411.12021 web
+  - Need values: BGS(z=0.295), LRG1(z=0.510), LRG2(z=0.706), LRG3+ELG1(z=0.930)
+  - Target: uncomment 4 lines in exp_d_fsig8_observed.py after manual PDF verification
+  - [NEEDS-VERIFICATION] label kept on commented-out lines
+
+**2026-06-25 EXP-BETA COMPLETE (commit 3431360 on feature/exp-beta-scaling):**
+- **EXP-BETA** (`scripts/exp_beta_scaling.py`): Tests β_l ∝ l^n hypothesis (why βq = 4×βd?)
+  - l² is EXACT fit for Claude/NotebookLM extraction (0% error); l(l+1)→25%, linear→50%, const→75%
+  - **BLOCKER**: βq/βd ratio spread 16× across services (Claude=4.0, Gemini=1.9, ChatGPT=0.24) → extraction-dependent
+  - Physical motivation: classical rotational KE E_rot = l²ħ²/(2I), NOT quantum l(l+1) → ratio 3 not 4
+  - C = 9/2 = D²/2 where D=3 (spatial dimensions) — candidate natural origin
+  - **Falsifiable prediction**: β_octupole = 40.5 (if paper mentions l=3 term)
+  - **Status**: CLOSED [VERIFIED from paper pp.34,38]
+  - Table A1 caption p.38: "online service reported choosing β_d=4.5 and β_q=18.0"
+  - Step 5 p.34: β_d and β_q are FREE FITTING PARAMS to minimize σ_MULT from H(z)
+  - βq/βd=4 is coincidence of one optimization run, NOT a physical law
+  - l² hypothesis mathematically exact for ONE service but has no predictive content
+- **Tests:** all pass (12 skips known). **Ruff:** clean.
+- **BRANCH:** feature/exp-beta-scaling (2 commits ahead of master)
+- **NEXT:** merge both feature branches to master, then send TJB email.
+
+**2026-06-25 EXP-D + EXP-G COMPLETE (commits 951dd42, ba31128 on feature/exp-d-g-fsig8-planck-rebase):**
+- **EXP-D** (`scripts/exp_d_fsig8_observed.py`): Upgrades CHECK 3 from [INFERRED] to [VERIFIED-REAL].
+  - 11 RSD surveys z≤1.4 (Kazantzidis+Perivolaropoulos 2018, arXiv:1803.01368 gold dataset)
+  - r(observed) = −0.084, p=0.81: NOT significant → informative null
+  - r(ΛCDM model) = +0.583: model and ε(z) share bell-shape; data doesn't
+  - Physical: σ8 tension (flat data) + MULTING ε peak both at z~0.4–0.65 → possible common origin
+  - DESI 2024 slots commented + labeled [NEEDS-VERIFICATION]
+- **EXP-G** (`scripts/exp_g_planck_rebase.py`): Rebases ε(z) from Buckholtz H_FLRW to Planck 2018 ΛCDM
+  - H_FLRW falls below Planck: −1.9% at z=0.06, −15.0% at z=0.65, −64.1% at z=8.50
+  - ε_Planck changes sign at z≈0.33: low-z excess is BASELINE-INDEPENDENT, high-z is BASELINE-DEPENDENT
+  - Key: z=0.65 → ε_FLRW=+0.213 but ε_Planck=−0.124 (sign reversal)
+  - Resolves critic: "H_FLRW ambiguity" → not a bug, a different (slower) expansion model
+- **paper/main.tex updated** (commits ba31128):
+  - ssec:hflrw: added EXP-G paragraph with sign-flip analysis and sign reversal example
+  - ssec:fsig8: upgraded r=−0.086 [INFERRED] → r=−0.084 [VERIFIED-REAL] with full Kazantzidis citation
+- **Tests:** all pass (12 skips). **Ruff:** clean. **LaTeX:** no errors (pre-existing overfull hbox only).
+- **BRANCH:** feature/exp-d-g-fsig8-planck-rebase (3 commits ahead of master)
+- **NEXT:** (1) merge to master; (2) send TJB email
 
 **2026-06-25 EXP-N/EXP-O INTEGRATED INTO PAPER (commit e63df66):**
 - **EXP-N** (`scripts/exp_n_idm_isomer_count.py`): N=5 equal-mass excluded at 5.67σ; BUT m̄=1.074×mₚ makes 5 isomers exactly Planck-compatible. Exclusion reframed: not falsification, but mass-spectrum constraint. [VERIFIED-CODE]
@@ -323,6 +377,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -356,6 +411,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
 Script: `scripts/aic_model_comparison.py`, Report: `reports/aic_model_comparison.json`
 χ²_ΛCDM(opt H0,Ωm)=16.91 | χ²_MULTING(Table A1)=0.27 | Δχ²=−16.65
@@ -366,6 +422,7 @@ Out-of-sample blocked until Q1 (bridge) from TJB.
 Ref: arXiv:2504.09054v2 methodology.
 
 ---
+
 
 
 
@@ -493,6 +550,7 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -509,6 +567,7 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
 
 
 
@@ -562,6 +621,7 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
 
 
 
@@ -681,9 +741,13 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Auto-commit log
-- [2026-06-25 20:44] `942f98e`: fix: update C5 paragraph in TJB cover letter (BLOCKED → 3-regime EXP-O result)
-[summarized] - [2026-06-25 19:29] `e63df66`: feat: EXP-N/EXP-O results integrated into paper + 5 new bibtex refs
+- [2026-06-25 21:45] `be500a2`: fix: EXP-BETA — close l² hypothesis, confirmed fitting artifact
+- [2026-06-25 21:41] `3431360`: feat: EXP-BETA — β_l scaling hypothesis (l² vs l(l+1) vs linear)
+- [2026-06-25 21:10] `ba31128`: feat: integrate EXP-D + EXP-G results into paper/main.tex
+- [2026-06-25 21:07] `951dd42`: feat: EXP-D + EXP-G — fσ8 observed-only & Planck-rebased epsilon
+[summarized] - [2026-06-25 20:44] `ef3d82c`: chore: post-commit hook update to activeContext.md
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
 - [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
