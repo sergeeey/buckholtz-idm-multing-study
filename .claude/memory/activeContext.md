@@ -1,6 +1,32 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-25
+**Last updated:** 2026-06-25 (session 3)
+
+**2026-06-25 EXP-N/EXP-O INTEGRATED INTO PAPER (commit e63df66):**
+- **EXP-N** (`scripts/exp_n_idm_isomer_count.py`): N=5 equal-mass excluded at 5.67σ; BUT m̄=1.074×mₚ makes 5 isomers exactly Planck-compatible. Exclusion reframed: not falsification, but mass-spectrum constraint. [VERIFIED-CODE]
+- **EXP-O** (`scripts/exp_o_delta_neff_grav.py`): Three-regime analysis: (i) thermalized mirror ΔN_eff=106.8 → >100σ excluded; (ii) early decoupling T_dec=100 GeV → ΔN_eff~0.05/dof, Planck allows g_dark<6; (iii) grav-only IDM → ΔN_eff~10⁻⁴⁰ trivially safe. [VERIFIED-CODE]
+- **paper/main.tex updated** (9 pages, 0 undefined citations):
+  - Abstract: items (4)+(5) updated with EXP-N/EXP-O findings
+  - §ssec:chi2: added mass-spectrum resolution paragraph (m̄=1.074mₚ → Planck-compatible)
+  - §ssec:neff: replaced with 3-regime analysis; corrects ">100σ" misclassification
+  - Summary table: split N=5 row into equal-mass (✗) + unequal-mass (△)
+  - Conclusions: updated N=5 and ΔN_eff paragraphs with nuance
+- **refs.bib**: 5 new entries (clery2021, farina2018, pidm2018, chacko2015, rosa2022)
+- **Tests:** 853 passed, 12 skipped, 0 failures [VERIFIED-BASH]
+- **CURRENT STATUS:** Three original "weaknesses" resolved/reframed; paper complete
+- **REMAINING:** (1) merge branch → main; (2) send to TJB
+
+**2026-06-25 PAPER NOW 9 PAGES — EXP-K/L/M + BIB (commits e91da1e, ccd2a30, d0b8945, 408a14e):**
+- **EXP-K** (`scripts/exp_k_uncertainty.py`): σ(LHS) from m_τ = 0.081% (dominant!); σ(RHS) from G = 0.0022%; combined 0.167σ; Belle II (σ=0.01 MeV) → 1.90σ. [VERIFIED-BASH]
+- **EXP-L** (`scripts/exp_l_g_sensitivity.py`): G* = 6.67340×10⁻¹¹; 10 lab values span 479 ppm > Eq.32 deviation 135 ppm; Luo 2009 gives 0.017σ (closest to exact). [VERIFIED-BASH]
+- **EXP-M** (`scripts/exp_m_koide_eq32.py`): Koide at 0.909σ (PDG), Eq.32 at 0.167σ; exact-m_τ predictions: Koide=1776.969 MeV (+0.91σ), Eq.32=1776.840 MeV (-0.17σ), Δ=1.08σ → marginally compatible; both lepton-specific. [VERIFIED-BASH]
+- **paper/main.tex updated** (9 pages, 0 errors):
+  - §2.2 new paragraphs: formal σ budget, G sensitivity with \cite{luo2009,quinn2013,codata2018,belleii2019}
+  - §4.1 new paragraph: G₂ algebraic origins with \cite{slansky1981,baezhuerta2010,todorov2018}
+  - §4.1 Koide section: updated with precise m_τ values (1776.969 / 1776.840 MeV, Δ=1.08σ)
+- **refs.bib**: 7 new entries added (luo2009, quinn2013, codata2018, belleii2019, slansky1981, baezhuerta2010, todorov2018)
+- **CURRENT STATUS:** Paper complete with all results EXP-A through EXP-M; bibliography complete
+- **REMAINING:** (1) merge branch → main; (2) journal selection (waiting TJB); (3) optional EXP-N history scan
 
 **2026-06-25 GAP G3 RESOLUTION — 6-ROUTE INVESTIGATION (EXP-H0, H, I, J):**
 - **Route 2 (EXP-H0 null test):** UNUSUAL — только 8 пар из 2256 в пуле из 48 алгебраических целых дают ratio=4/3. P(random triple) ~ 1/37000.
@@ -295,6 +321,8 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -326,6 +354,8 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
 Script: `scripts/aic_model_comparison.py`, Report: `reports/aic_model_comparison.json`
 χ²_ΛCDM(opt H0,Ωm)=16.91 | χ²_MULTING(Table A1)=0.27 | Δχ²=−16.65
@@ -336,6 +366,8 @@ Out-of-sample blocked until Q1 (bridge) from TJB.
 Ref: arXiv:2504.09054v2 methodology.
 
 ---
+
+
 
 
 
@@ -459,6 +491,8 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -475,6 +509,8 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
+
 
 
 
@@ -526,6 +562,8 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
+
 
 
 
@@ -641,8 +679,10 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Auto-commit log
-[summarized] - [2026-06-25 15:38] `2524eac`: feat: add EXP-A..G numerical verification of Buckholtz Eq.32
+[summarized] - [2026-06-25 19:29] `e63df66`: feat: EXP-N/EXP-O results integrated into paper + 5 new bibtex refs
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
 - [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
