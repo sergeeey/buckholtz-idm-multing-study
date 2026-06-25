@@ -682,6 +682,7 @@ PREDICTION_BLOCKED
 
 
 ## Auto-commit log
+- [2026-06-25 20:44] `942f98e`: fix: update C5 paragraph in TJB cover letter (BLOCKED → 3-regime EXP-O result)
 [summarized] - [2026-06-25 19:29] `e63df66`: feat: EXP-N/EXP-O results integrated into paper + 5 new bibtex refs
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
