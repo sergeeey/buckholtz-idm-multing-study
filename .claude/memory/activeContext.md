@@ -1,6 +1,133 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-19  
+**Last updated:** 2026-06-25
+
+**2026-06-25 GAP G3 RESOLUTION — 6-ROUTE INVESTIGATION (EXP-H0, H, I, J):**
+- **Route 2 (EXP-H0 null test):** UNUSUAL — только 8 пар из 2256 в пуле из 48 алгебраических целых дают ratio=4/3. P(random triple) ~ 1/37000.
+- **Route 3 (EXP-H quark analogy):** FALSIFIED — аналог для кварков отсутствует. Eq.32 lepton-specific. E8→F4×G2 routing закрыт. [VERIFIED-BASH]
+- **Route 4 (G2 flavor lit-search):** Singh 2025 (arXiv:2508.10131) выводит m_tau/m_e из J3(O). G2 не мейнстрим как flavor symmetry.
+- **Route 5 (EXP-I G2 Weyl):** |roots(G2)|=12=E [VERIFIED]; |W(G2)|=12=E (второй вывод). dim(G2 rep (2,0))=27=dim(J3(O)) — структурная связь.
+- **Route 6 (EXP-J Connes NCG):** [HYPOTHESIS-CHAIN] J3(O) spectral action — Singh+Connes дают оба слагаемых. Не вычислено; открытый маршрут.
+- **Gap G3 частично закрыт:** {4/3, 12, 36} считают алгебраические объекты. ПОЧЕМУ alpha_EM/alpha_G = эти объекты — открытый физический вопрос.
+- **NEXT:** отправить email TJB
+
+**2026-06-25 EXP-A..G NUMERICAL VERIFICATION SUITE (commit 2524eac, branch feature/appendix-a1-doc-updates):**
+- 7 experiment scripts добавлены в `scripts/`, все ruff-clean (0 errors).
+- **EXP-A:** σ_total=0.0811%, dominated m_τ (99.97%), deviation=0.17σ
+- **EXP-B:** Koide+Eq32 joint → m_τ=1776.840, m_μ=105.650 MeV from {m_e, α_EM, α_G, Koide}
+- **EXP-C:** три α_G конвенции (Buckholtz/Dirac/Carr-Rees), cross-link таблица
+- **EXP-D:** 1.9M scan — Eq.32 rank #1, единственный хит внутри 0.014% в lepton-gravity секторе
+- **EXP-E:** RG — IR-формула; выходит за 1σ при Q~m_μ (~106 МэВ); α_EM(m_Z) даёт −3.5% отклонение
+- **EXP-F:** S³ sphere family scan (312 комбо) — единственный хит n=3,E=12 внутри 1%
+- **EXP-G:** Singh J₃(8) / octonionic algebra — **3 независимых [VERIFIED] совпадения:**
+  - G₂ = Aut(𝕆) имеет 12 корней = E (exponent)
+  - dim(SM gauge group) = 8+3+1 = 12 = E
+  - dim(SO(9)) = 36 = n×E = 3×12 (SO(9) — максимальная подгруппа F₄ = Aut(J₃(𝕆)))
+  - **BONUS:** 4/3 = 36/27 = dim(SO(9))/dim(J₃(𝕆)) — алгебраически естественно
+- Paper draft `section_results.md` §§3.1–3.8 обновлён (paper_draft/).
+- **NEXT:** email TJB с результатами + Belle II citation в refs.bib
+
+**2026-06-23 CLAIM-PROOF HARNESS + C9 SABINE + S³ REJECTED (commit 82cb353):**
+- **scripts/verify_all_claims.py** — воспроизводимый пруф на атом из PDG/CODATA/Planck (exit 0, ruff clean). Для критиков: одна команда → число+метод+вердикт. **docs/CLAIM_PROOFS.md** — ledger с командой-пруфом на строку.
+- **Две коррекции таблицы атомов** (верифицировано): **C6 7:9:17** не «0.4σ» — это лучший бозон H; **W=3.81σ** (anchor-bias: Z закреплён → 0σ). **C5 ΔN_eff** не «0.70» — BLOCKED (6/7 тепловых входов нет в препринте; наивный SM = 22–81 = 130–477σ; 0.70 = один сценарий с g_*S>210). Числа [VERIFIED-BASH].
+- **C9 Eq.32 усилена:** look-elsewhere расширен до 1/5040 (84 префактора × 20 степеней × 3 пары); Sabine-аудит → **PROMISING** (empirical regularity, Dirac-LNH lineage), НЕ derived. Подавать в paper как `@dirac1937`, mechanism open.
+- **NR-009 REJECT:** S³-механизм для (4/3) опровергнут. cross-domain сгенерировал «n=3 даёт оба числа (4/3=(n+1)/n, 12=n(n+1))» → skeptic [FALSIFIED] → enumeration: **~456 простых (p,h)-семейств совпадают при n=3** → post-hoc релейбл. 12 форсировано log_b(T)=12.035, не геометрией. Выживает только численное соотношение. G3 этим путём НЕ закрыт. pearl (4/3)↔κ² аннотирован FALSIFIED-AS-MECHANISM.
+- **parked/NW-001** (новая parked/ структура): cosmic-web topology audit — 4/10 сейчас / 7/10 parked; revival = β решён ИЛИ per-cluster φ_i определён; φ_i [VERIFIED-ABSENT] в репо.
+- **Багфикс** (внешний репо, НЕ закоммичен): fl_step8a_falsify.py `best_r=-1`→`0.0` ×3 (abs(pearson)≤1 → best_p=None → краш на CLAIM 3). Теперь exit 0.
+- **Мета-урок сессии:** look-elsewhere по ЗНАЧЕНИЯМ (1/5040, C9 сильна) ≠ look-elsewhere по ФОРМЕ (456, S³-обёртка пуста). Самообман чаще во второй: подгоняешь не число, а красивую формулу под известное число.
+- NEXT: настоящий приз механизма C9 = «почему экспонента 12» (=log_b T), не «почему 4/3» (поправка 0.0135%). Любая попытка — пре-регистрировать, предсказывать НЕЗАВИСИМОЕ соотношение.
+
+**2026-06-23 C9 LIT-SEARCH NOVELTY (commit 995c9b8):**
+- `/lit-search` полный pipeline (search→download→index→artifact), персист в `literature/` (НЕ /tmp, как раньше). 3 запроса, 81 статья, 13 OA PDF проиндексированы (gitignored), 3 json + related_work_C9.md закоммичены.
+- **Вердикт новизны C9 [INFERRED]:** категория НЕ нова (Koide/Dirac-LNH — признанное поле: Sumino 2008 gauge-вывод, Koide RG-independence 2006, «strange mass ratios + QG» 2022, Uzan 2025). НО сама формула `(4/3)(m_τ/m_e)^12=α_EM/α_G` НЕ найдена в 81 статье; RAG-проба на точную форму score 0.007 → `[INFERRED-ABSENT]` в индексированной литературе. Caveat: только OA-индекс, не исчерпывающе — нужен Scholar manual pass до published novelty claim.
+- **Paper positioning:** подавать C9 ВНУТРИ линии Koide/Dirac (снимает «наивную нумерологию»); новое = связь τ/e с α_EM/α_G (≠ Koide Q=2/3). 6 refs.bib ключей в related_work_C9.md. Ближайший сосед — strange-mass-ratios+QG 2022 (был 403, добрать вручную). Геом. прецедент (электрон из Lorentz-breakdown 2005) есть, но S³ закрыт (NR-009).
+- **Прецедент lit-search в проекте:** до сегодня запускался (кэш 21 июня) но БЕЗ персиста — search-and-discard. Теперь corpus в репо, re-runnable.
+
+**2026-06-23 C9 PAPER SECTION WRITTEN (commit 901f0a0):**
+- `paper/main.tex §ssec:eq32`: добавлен абзац «Context and status» — C9 в линии Koide/Dirac-LNH (Sumino 2009, Xing-Zhang 2006, Li-Ma 2006, Dirac 1937, Uzan 2025, Singh 2022); новизна = связь τ/e с α_EM/α_G (≠ Koide sum rule); явно empirical/mechanism-open; **S³ прямо помечен как протестированный и non-predictive** (NR-009, ~456 релейблов) — чтобы соавтор/рецензент не гонялись за ним.
+- Uniqueness-абзац усилен: добавлен look-elsewhere 5040 (1 hit в 1%, 0 в точности Eq.32) как защита от multiple comparisons.
+- `paper/refs.bib`: +6 записей, метаданные верифицированы из lit-search json (НЕ из памяти). pdflatex: **7 страниц**, 0 fatal, 0 undefined citations.
+- **Статус C9: paper-ready.** Весь TJB-независимый материал сессии теперь В рукописи, не только в артефактах.
+- ОСТАВШИЙСЯ долг по C9: Scholar manual pass + добрать Singh 2022 (был 403) до published novelty claim.
+
+**2026-06-24 C6 HONEST SIGMA + ARTIFACT CONSISTENCY (commit 834d367):**
+- `paper §ssec:bosons` уже был честным (W=3.58σ в теле). Поправлен **абстракт** (был overclaim «7:9:17 holds at 0.4σ» → теперь «<0.05% в массах; H 0.44σ, W 3.6σ») + обсуждение. Добавлена ключевая мысль: σ **anchor-dependent** — закрепление Z делает его 0σ by construction, честный figure of merit = ХУДШИЙ остаток (W ~3.6σ), не лучший (H).
+- **Consistency fix (CLAIM SCOPE DISCIPLINE):** харнесс m_W=80.3692 (→3.81σ) vs paper 80.377 (→3.58σ), оба «PDG 2024». СНАЧАЛА выровнял НЕ в ту сторону (харнесс под paper).
+
+**2026-06-24 m_W ДОЛГ ЗАКРЫТ — WebSearch PDG (commit 9368f86):**
+- **Авторитет:** PDG 2024 W-mass review → **m_W = 80369.2 ± 13.3 MeV = 80.3692 ± 0.0133 GeV** (CDF-II 2022 ИСКЛЮЧЁН; с ним совместимость комбинации падает 91%→0.5%). Источник: pdg.lbl.gov/2025/reviews/rpp2025-rev-w-mass.pdf. [VERIFIED-WEB]
+- **Вердикт:** харнесс (80.3692) был ПРАВ, paper'овские 80.377±0.012 — устаревшие (pre-2024). Предыдущая «consistency-правка» (834d367) выровняла НЕ в ту сторону — реверснул.
+- **W = 3.81σ во всех 4 артефактах** (paper ssec:bosons/abstract/discussion/table + harness + CLAIM_PROOFS). Добавлена CDF-II-exclusion заметка в paper. Z-anchored predicted m_W=80.420, dev (80.420−80.369)/0.0133=3.81σ — mass-space и sq-ratio сходятся.
+- C6 статус: **paper-ready, долг закрыт.** pdflatex 7 стр, 0 fatal/undefined; harness exit 0, ruff clean.
+- Урок: «выровнять артефакты» ≠ «выровнять к ИСТИНЕ». Я согласовал два числа к устаревшему, не проверив авторитет. Consistency без верификации источника = согласованная ошибка. WebSearch разрешил за 1 запрос.
+
+**2026-06-24 C9 NOVELTY ДОЛГ ЗАКРЫТ — open-web pass + Singh 2022 (commit 1544e69):**
+- **Новизна апгрейд → `[VERIFIED-WEB-ABSENT]`** (был [INFERRED-ABSENT]): два независимых негатива — OA-индекс (RAG 0.007) + открытый web (формула `(4/3)(m_τ/m_e)^12=α_EM/α_G` не найдена; соседи: fine-structure формулы, Koide, mass-hierarchy лагранжианы arXiv:1903.12081, tauon arXiv:hep-ph/0509043). Caveat: paywalled/books не покрыты исчерпывающе.
+- **Singh 2022 добран** (был 403 MDPI → arXiv:2209.03205): октонионная NC-geometry, выводит mass ratios кварков/лептонов, объясняет Koide 2/3 + отклонение через L-R symmetry breaking. Ближайший mechanism-providing сосед → цитата как контраст к empirical-статусу C9.
+- paper ssec:eq32: «indexed literature» → «indexed OA + open web», Singh cite. refs.bib: +arXiv eprint. related_work_C9.md: manual-pass секция.
+- **C9 статус: paper-ready, ВСЕ долги закрыты.** pdflatex 7 стр, 0 fatal/undefined.
+- **Открытых долгов по C9/C6 НЕТ.** Оба сильнейших TJB-независимых атома полностью в рукописи с воспроизводимым пруфом и проверенной новизной/значениями.
+
+**2026-06-24 CODEX CROSS-MODEL AUDIT + 2 ЖЕМЧУЖИНЫ (commit fad1b1f):**
+- Запущен Codex (GPT) context-blind на 5 claims. Подтвердил арифметику C9/C4/C5/NR-009. Поймал **stale-m_H баг**, который я пропустил (был в «режиме m_W» — anchoring внутри своей сессии; разная модель не разделяет фокус).
+- **3 фикса:** (1) C6 m_H 125.25±0.17 (PDG2022 stale) → **125.20±0.11 (PDG2024)**; Higgs 0.44σ → **1.14σ** во всех местах. (2) C9 grid: «p,q≤6» неверно (даёт 23) → реально «q≤6, p≤4q»=84; вывод (1 hit) не меняется. (3) C4: «259σ» = unit-mismatch artifact; корректный ω-space naive = **5.79σ**, согласуется с delta 5.67σ (оба метода теперь в note).
+- **🦪 Жемчужина A (надёжная):** scale-free `m_W/m_H = √(7/17) = 0.6417` — **anchor-INDEPENDENT**, держится 0.04% (PDG2024). Добавлено в paper как чистая форма 7:9:17, обходит anchor-bias. Ошибка подсказала ЛУЧШУЮ подачу.
+- **🦪 Жемчужина B (фронтир):** 7:9:17 предсказывает m_W=80.420, m_H=125.325 — **ОБА на тяжёлом краю спорных измерений** (CDF-II W 1.45σ, CMS H 0.16σ); ratio тугее всего (0.003%) для пары (CDF-II,CMS). «W=3.8σ слабость» = когерентная тяга к CDF-II стороне **W-mass аномалии**, не шум. Falsifiable: след. W-комбинация ~80.42 (CDF) vs ~80.36 (CMS/SM). Записано в pearl_registry [R=4 P=3], next_check 2027-06-01.
+- **МЕТА-урок:** жемчужина ≠ баг. Жемчужина — положительный инсайт, всплывший ПРИ работе над ошибкой (user-коррекция терминологии). Stale-m_H баг → scale-free reframe + W-anomaly connection. Ошибка приоткрыла дверь.
+- pdflatex 7 стр (440KB), 0 fatal/undefined; harness exit 0, ruff clean.
+
+**2026-06-24 HARVEST жемчужин + b2 PREFERENCE STATISTIC (commit c930519):**
+- Запущен `/harvest` на жемчужинах A/B. Оценка: A 13/20·PV4, B 13/20·PV4 — обе «оставить здесь» (высокий PV, низкий Reuse), коммерц=0, ценность реп/публикационная. Цепочка: A (scale-free обсервабл) → ENABLES → B (anchor-free тест W-аномалии) → открывает b1 timely framing / b2 preference-стат / b3 arXiv-заметка (после основной статьи).
+- **b2 реализован — formalized жемчужину B как количественный результат.** `scripts/c6_mass_preference.py`: 7:9:17 scale-free (0 свободных параметров) → 2-dof χ² по сценариям: **heavy (CDF-II+CMS) χ²=2.0 p=0.36 CONSISTENT**; PDG χ²=15.6 p=4e-4 disfavored; light χ²=39 p<1e-5 excluded. Предпочитает тяжёлый (outlier) набор в 19×. paper: абзац «Preference statistic» + Table tab:c6pref. Рамка честная: **falsifiable discriminant / bet, НЕ evidence** (W-avg <80.38 → >3σ exclusion). pdflatex **8 стр**, 0 fatal/undefined, ruff clean.
+- Founder-дисциплина: НЕ плодить отдельный W-anomaly paper сейчас (риск распыления MEDIUM); b3 arXiv-заметка — только ПОСЛЕ основной статьи.
+
+**2026-06-24 b1 W-ANOMALY FRAMING (commit dbc4ecb):**
+- Поднял жемчужину B в headline. Abstract finding (1): «parameter-free 7:9:17 consistent только с heavy (CDF-II/CMS) χ²=2.0, excludes light/SM χ²=39 → falsifiable discriminant на W-mass аномалию». Intro: новый абзац мотивации (CDF-II ~7σ над SM vs LHC favoring light W) — крючок актуальности.
+- Рамка честная сохранена: discriminant/bet, НЕ evidence. pdflatex 8 стр, 0 fatal.
+- **Цепочка A→B→b2→b1 замкнута полностью:** scale-free обсервабл → W-anomaly связь → χ² preference-результат → headline framing. Из stale-m_H бага вышло 4 положительных артефакта.
+- **СЕССИЯ ИТОГ: 10 коммитов.** C9+C6 paper-ready, cross-model-проверены, 2 жемчужины формализованы и встроены в paper (abstract+intro+§bosons+таблица+скрипт). Paper 8 стр, чисто. master подтянут (FF) к работе. Remote НЕ запушен (public-safety BLOCKER: приватная переписка TJB в дереве, видимость репо не подтверждена).
+
+**2026-06-24 ОРКЕСТРАЦИЯ 5 ЦЕПОЧЕК C→A→B→E→D (commits b8f2333 + предыдущие):**
+- **C (разведка, lit-search 73 статьи, persist в literature/):** механизма «почему 12» и «почему 7:9:17» НЕТ ни у кого; W-аномалию объясняют BSM-моделями (Stueckelberg portal 2204.09024), но НИКТО не использует целочисленное mass-ratio → наш W-угол НОВЫЙ. Территория открыта.
+- **A (hypothesis-arbiter «почему 12»):** НЕДОСТИЖИМО. H₀ (совпадение, P(integer-proximity)≈7% неубиваемо) и H₁ (12=dim(SU(3)×SU(2)×U(1))=8+3+1 точно) — со-лидеры, НЕТ различающего теста (Belle II не двигает log_b(T)). Жемчужина [WEAK] «12=dim(gauge)» в pearl_registry, НЕ в paper (S³-класс риска). H₃(RG)/H₄(/3-структура) убиты.
+- **B (единый принцип):** ловушка — A показал что даже ОДИН механизм undecidable, «принцип за всеми 4 соотношениями» = то же в квадрате + max распыление. ПАРК, не запускал deep.
+- **E (proof-ladder):** ценность проекта = эмпирика (Eq.32/7:9:17, публикация) + falsifiable W-дискриминатор, НЕ механизм (undecidable). Не лезть в механизм-вывод.
+- **D (расширить W-жемчужину):** топ-кварк НЕ лезет на лестницу 7:9:17 — (m_t/(m_Z/3))²=32.3, 0.87% (2.5σ) против 0.13-0.20% у бозонов. Негатив, но полезная ГРАНИЦА: соотношение EW-бозон-специфично, снимает «почему только 3 бозона?». В скрипт + 1 фраза paper.
+- **МЕТА-вывод оркестрации:** из 5 цепочек ценны 3 (C разведка, D граница, E стратегия); 2 (A,B механизм) — undecidable-ловушки. Проактивность сработала: A-результат сам отсёк B. Механизм-приз C9 закрыт как недостижимый дешёвыми средствами — фокус на эмпирику+публикацию.
+- pdflatex 8 стр, scripts ruff clean. 11 коммитов за сессию.
+
+**2026-06-24 РЕВИЗИЯ ПРЕПРИНТА TJB — образец .docx (commit e16895f):**
+- Цель: вернуть TJB переписанный препринт как редактируемый Word + юр. сравнительная таблица (было→стало→почему) + open questions.
+- Препринт v6 сконвертирован markitdown → `literature/buckholtz_preprint_v6.md` (184k симв). Структура: перегружен таблицами (9+), жаргон без определений, уравнения в ячейках, «Authority that our work suggests». docs/119 = карта слабостей (3 FATAL: лагранжиан A-1, β A-2, мост F→H(z) A-3).
+- **Obsidian transfer:** нашёл 2 переиспользуемых протокола (ARCHCODE) → `Reviewer Defense Protocol` (HATE/LOVE списки = каркас колонки «Почему») + `Pre-Submission Checklist` (9 чек, мы уже прошли CHECK 1/6/7 через харнесс+Codex). Методология из генетики легла на физику без изменений.
+- **Стратегия:** НЕ переписывать целиком (тащит FATAL-дыры), а РАЗДЕЛИТЬ: (А) короткая verified-заметка (Eq.32+7:9:17+фермионы, overclaim=0, реальный шанс рецензии) + (Б) program-статья (космология, β, open questions). Честный потолок: строгий журнал отвергнет теорию без лагранжиана как ни перепиши — обещать «пройдёт» нельзя.
+- **Артефакт:** `paper/revision_proposal_for_TJB_RU.docx` (40KB, редактируемый) + генератор `scripts/make_revision_proposal_ru.py` (ruff clean). RU-версия (по просьбе user); EN — по запросу. NOTE: ручные правки .docx перетираются при ре-ране генератора.
+- Мёртвый путь не трогать: `tom_s3_spinor_toy/preprint.tex` (S³, убит NR-009).
+
+**2026-06-24 ТОН РЕВИЗИИ СМЯГЧЁН — НЕТ соавторства (commit a7ab02f):**
+- User-тревога: «совместная работа/решаем вместе» читается как заявка на соавторство → спугнёт TJB. Переписана рамка .docx: подзаголовок + cover открываются явным «НЕ претендую на соавторство»; материал — его, использовать как хочет. Сергей = независимый помощник.
+- «Зачем»: объединить 3 ресурса (AI + вычисления Сергея + опыт TJB) → эталонный препринт = вклад, не кредит. Open questions: «подскажете направление — проверю численно мгновенно». Verified-блок → «что можно ВКЛЮЧИТЬ»; НОВОЕ (W-аномалия) жирным; split-рекомендация → «опционально, ваше решение».
+- 13 коммитов за сессию. RU-черновик готов к изучению user'ом; EN — по запросу.
+
+**2026-06-24 RESEARCH-AUDIT — 2 hygiene-фикса (commit 06395e7):**
+- User прогнал research-audit (вручную из SKILL.md), score 7/10. По audit-gate проверил утверждения, взял 2 реально полезных, отверг scope-creep.
+- **Поймал промах аудита:** «pearl 2026-07-18 дата прошла» — НЕВЕРНО (18 июля на 24 дня впереди). Не действовал.
+- **Фикс 1 (анти-зомби):** `experiments/two_component_eps/claim.md` — secondary bump ε(z) (z~3-8.5, NR-008) жил только как limitation+pearl, без формального claim. Stub помечает OPEN/NOT-INVESTIGATED + falsifiable two-component ansatz, чтобы будущая сессия не приняла его за объяснённый. Track A, revival только после submission Track B ИЛИ ответа TJB.
+- **Фикс 2 (pearl decay):** 2 pearl с next_check «after TJB reply» (недатированы) → жёсткий якорь 2026-09-01.
+- **Отверг:** полное two-component расследование (Track A, ниже приоритета публикации). Стратегия аудита совпала с нашей: Track B → paper, Track A ждёт TJB; «теорема через исчерпание» (k_A monotone) уже в paper.
+- 14 коммитов за сессию.
+
+---
+
+**2026-06-21 FL Step 8a fixes (commit ea896f8):**
+- T-IDM: Pade (4 params) r=0.927 [VERIFIED-BASH] beats old ceiling. Claim narrowed to physics-motivated families. Pade reframed: confirms rational structure, not falsifies two-component need.
+- N_opt sigma formula was WRONG in paper (gave ~259sigma). Fixed to delta-method: sigma_N=N*sqrt((σ_DM/ω_DM)²+(σ_b/ω_b)²)=0.0646 → 5.67sigma (consistent with chi2=33.5).
+- Added f=1 assumption caveat: N=6 with f=0.894 is not excluded independently.
+BETA-1 HOLD: cannot be cracked independently. TJB email confirms beta are phenomenological. Fisher analysis shows beta_d/beta_q degenerate even with bridge formula.
+**2026-06-21 T-IDM THEOREM (commit a03e355):** Research-scout выполнен. Ключевая находка: f×sigma8 при z>3 = ΛCDM теоретическое, не наблюдаемое (граница z_eff=2.33, DESI Ly-alpha 2025, помечено ненадёжным). Добавлено в paper: (1) явный caveat об отсутствии observational anchor при z>2; (2) T-IDM theorem by exhaustion — 8 семейств одно-компонентных формул проверены, потолок r=0.820, secondary bump z=8.5 требует отдельного члена; (3) ссылка Tkachev+2023 MNRAS (JWST аномалия z>8 как независимый мотив). refs.bib: добавлен tkachev2023. Новизна подтверждена: диполь+квадруполь как геометрическое разложение — оригинальный угол, в литературе не встречается.
+**2026-06-21 DESI DR1 CROSS-CHECK (commit a86a8b9):** Consilience BUILD выполнен на Eq.32 + IDM N_opt. Eq.32 consilience=6/10 (Observational STRONG, Mechanistic NONE). IDM N_opt=4→5/10 — добавлен DESI DR1 кросс-чек: N_opt(DESI)=5.31±0.13 vs Planck 5.3661, консистентно на 0.46σ (omega_cdm — derived quantity, не первичный DESI observable). Добавлены: paper §ssec:chi2 абзац про DESI, @desi2024vi в refs.bib, pearl в pearl_registry. Cheapest next test выполнен — IDM N_opt non-integer подтверждён независимым датасетом.
+**2026-06-21 SESSION (commit 6a416c2):** TJB replied docs/121: вернется позже — BETA-1 HOLD continues on beta_d/beta_q. User moves forward independently. paper/main.tex: Introduction Rees(1999) paragraph added (N~10^36 via Eq.32, lambda~0.7 via MULTING dipole). Section 3.1 Statistical Comparison filled from comments: ΔAIC=+0.74, sign[+,-,+] CV(B)=3%, chi2_test indistinguishable, Blanchet degeneracy. refs.bib: rees1999 added. NEXT: consilience BUILD on Eq.32 + IDM N_opt (TJB-independent track).
+**2026-06-19 PAPER UPDATED (commit ba28297):** paper/main.tex расширена до 5 страниц. Добавлены: §2.3 Fermion Mass Spectrum (muon 0.47%, quarks <0.31% vs PDG 2024); §3.1 H_FLRW Provenance (Planck MAE=120 vs power-law MAE=5.04, H(z)=54.07(1+z)^0.884); §3.2 BRAI (Birge Ratio R_B=15.9/24.1, p<1e-4, σ_rel needed 80%/98%); Table 1 +3 строки; abstract обновлён — 6 findings. refs.bib: добавлен Birge (1932). 0 fatal errors.
 **2026-06-19 APPENDIX-A1 SWEEP (commit e68af0c):** Added 4 new scripts covering IDM particle physics, BRAI β audit, H-FLRW provenance, ε(z) scales. `scripts/idm_masses.py`: fermion Eq.21-24 verified vs PDG 2024 (muon 0.47% off, best-fit δ=0.03841); inflaton=30.396 GeV; DM:OM N_opt=5.364 (Planck, 7.3% above 5); quark geom means <0.31%. `scripts/brai_beta.py`: BRAI β_d R_B=15.9 (p=0.0000), β_q R_B=24.1 (p=0.0000) — both INCONSISTENT; σ_rel needed 80%/98% >> LLM noise; β_q/β_d ratio also inconsistent R_B=10.09. `scripts/hflrw_grid.py`: Planck ΛCDM MAE=120 km/s/Mpc (FAIL); power-law H(z)=54.07(1+z)^0.884 MAE=5.04 (best); CC fit H0=68.78, Ωm=0.316. `scripts/dipole_threshold.py`: ε(z) log-Gauss peak z=0.579, FWHM=[0.11,2.99]; PS cluster peak z=0.149 (r=0.182, NOT correlated). `docs/116b`: 49 open questions §4.8 enumerated (6 categories, our coverage ~9/49). Excel v4 created: 11 rows updated + NR-6 + NR-7 added. BETA-1 HOLD continues.  
 **2026-06-17:** N-4/N-8 recomputed from scratch WITH PROOF (commit 66195b7). N-4 ΔAIC=+2.48 on real Moresco+2022 CC (report's "+3.0" was arithmetic error). N-8 "+7.2%" was an ARTIFACT → real MULTING effect on intra-cluster σ_v = −0.0016% at physical k_A (NFW+Jeans toy, 9 tests). RU report generators built (scripts/build_report_ru.py → all-36-row report for TJB; build_results_log_ru.py). Rule reaffirmed: every number in TJB report must have an executable source.
 **2026-06-17 LETTER SENT:** follow-up emailed to TJB — single question on β_d scale (docs/121, SENT version). Opens with Eq.32 0.17σ positive. AWAITING REPLY on β. H-11 physics ON PAUSE until β answer; active front = method-project (harvest basket B).
@@ -26,7 +153,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 ---
 
 ## Session 2026-06-17 — 72-hour arXiv Plan (commit 8ba15a0)
-[summarized] [summarized] [summarized] [summarized] **Completed this session:**
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
 **CV results (commit 3a67f50 — 2026-06-17):**
 - `code/beta_cv.py`: 5-fold CV on 27 Moresco CC points
 - B consistently **<0** across all folds (CV=3%) → sign pattern [+,−,+] STABLE
@@ -161,6 +288,13 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
+
+
+
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -174,6 +308,13 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 **Until all 5 resolved:** MCMC remains BLOCKED.
 
 ---
+
+
+
+
+
+
+
 
 
 
@@ -219,8 +360,15 @@ Ref: arXiv:2504.09054v2 methodology.
 
 
 
+
+
+
+
+
+
+
 ## LOO + Illustris-TNG k_A Proxy (2026-06-13, commit d1b5025)
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Scripts: `script...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
 
 **LOO (Leave-One-Out) leverage analysis:**
 - LogNormal best fit: z_peak=0.603, r=0.921, 68% CI=[0.597, 0.681], width=0.084
@@ -243,7 +391,7 @@ does not explain secondary structure at z=1.5 and z=8.5. TJB's actual k_A(z) rem
 ---
 
 ## Report Cross-Check + Untracked Preservation (2026-06-14/15)
-[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] Session goal: fa...
+[summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [summarized] [su...
 
 **Confabulation caught [VERIFIED-tool]:** report claimed "M_ICM thermal was under-counted
 ~94x (7.8e6 -> 7.3e8 M_sun)". FALSE narrative — the real 94.7x figure is the beta_q
@@ -280,6 +428,13 @@ PREDICTION_BLOCKED
 **These are NOT suggestions — they are BLOCKERS.**
 
 ---
+
+
+
+
+
+
+
 
 
 
@@ -344,6 +499,13 @@ PREDICTION_BLOCKED
 
 
 
+
+
+
+
+
+
+
 ## Files to Read When Resuming
 
 **Status:**
@@ -364,6 +526,13 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
+
+
+
+
+
+
 
 
 
@@ -465,8 +634,15 @@ PREDICTION_BLOCKED
 
 
 
+
+
+
+
+
+
+
 ## Auto-commit log
-[summarized] - [2026-06-19 00:30] `e68af0c`: research: add IDM particle physics + BRAI β audit + H-FLRW provenance scripts
+[summarized] - [2026-06-25 15:38] `2524eac`: feat: add EXP-A..G numerical verification of Buckholtz Eq.32
 - [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
 - [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
 - [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
