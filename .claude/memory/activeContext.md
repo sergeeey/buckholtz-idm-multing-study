@@ -1,6 +1,22 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-27 (session 8 — commit d88c771)
+**Last updated:** 2026-06-27 (session 9 — master 89c627c)
+
+**2026-06-27 P5 RESOLVED + arXiv READY (session 9):**
+- **chi²=39 [VERIFIED-BASH]:** all 3 paper values reproduced by `c6_mass_preference.py`:
+  - heavy (CDF-II W + CMS H):   chi²=2.04  ← paper 2.0  ✓
+  - PDG-2024 avg:                chi²=15.56 ← paper 15.6 ✓
+  - light (CMS-24 W + ATLAS H): chi²=38.97 ← paper 39   ✓
+  - exp_p_wboson_ratio.py was using wrong/[MEMORY] values; c6_mass_preference.py correct
+- **5 new tests** (`tests/test_c6_boson_chi2.py`): ratio-formula, 858 passed, 12 skipped
+- **arXiv tarball:** `paper/buckholtz-multing-idm-arxiv-submission.tar.gz` (25 KB, main.tex+refs.bib)
+- **arXiv checklist:** `docs/arxiv_submission_checklist.md`
+
+**PENDING (needs user action):**
+- arXiv upload: go to arxiv.org/submit, upload tarball, use metadata from checklist
+- TJB email: ON HOLD — needs explicit user go-ahead (NO_EMAIL_WITHOUT_APPROVAL)
+
+**ALL AUTONOMOUS TASKS COMPLETE.**
 
 **2026-06-27 LOOK-ELSEWHERE AUDIT + F₄ CASIMIR (session 8):**
 - **Look-Elsewhere Audit [VERIFIED-BASH]:** `scan_mass_ratio_formulas.py`
@@ -415,6 +431,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -451,6 +468,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
 Script: `scripts/aic_model_comparison.py`, Report: `reports/aic_model_comparison.json`
 χ²_ΛCDM(opt H0,Ωm)=16.91 | χ²_MULTING(Table A1)=0.27 | Δχ²=−16.65
@@ -461,6 +479,7 @@ Out-of-sample blocked until Q1 (bridge) from TJB.
 Ref: arXiv:2504.09054v2 methodology.
 
 ---
+
 
 
 
@@ -594,6 +613,7 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -610,6 +630,7 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
 
 
 
@@ -666,6 +687,7 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
 
 
 
@@ -791,13 +813,11 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Auto-commit log
-- [2026-06-27 20:12] `6d503f6`: feat: Look-Elsewhere Audit (83k formulas) + F₄ Casimir + experiment folder
-- [2026-06-27 19:33] `4b87cec`: docs(paper): add Koide-extension null test + 77-paper survey to C9 context paragraph
-- [2026-06-27 18:53] `8095339`: fix: correct GitHub URL in code availability (study not mvp)
-- [2026-06-27 18:46] `b806466`: feat: Gate 4+5 — scope clean + ORCID + code availability + journal selection
-- [2026-06-27 18:43] `ba0990c`: fix: fix C9b look-elsewhere scope + respond to Gate-3 skeptic concerns
-[summarized] - [2026-06-27 18:36] `fe59280`: feat: add C6b look-elsewhere scan + paper section on 7:9:17 uniqueness
+- [2026-06-27 20:24] `df0fc4f`: test: chi2=39 light-scenario verified + arXiv tarball
+- [2026-06-27 20:16] `acc8922`: docs: arXiv submission checklist — paper ready, all checks passed
+[summarized] - [2026-06-27 20:13] `a82f687`: chore: update activeContext session 8 + pearl registry F₄ diamond
 - Gate 2a: Consilience C9 (Eq.32): WEAK→MODERATE. 2 real paths (observational+computational), no mechanism (J₃(O) post-hoc, S³ killed). Main PRL risk: look-elsewhere 1/5040 in 1% window = ~50 expected formulas. Belle II (2027) is only falsifier.
 - Gate 2b: Consilience C6 (7:9:17): WEAK→MODERATE. 2 real paths (computational+predictive). Main risk: prediction relies on CDF-II, which PDG excluded. LHC Run 3 W-mass is the discriminant.
 - EXP-C6b: look-elsewhere for 7:9:17: (7,17) UNIQUE at 0.2%-2% threshold up to n=50. P(random)=1/612 [VERIFIED-BASH]. NEW RESULT — adds quantitative uniqueness to C6 claim.
