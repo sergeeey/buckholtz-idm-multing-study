@@ -1,5 +1,33 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
+**Last updated:** 2026-06-27 (session 10 — master fbf9756)
+
+**2026-06-27 F₄ ATOMS A+B AUDIT COMPLETE (session 10):**
+- **Atom A — α_G mechanism hunt:**
+  - H1 KILLED: replacing e→μ on BOTH sides gives 100% error (23 orders of magnitude off, x7399 gap). m_e is NOT a post-hoc choice.
+  - H4 KILLED: α_G(e) = G·m_e²/(ħc) is Dirac (1937) standard definition, predates Buckholtz. Not circular.
+  - H2 ALIVE (strongest): m_e appears on BOTH sides of Eq.32 simultaneously — LHS denominator (m_τ/m_e) AND RHS definition α_G(e). If J₃(O) selects m_e as base state, both appearances are structurally natural.
+  - F₄ specificity: n=6 and n=8 (other F₄ Casimir degrees) give NOTHING for α_EM/α_G target. Only n=12 (max Casimir) resonates. Both interpretations possible (against F₄ or FOR unique max-degree selection).
+  - m_τ derivation: Eq.32 = derivation of m_τ from 5 constants {G,ħ,c,α_EM,m_e}: m_τ = m_e × [(3α_EM)/(4α_G(e))]^(1/12) = 1776.84 MeV; PDG 1776.86; error 0.0011%
+  - BLIND PREDICTION CANDIDATE: if F₄ Casimir degrees {2,6,8,12} are physical, what do n=6,8 generate for OTHER ratios (α_S/α_EM, m_p/m_e)?
+- **Atom B — 4/3 derivation audit:**
+  - 4/3 = dim(Spin9)/dim(J₃(O)) = 36/27 IS real in F₄ structure
+  - BUT: multiple ratios exist (52/36=1.44, 52/27=1.93, 16/9=1.78, 36/27=4/3). We chose 36/27 because Eq.32 has 4/3. That IS retrofit.
+  - Retrofit risk: REDUCED (both numbers are F₄-natural) but NOT ELIMINATED.
+  - Best escape route: check if Buckholtz's S³ multipole expansion produces 4/3 geometrically via κ²=(n+1)/n at n=3. Cross-domain insight from memory.
+- **Files:** experiments/20260627-eq32-structural-pearl/atom_a_alpha_g.md + atom_b_four_thirds.md
+- **Pushed:** master fbf9756
+
+**DISCOVERY_GATE.md STATUS:**
+  - ✅ arithmetic, Koide-null, look-elsewhere, n=12 degeneracy, Gates 1-5
+  - ❌ 4/3 derivation, α_G mechanism, blind prediction, external review
+  - Current level: STRUCTURAL PEARL CANDIDATE (not discovery)
+
+**NEXT STEP FOR ATOMS:**
+  - H2: Read Singh 2022 (arXiv:2209.03205) §3 — does J₃(O) canonically select m_e as base state?
+  - Blind prediction: run scan for n=8 with target m_p/m_e ≈ 1836 — if hit, F₄ generates independent prediction
+  - S³ check: read Buckholtz preprint §2-3 for κ or normalization factor near 4/3
+
 **Last updated:** 2026-06-27 (session 9 — master 89c627c)
 
 **2026-06-27 P5 RESOLVED + arXiv READY (session 9):**
@@ -432,6 +460,8 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -469,6 +499,8 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
 Script: `scripts/aic_model_comparison.py`, Report: `reports/aic_model_comparison.json`
 χ²_ΛCDM(opt H0,Ωm)=16.91 | χ²_MULTING(Table A1)=0.27 | Δχ²=−16.65
@@ -479,6 +511,8 @@ Out-of-sample blocked until Q1 (bridge) from TJB.
 Ref: arXiv:2504.09054v2 methodology.
 
 ---
+
+
 
 
 
@@ -614,6 +648,8 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -630,6 +666,8 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
+
 
 
 
@@ -687,6 +725,8 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
+
 
 
 
@@ -814,10 +854,11 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Auto-commit log
-- [2026-06-27 20:24] `df0fc4f`: test: chi2=39 light-scenario verified + arXiv tarball
-- [2026-06-27 20:16] `acc8922`: docs: arXiv submission checklist — paper ready, all checks passed
-[summarized] - [2026-06-27 20:13] `a82f687`: chore: update activeContext session 8 + pearl registry F₄ diamond
+- [2026-06-27 21:15] `60b9148`: pearl: n=8 blind prediction result — WEAKLY_CONSISTENT
+[summarized] - [2026-06-27 21:13] `621793f`: pearl: n=8 F4 Casimir blind prediction registered
 - Gate 2a: Consilience C9 (Eq.32): WEAK→MODERATE. 2 real paths (observational+computational), no mechanism (J₃(O) post-hoc, S³ killed). Main PRL risk: look-elsewhere 1/5040 in 1% window = ~50 expected formulas. Belle II (2027) is only falsifier.
 - Gate 2b: Consilience C6 (7:9:17): WEAK→MODERATE. 2 real paths (computational+predictive). Main risk: prediction relies on CDF-II, which PDG excluded. LHC Run 3 W-mass is the discriminant.
 - EXP-C6b: look-elsewhere for 7:9:17: (7,17) UNIQUE at 0.2%-2% threshold up to n=50. P(random)=1/612 [VERIFIED-BASH]. NEW RESULT — adds quantitative uniqueness to C6 claim.
