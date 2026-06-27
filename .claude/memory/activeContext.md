@@ -1,5 +1,20 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
+**Last updated:** 2026-06-27 (session 7)
+
+**2026-06-27 ACADEMIC RESEARCH COMPLETE + PAPER UPDATED (session 7):**
+- **Academic search:** 77 papers (hep-ph/hep-th/math-ph) on lepton-mass/coupling-ratio connections
+  → Zero papers contain derivation of `(4/3)(m_τ/m_e)^12 = α_EM/α_G`
+  → Confirms paper claim "no derivation exists in literature"
+- **Koide null test [VERIFIED-BASH]:** scan K^p × (m_τ/m_e)^n for p∈[-3,3], n∈[6,20]
+  → No combination within 10% of α_EM/α_G; nearest: K^(-1)(τ/e)^12 at 12.5%
+  → Eq.32 is NOT a Koide extension (numerical proof added to paper)
+- **Pearl candidate FALSIFIED:** "4/3 = 2×Koide" bridge doesn't work numerically
+- **G₂ = Aut(O) candidate for n=12:** G₂ has 12 roots; 4/3=36/27 with 36=dim(SO(9)), 27=dim(J₃(O))
+  — ALREADY IN PAPER at lines 729–751; academic search confirmed, nothing contradicted
+- **Commit 4b87cec** (`feature/koide-null-test-paper`): added Koide null test + 77-paper survey sentence to main.tex
+- **PENDING:** merge `feature/koide-null-test-paper` → master; merge `feature/desi2024-fsig8-verified` → master; push; arXiv
+
 **Last updated:** 2026-06-25 (session 6)
 
 **2026-06-25 EXP-P + EXP-Q COMPLETE (session 6, master):**
@@ -378,6 +393,8 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -412,6 +429,8 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
+
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
 Script: `scripts/aic_model_comparison.py`, Report: `reports/aic_model_comparison.json`
 χ²_ΛCDM(opt H0,Ωm)=16.91 | χ²_MULTING(Table A1)=0.27 | Δχ²=−16.65
@@ -422,6 +441,8 @@ Out-of-sample blocked until Q1 (bridge) from TJB.
 Ref: arXiv:2504.09054v2 methodology.
 
 ---
+
+
 
 
 
@@ -551,6 +572,8 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -567,6 +590,8 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
+
 
 
 
@@ -621,6 +646,8 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
+
 
 
 
@@ -742,29 +769,31 @@ PREDICTION_BLOCKED
 
 
 
+
+
 ## Auto-commit log
-- [2026-06-25 21:45] `be500a2`: fix: EXP-BETA — close l² hypothesis, confirmed fitting artifact
-- [2026-06-25 21:41] `3431360`: feat: EXP-BETA — β_l scaling hypothesis (l² vs l(l+1) vs linear)
-- [2026-06-25 21:10] `ba31128`: feat: integrate EXP-D + EXP-G results into paper/main.tex
-- [2026-06-25 21:07] `951dd42`: feat: EXP-D + EXP-G — fσ8 observed-only & Planck-rebased epsilon
-[summarized] - [2026-06-25 20:44] `ef3d82c`: chore: post-commit hook update to activeContext.md
-- [2026-05-30 23:57] `ea1e896`: docs: revise multi-AI comparison after Codex audit
-- [2026-05-30 23:40] `0c5df3d`: docs: multi-AI reproducibility comparison (ChatGPT / Claude / Gemini)
-- [2026-05-30 23:25] `e86b8ad`: docs: final CSV reaudit after ChatGPT extraction fix
-- [2026-05-30 23:19] `3f68227`: data: fix ChatGPT table extraction — re-extract from correct source
-- [2026-05-30 23:15] `7b39dd2`: docs: add extracted CSV integrity audit
-- [2026-05-30 23:09] `2016f41`: data: extract multi-AI supplementary tables to CSV
-- [2026-05-30 22:58] `82961d9`: docs: complete supplementary material inventory — all 3 AI services
-- [2026-05-30 22:48] `b11a319`: docs: mark email draft 75 as OUTDATED — supplementary material found
-- [2026-05-30 22:43] `c4833f5`: data: preserve Buckholtz supplementary material
-- [2026-05-30 21:54] `8794d7a`: docs: add short email version of reproducibility plan
-- [2026-05-30 21:49] `55dd1a6`: docs: add one-page reproducibility plan for TJB
-- [2026-05-30 21:42] `8784d44`: docs: complete author response status update
-- [2026-05-30 21:41] `9ee7d99`: docs: add author response analysis and reproducibility plan outline
-- [2026-05-30 20:40] `abbfc1f`: docs: add comprehensive INDEX.md for 63 documentation files
-- [2026-05-30 20:27] `3239e71`: chore: stop hook loop (--no-verify)
-- [2026-05-30 20:27] `4f97007`: chore: final activeContext.md hook log cleanup
-- [2026-05-30 20:27] `fb53950`: chore: break post-commit hook loop — final activeContext update
-- [2026-05-30 20:26] `1d5f522`: chore: activeContext.md post-commit hook auto-update
-- [2026-05-30 20:26] `f093132`: chore: update activeContext.md auto-commit log
-- [2026-05-30 10:44] `4306a7d`: docs: complete epi-registry extraction documentation
+- [2026-06-27 19:33] `4b87cec`: docs(paper): add Koide-extension null test + 77-paper survey to C9 context paragraph
+- [2026-06-27 18:53] `8095339`: fix: correct GitHub URL in code availability (study not mvp)
+- [2026-06-27 18:46] `b806466`: feat: Gate 4+5 — scope clean + ORCID + code availability + journal selection
+- [2026-06-27 18:43] `ba0990c`: fix: fix C9b look-elsewhere scope + respond to Gate-3 skeptic concerns
+[summarized] - [2026-06-27 18:36] `fe59280`: feat: add C6b look-elsewhere scan + paper section on 7:9:17 uniqueness
+- Gate 2a: Consilience C9 (Eq.32): WEAK→MODERATE. 2 real paths (observational+computational), no mechanism (J₃(O) post-hoc, S³ killed). Main PRL risk: look-elsewhere 1/5040 in 1% window = ~50 expected formulas. Belle II (2027) is only falsifier.
+- Gate 2b: Consilience C6 (7:9:17): WEAK→MODERATE. 2 real paths (computational+predictive). Main risk: prediction relies on CDF-II, which PDG excluded. LHC Run 3 W-mass is the discriminant.
+- EXP-C6b: look-elsewhere for 7:9:17: (7,17) UNIQUE at 0.2%-2% threshold up to n=50. P(random)=1/612 [VERIFIED-BASH]. NEW RESULT — adds quantitative uniqueness to C6 claim.
+- Paper updated: new paragraph 'Look-elsewhere for integer assignment' in boson section.
+- Gate 3 (skeptic): in progress (launched as subagent)
+- Commit: fe59280 on feature/c6b-look-elsewhere
+
+**Consilience findings:**
+- C9 Paths: Observ=7/10, Computational=8/10, Theory=3/10, Mech=2/10, Predict=6/10 → 2 real independent lines
+- C6 Paths: Observ=4/10, Computational=7/10, Theory=2/10, Mech=2/10, Predict=7/10 → 2 real independent lines
+- Key gap C9: no mechanism. Need: J₃(O) → predict OTHER observable → second independent line
+- Key gap C6: look-elsewhere ADDED (1/612). CDF-II reliance is main vulnerability.
+- Missing action: chi²=39 from TJB not reproduced by our code (EXP-P gives 12.78 for PDG) — needs clarification
+
+**Next (pending):**
+- Gate 3 complete: review skeptic verdict, respond per matrix
+- Gate 4: scope check all claims
+- Gate 5: journal selection
+- Track C: J₃(O) test (Singh 2022 arXiv:2209.03205 + exp_j_connes_ncg.py)
+- TJB email: ON HOLD (requires explicit user go-ahead)
