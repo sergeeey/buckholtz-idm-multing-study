@@ -461,6 +461,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -499,6 +500,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
 Script: `scripts/aic_model_comparison.py`, Report: `reports/aic_model_comparison.json`
 χ²_ΛCDM(opt H0,Ωm)=16.91 | χ²_MULTING(Table A1)=0.27 | Δχ²=−16.65
@@ -509,6 +511,7 @@ Out-of-sample blocked until Q1 (bridge) from TJB.
 Ref: arXiv:2504.09054v2 methodology.
 
 ---
+
 
 
 
@@ -646,6 +649,7 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -662,6 +666,7 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
 
 
 
@@ -720,6 +725,7 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
 
 
 
@@ -849,9 +855,10 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Auto-commit log
-- [2026-06-27 21:11] `6798428`: research: Atom A+B audit for F4/J3(O) hypothesis
-[summarized] - [2026-06-27 21:02] `6f97c67`: merge: discovery gate docs
+- [2026-06-27 21:15] `60b9148`: pearl: n=8 blind prediction result — WEAKLY_CONSISTENT
+[summarized] - [2026-06-27 21:13] `621793f`: pearl: n=8 F4 Casimir blind prediction registered
 - Gate 2a: Consilience C9 (Eq.32): WEAK→MODERATE. 2 real paths (observational+computational), no mechanism (J₃(O) post-hoc, S³ killed). Main PRL risk: look-elsewhere 1/5040 in 1% window = ~50 expected formulas. Belle II (2027) is only falsifier.
 - Gate 2b: Consilience C6 (7:9:17): WEAK→MODERATE. 2 real paths (computational+predictive). Main risk: prediction relies on CDF-II, which PDG excluded. LHC Run 3 W-mass is the discriminant.
 - EXP-C6b: look-elsewhere for 7:9:17: (7,17) UNIQUE at 0.2%-2% threshold up to n=50. P(random)=1/612 [VERIFIED-BASH]. NEW RESULT — adds quantitative uniqueness to C6 claim.
