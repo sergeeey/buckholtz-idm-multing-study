@@ -1,6 +1,6 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
-**Last updated:** 2026-06-27 (session 10 — master fbf9756)
+**Last updated:** 2026-06-27 (session 11 — master 4e6c5ac)
 
 **2026-06-27 F₄ ATOMS A+B AUDIT COMPLETE (session 10):**
 - **Atom A — α_G mechanism hunt:**
@@ -23,10 +23,23 @@
   - ❌ 4/3 derivation, α_G mechanism, blind prediction, external review
   - Current level: STRUCTURAL PEARL CANDIDATE (not discovery)
 
-**NEXT STEP FOR ATOMS:**
-  - H2: Read Singh 2022 (arXiv:2209.03205) §3 — does J₃(O) canonically select m_e as base state?
-  - Blind prediction: run scan for n=8 with target m_p/m_e ≈ 1836 — if hit, F₄ generates independent prediction
-  - S³ check: read Buckholtz preprint §2-3 for κ or normalization factor near 4/3
+**P1+P2 LITERATURE AUDIT COMPLETE (session 11):**
+  - **P1 Singh 2022 (arXiv:2209.03205):** J₃(O)/Cl(6) selects NEUTRINO not electron as Clifford idempotent. H2 WEAKENED from J₃(O) direction. No α_G connection. τ/e prediction: 58.64 vs 58.97 (0.56% off, needs Karolyhazy correction).
+  - **P2 Buckholtz preprint v6:** 4/3 appears ONLY in Eq.32. ZERO derivation from MULTING/k-scheme found. [VERIFIED-ABSENT]. k-scheme assigns electron k=0 (Eq.21) making it natural reference → H2 SUPPORTED from Buckholtz direction. Both m_e appearances in Eq.32 come from k=0 reference.
+  - **H2 status SPLIT:** weakened from J₃(O) (neutrino is Clifford base), supported from k-scheme (electron is k=0). Best paper framing: "Within Buckholtz's k-scheme, electron's k=0 status makes it the natural reference for both appearances in Eq.32."
+  - **4/3 status:** UNDERIVET in any source. S³ geometric route (κ²=(n+1)/n=4/3 at n=3) remains only surviving independent candidate — NOT yet verified.
+  - **File:** experiments/20260627-eq32-structural-pearl/p2_literature_audit.md
+
+**CURRENT STATE (post session 11):**
+  - Blocking atoms partially resolved: α_G mechanism coherent (k=0 reference), 4/3 still underibed
+  - What CAN be written in paper NOW: "In Buckholtz's k-scheme, electron (k=0) is the natural reference lepton. Eq.32 involves k=0 on both sides: LHS denominator m_τ/m_e and RHS α_G(e). This dual appearance is structurally coherent, not post-hoc."
+  - What CANNOT be claimed: derivation of 4/3, derivation of n=12, J₃(O) → α_G mechanism
+
+**P3 (arXiv upload) — READY NOW. User action required:**
+  - Preprint ready as-is for submission
+  - Gate: STRUCTURAL PEARL CANDIDATE framing is honest and correct for a preprint
+  - Do NOT wait for 4/3 derivation — that may never come
+  - Go to arxiv.org/submit, upload paper/buckholtz-multing-idm-arxiv-submission.tar.gz
 
 **Last updated:** 2026-06-27 (session 9 — master 89c627c)
 
@@ -462,6 +475,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## MCMC Blockers (5 blockers, 0 resolved)
 
 | Blocker | Status | Required |
@@ -501,6 +515,7 @@ Prior status was WAITING_FOR_TJB (email 9513289 sent 2026-06-12).
 
 
 
+
 ## AIC/BIC Model Comparison (2026-06-13, commit 46277b9)
 Script: `scripts/aic_model_comparison.py`, Report: `reports/aic_model_comparison.json`
 χ²_ΛCDM(opt H0,Ωm)=16.91 | χ²_MULTING(Table A1)=0.27 | Δχ²=−16.65
@@ -511,6 +526,7 @@ Out-of-sample blocked until Q1 (bridge) from TJB.
 Ref: arXiv:2504.09054v2 methodology.
 
 ---
+
 
 
 
@@ -650,6 +666,7 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Priority Context
 
 **Active commercial priority:** GeoScan Gold 2026 (21 days to blind test, deadline 2026-06-20)
@@ -666,6 +683,7 @@ PREDICTION_BLOCKED
 - Run MCMC until all 5 blockers resolved
 
 ---
+
 
 
 
@@ -725,6 +743,7 @@ PREDICTION_BLOCKED
 - docs/18_fit_reproduction_requirements.md (fitted params protocol)
 
 ---
+
 
 
 
@@ -856,9 +875,9 @@ PREDICTION_BLOCKED
 
 
 
+
 ## Auto-commit log
-- [2026-06-27 21:15] `60b9148`: pearl: n=8 blind prediction result — WEAKLY_CONSISTENT
-[summarized] - [2026-06-27 21:13] `621793f`: pearl: n=8 F4 Casimir blind prediction registered
+[summarized] - [2026-06-27 21:31] `e21adc4`: research: P1+P2 literature audit — Singh 2022 + Buckholtz preprint v6
 - Gate 2a: Consilience C9 (Eq.32): WEAK→MODERATE. 2 real paths (observational+computational), no mechanism (J₃(O) post-hoc, S³ killed). Main PRL risk: look-elsewhere 1/5040 in 1% window = ~50 expected formulas. Belle II (2027) is only falsifier.
 - Gate 2b: Consilience C6 (7:9:17): WEAK→MODERATE. 2 real paths (computational+predictive). Main risk: prediction relies on CDF-II, which PDG excluded. LHC Run 3 W-mass is the discriminant.
 - EXP-C6b: look-elsewhere for 7:9:17: (7,17) UNIQUE at 0.2%-2% threshold up to n=50. P(random)=1/612 [VERIFIED-BASH]. NEW RESULT — adds quantitative uniqueness to C6 claim.
