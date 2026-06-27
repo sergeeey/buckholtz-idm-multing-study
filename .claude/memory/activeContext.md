@@ -1,5 +1,25 @@
 # Active Context — Buckholtz IDM/MULTING Audit
 
+**Last updated:** 2026-06-27 (session 8 — commit d88c771)
+
+**2026-06-27 LOOK-ELSEWHERE AUDIT + F₄ CASIMIR (session 8):**
+- **Look-Elsewhere Audit [VERIFIED-BASH]:** `scan_mass_ratio_formulas.py`
+  - 83,160 formulas: (p/q)(m_i/m_j)^n, all 11 SM fermions, p,q≤10, n≤24
+  - **Eq.32 rank #1** at 0.014%; next best `(7/5)(m_t/m_s)^13` at 0.30% (22× gap)
+  - Within 0.1%: sole match; empirical p < 2×10⁻⁵
+  - Result: Eq.32 is NOT a look-elsewhere artifact [PROMOTED from risk to cleared]
+- **paper/main.tex updated:**
+  - Look-elsewhere paragraph: extended from 5,640 → 83,160 scan, rank #1 sentence added
+  - Algebraic origins: F₄ max Casimir degree = 12 added as 3rd independent derivation
+  - refs.bib: `bincer1993f4casimir` (hep-th/9312148) added
+- **experiments/20260627-f4-eq32-synthesis/**: claim.md + decision.md + look_elsewhere_result.json
+- **Pushed to GitHub:** master = d88c771
+
+**PENDING:**
+- arXiv submission (paper ready; needs user action to upload)
+- TJB email (ON HOLD — needs explicit user go-ahead)
+- chi²=39 discrepancy (TJB χ²=39 vs our 12.78) — open
+
 **Last updated:** 2026-06-27 (session 7)
 
 **2026-06-27 ACADEMIC RESEARCH COMPLETE + PAPER UPDATED (session 7):**
@@ -772,6 +792,7 @@ PREDICTION_BLOCKED
 
 
 ## Auto-commit log
+- [2026-06-27 20:12] `6d503f6`: feat: Look-Elsewhere Audit (83k formulas) + F₄ Casimir + experiment folder
 - [2026-06-27 19:33] `4b87cec`: docs(paper): add Koide-extension null test + 77-paper survey to C9 context paragraph
 - [2026-06-27 18:53] `8095339`: fix: correct GitHub URL in code availability (study not mvp)
 - [2026-06-27 18:46] `b806466`: feat: Gate 4+5 — scope clean + ORCID + code availability + journal selection
